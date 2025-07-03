@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--color-dark: #0b132b;
+	--color-light: #ffffff;
+	--color-primary: #5bc0be;
+	--color-secondary: #3a506b;
+	--color-tertiary: #aad9d8;
+	--color-surface: #1c2541;
+	--color-error: #ff6b6b;
+	--color-success: #7fe7c3;
+	--color-warning: #ffe066;
+	--color-info: #8cd2f7;
+	--color-muted: #a0a0a0;
+	--color-border: #3f4a5a;
+	--color-hover: #74d3ce;
+	--color-accent: #fcd5ce;
+	--color-overlay: rgba(0, 0, 0, 0.5);
+	--color-disabled: #4f5d75;
+}
+
+body {
+	background-color: var(--color-dark);
+	color: var(--color-light);
+}
