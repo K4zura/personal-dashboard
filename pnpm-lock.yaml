@@ -8,12 +8,21 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/m-plus-1-code':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource-variable/oxanium':
+        specifier: ^5.2.6
+        version: 5.2.6
       '@supabase/supabase-js':
         specifier: ^2.50.3
         version: 2.50.3
       chart.js:
         specifier: ^4.5.0
         version: 4.5.0
+      lucide-svelte:
+        specifier: ^0.525.0
+        version: 0.525.0(svelte@5.35.2)
       svelte-chartjs:
         specifier: ^3.1.5
         version: 3.1.5(chart.js@4.5.0)(svelte@5.35.2)
@@ -462,6 +471,12 @@ packages:
   '@eslint/plugin-kit@0.3.3':
     resolution: {integrity: sha512-1+WqvgNMhmlAambTvT3KPtCl/Ibr68VldY2XY40SL1CE0ZXiakFR/cbTspaF5HsnpDMvcYYoJHfl4980NBjGag==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@fontsource-variable/m-plus-1-code@5.2.6':
+    resolution: {integrity: sha512-BIr/XGX2bgiTKjh2TB4pwKduKBAPeYVBRrwDd5YF3FFYHjyVjOrtdLhN86pBQO8D59XfI3s6zkSScs+j9DXvwQ==}
+
+  '@fontsource-variable/oxanium@5.2.6':
+    resolution: {integrity: sha512-SMo4lGsX96FWiN76b7YVgZfzXlAkIjPJQcz56eZTYs4l1ebyTyfUjtUje0+MVK7uYt/+1GIYL0jbe3wC0kT2Ew==}
 
   '@formatjs/ecma402-abstract@2.3.4':
     resolution: {integrity: sha512-qrycXDeaORzIqNhBOx0btnhpD1c+/qFIHAN9znofuMJX6QBwtbrmlpWfD4oiUUD2vJUOIYFA/gYtg2KAMGG7sA==}
@@ -1471,6 +1486,11 @@ packages:
   lru-queue@0.1.0:
     resolution: {integrity: sha512-BpdYkt9EvGl8OfWHDQPISVpcl5xZthb+XPsbELj5AQXxIC8IriDZIQYjBJPEm5rS420sjZ0TLEzRcq5KdBhYrQ==}
 
+  lucide-svelte@0.525.0:
+    resolution: {integrity: sha512-kfuN6JcCqTfCz2B76aXnyGLAzEBRSYw5GaUspM5RNHQZS5aI5yaKu06fbaofOk8cDvUtY0AUm/zAix7aUX6Q3A==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
+
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
@@ -2246,6 +2266,10 @@ snapshots:
     dependencies:
       '@eslint/core': 0.15.1
       levn: 0.4.1
+
+  '@fontsource-variable/m-plus-1-code@5.2.6': {}
+
+  '@fontsource-variable/oxanium@5.2.6': {}
 
   '@formatjs/ecma402-abstract@2.3.4':
     dependencies:
@@ -3293,6 +3317,10 @@ snapshots:
   lru-queue@0.1.0:
     dependencies:
       es5-ext: 0.10.64
+
+  lucide-svelte@0.525.0(svelte@5.35.2):
+    dependencies:
+      svelte: 5.35.2
 
   lz-string@1.5.0: {}
 

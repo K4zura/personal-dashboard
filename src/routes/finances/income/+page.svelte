@@ -6,6 +6,6 @@
 
 <h1>{$t('title')}</h1>
 
-<h1 class="text-primary text-xl font-bold">Finance</h1>
+<h1 class="text-primary text-xl font-bold">{$t('finances.income')}</h1>
 
 <!-- <p>{$t('greeting', { values: { name: 'Carlos' } })}</p> -->

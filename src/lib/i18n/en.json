@@ -1,4 +1,49 @@
 {
+	"aside": {
+		"dashboard": "Dashboard",
+		"finances": {
+			"title": "Finances",
+			"income": "Income",
+			"expenses": "Expenses",
+			"savings": "Savings",
+			"budget": "Budget"
+		},
+		"productivity": {
+			"title": "Productivity",
+			"projects": "Projects",
+			"tasks": "Tasks",
+			"notes": "Notes",
+			"calendar": "Calendar"
+		},
+		"personal_development": {
+			"title": "Personal Development",
+			"learning": "Learning",
+			"timer": "Timer",
+			"habits": "Habits"
+		},
+		"settings": "Settings"
+	},
+	"finances": {
+		"title": "Finances",
+		"income": "Income",
+		"expenses": "Expenses",
+		"savings": "Savings",
+		"budget": "Budget"
+	},
+	"productivity": {
+		"title": "Productivity",
+		"projects": "Projects",
+		"tasks": "Tasks",
+		"notes": "Notes",
+		"calendar": "Calendar"
+	},
+	"personal_development": {
+		"title": "Personal Development",
+		"learning": "Learning",
+		"timer": "Timer",
+		"habits": "Habits"
+	},
+	"settings": "Settings",
 	"title": "My Dashboard",
 	"greeting": "Hello, {name}!",
 	"logout": "Logout"

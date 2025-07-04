@@ -1,4 +1,49 @@
 {
+	"aside": {
+		"dashboard": "Panel",
+		"finances": {
+			"title": "Finanzas",
+			"income": "Ingresos",
+			"expenses": "Gastos",
+			"savings": "Ahorros",
+			"budget": "Presupuesto"
+		},
+		"productivity": {
+			"title": "Productividad",
+			"projects": "Proyectos",
+			"tasks": "Tareas",
+			"notes": "Notas",
+			"calendar": "Calendario"
+		},
+		"personal_development": {
+			"title": "Desarrollo Personal",
+			"timer": "Tiempo",
+			"learning": "Aprendizaje",
+			"habits": "Hábitos"
+		},
+		"settings": "Ajustes"
+	},
+	"finances": {
+		"title": "Finanzas",
+		"income": "Ingresos",
+		"expenses": "Gastos",
+		"savings": "Ahorros",
+		"budget": "Presupuesto"
+	},
+	"productivity": {
+		"title": "Productividad",
+		"projects": "Proyectos",
+		"tasks": "Tareas",
+		"notes": "Notas",
+		"calendar": "Calendario"
+	},
+	"personal_development": {
+		"title": "Desarrollo Personal",
+		"timer": "Tiempo",
+		"learning": "Aprendizaje",
+		"habits": "Hábitos"
+	},
+	"settings": "Ajustes",
 	"title": "Mi Panel",
 	"greeting": "¡Hola, {name}!",
 	"logout": "Cerrar sesión"

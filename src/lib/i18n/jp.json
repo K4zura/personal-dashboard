@@ -1,0 +1,50 @@
+{
+	"aside": {
+		"dashboard": "ダッシュボード",
+		"finances": {
+			"title": "財務",
+			"income": "収入",
+			"expenses": "費用",
+			"savings": "貯蓄",
+			"budget": "予算"
+		},
+		"productivity": {
+			"title": "生産性",
+			"projects": "プロジェクト",
+			"tasks": "タスク",
+			"notes": "ノート",
+			"calendar": "カレンダー"
+		},
+		"personal_development": {
+			"title": "個人開発",
+			"learning": "学習",
+			"timer": "タイマー",
+			"habits": "習慣"
+		},
+		"settings": "設定"
+	},
+	"finances": {
+		"title": "財務",
+		"income": "収入",
+		"expenses": "費用",
+		"savings": "貯蓄",
+		"budget": "予算"
+	},
+	"productivity": {
+		"title": "生産性",
+		"projects": "プロジェクト",
+		"tasks": "タスク",
+		"notes": "ノート",
+		"calendar": "カレンダー"
+	},
+	"personal_development": {
+		"title": "個人開発",
+		"learning": "学習",
+		"timer": "タイマー",
+		"habits": "習慣"
+	},
+	"settings": "設定",
+	"title": "ダッシュボード",
+	"greeting": "こんにちは、{name}！",
+	"logout": "ログアウト"
+}

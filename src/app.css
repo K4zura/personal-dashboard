@@ -1,10 +1,12 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+@import '@fontsource-variable/oxanium';
+@import '@fontsource-variable/m-plus-1-code';
 
 @theme {
 	--color-dark: #0b132b;
-	--color-light: #ffffff;
+	--color-light: #efefff;
 	--color-primary: #5bc0be;
 	--color-secondary: #3a506b;
 	--color-tertiary: #aad9d8;
@@ -21,7 +23,8 @@
 	--color-disabled: #4f5d75;
 }
 
-body {
+html {
+	font-family: 'Oxanium Variable', 'M PLUS 1 Code Variable', 'CircularStd', sans-serif;
 	background-color: var(--color-dark);
 	color: var(--color-light);
 }

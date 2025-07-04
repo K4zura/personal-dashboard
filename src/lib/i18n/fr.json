@@ -1,4 +1,49 @@
 {
+	"aside": {
+		"dashboard": "Tableau de Bord",
+		"finances": {
+			"title": "Finances",
+			"income": "Rentrée",
+			"expenses": "Dépenses",
+			"savings": "Ahorrés",
+			"budget": "Budget"
+		},
+		"productivity": {
+			"title": "Productivité",
+			"projects": "Projets",
+			"tasks": "Tâches",
+			"notes": "Notes",
+			"calendar": "Calendrier"
+		},
+		"personal_development": {
+			"title": "Développement Personnel",
+			"learning": "Apprentissage",
+			"timer": "Timer",
+			"habits": "Habitudes"
+		},
+		"settings": "Réglages"
+	},
+	"finances": {
+		"title": "Finances",
+		"income": "Rentrée",
+		"expenses": "Dépenses",
+		"savings": "Ahorrés",
+		"budget": "Budget"
+	},
+	"productivity": {
+		"title": "Productivité",
+		"projects": "Projets",
+		"tasks": "Tâches",
+		"notes": "Notes",
+		"calendar": "Calendrier"
+	},
+	"personal_development": {
+		"title": "Développement Personnel",
+		"learning": "Apprentissage",
+		"timer": "Timer",
+		"habits": "Habitudes"
+	},
+	"settings": "Réglages",
 	"title": "Mon Tableau de Bord",
 	"greeting": "Bonjour, {name} !",
 	"logout": "Se déconnecter"

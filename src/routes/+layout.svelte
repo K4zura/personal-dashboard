@@ -1,27 +1,42 @@
 <script lang="ts">
 	import '../app.css';
 	import '$lib/i18n';
-	import { changeLocale } from '$lib/i18n';
+	import { onMount } from 'svelte';
+	import { waitLocale } from 'svelte-i18n';
+	import AsideBar from '$lib/components/AsideBar.svelte';
+
 	let { children } = $props();
+	let loading = $state(true);
+
+	onMount(async () => {
+		await waitLocale(); // Espera a que el idioma se cargue
+		loading = false; // Cambia el estado de carga cuando el idioma esté listo
+	});
 </script>
 
 <svelte:head>
 	<title>Personal Dashboard</title>
 </svelte:head>
-<nav>
-	<a href="/">Home</a>
-	<a href="/dashboard/finance">Finance</a>
-	<a href="/dashboard/settings">Settings</a>
-</nav>
-<button class="bg-secondary cursor-pointer rounded px-3 py-2" onclick={() => changeLocale('en')}
-	>English</button
->
-<button class="bg-secondary cursor-pointer rounded px-3 py-2" onclick={() => changeLocale('es')}
-	>Español</button
->
-<button class="bg-secondary cursor-pointer rounded px-3 py-2" onclick={() => changeLocale('fr')}
-	>Français</button
->
-<main>
-	{@render children()}
-</main>
+
+{#if loading}
+	<div>Loading...</div>
+{:else}
+	<div id="app" class="p-4 md:gap-4">
+		<AsideBar />
+
+		<main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
+			{@render children()}
+		</main>
+	</div>
+{/if}
+
+<style>
+	#app {
+		display: grid;
+		grid-template-areas: 'aside main main';
+		gap: 20px; /* Ajusta esto según tus necesidades */
+		grid-template-columns: 256px 1fr;
+		height: 100vh;
+		max-height: 100vh;
+	}
+</style>

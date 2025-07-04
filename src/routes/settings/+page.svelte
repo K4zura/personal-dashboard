@@ -5,4 +5,4 @@
 </script>
 
 <h1>{$t('title')}</h1>
-<h1 class="text-primary text-xl font-bold">Settings</h1>
+<h1 class="text-primary text-xl font-bold">{$t('settings.title')}</h1>
