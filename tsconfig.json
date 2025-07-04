@@ -12,14 +12,7 @@
 		"moduleResolution": "bundler",
 
 		"target": "ES2020",
-		"module": "ES2020",
-		"baseUrl": ".",
-		"paths": {
-			"$lib/*": ["src/lib/*"],
-			"$components/*": ["src/lib/components/*"],
-			"$routes/*": ["src/routes/*"],
-			"$styles/*": ["src/styles/*"]
-		}
+		"module": "ES2020"
 	}
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
