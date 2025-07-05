@@ -3,7 +3,7 @@
 	import '$lib/i18n';
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
-	import AsideBar from '$lib/components/AsideBar.svelte';
+	import SideBar from '$lib/components/layout/SideBar.svelte';
 
 	let { children } = $props();
 	let loading = $state(true);
@@ -22,7 +22,7 @@
 	<div>Loading...</div>
 {:else}
 	<div id="app" class="p-4 md:gap-4">
-		<AsideBar />
+		<SideBar />
 
 		<main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
 			{@render children()}
