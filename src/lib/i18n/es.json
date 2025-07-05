@@ -43,6 +43,12 @@
 		"learning": "Aprendizaje",
 		"habits": "Hábitos"
 	},
+	"chart": {
+		"all": "Todos",
+		"year": "Año",
+		"month": "Mes"
+	},
+	"months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"],
 	"settings": "Ajustes",
 	"title": "Mi Panel",
 	"greeting": "¡Hola, {name}!",

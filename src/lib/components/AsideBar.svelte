@@ -21,6 +21,15 @@
 	import { slide } from 'svelte/transition';
 	import { t } from 'svelte-i18n';
 	import { changeLocale } from '$lib/i18n';
+	import { getStores } from '$app/stores';
+	const { page } = getStores();
+	import { Motion } from 'svelte-motion';
+	let top = 0;
+	let left = 0;
+	let width = 0;
+	let height = 0;
+	let opacity = 0;
+	$: routeId = $page.route.id;
 
 	// const t = _;
 
@@ -81,26 +90,65 @@
 	) => {
 		activeSection = activeSection === section ? null : section;
 	};
+
+	$: {
+		// Recorremos las secciones que tienen submenú
+		menuItems.forEach((section) => {
+			if (section.items) {
+				// Si alguna de las URL de los ítems está en la ruta actual, abrimos el submenú
+				if (section.items.some((item) => routeId?.startsWith(item.url))) {
+					activeSection = section;
+				}
+			}
+		});
+	}
+	let positionMotion = (node: HTMLElement) => {
+		let refNode = () => {
+			let mint = node.getBoundingClientRect();
+			top = node.offsetTop;
+			left = node.offsetLeft;
+			width = mint.width;
+			height = mint.height;
+			opacity = 1;
+		};
+		node.addEventListener('mouseenter', refNode);
+		return {
+			destroy() {
+				node.removeEventListener('mouseenter', refNode);
+			}
+		};
+	};
 </script>
 
 <aside class="bg-secondary flex h-full flex-col justify-between rounded p-2 [grid-area:aside]">
-	<section class="mx-4 mt-4 flex grow basis-0 flex-col items-center gap-0.5">
-		<picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
+	<section class="mx-2 mt-2 flex grow basis-0 flex-col items-center gap-0.5">
+		<picture class="border-dark mx-1 size-36 overflow-hidden rounded-full border-4">
 			<img
 				loading="eager"
-				src="src/assets/images/jinwoo.avif"
+				src="/src/assets/images/jinwoo.avif"
 				alt="img profile of Jinwoo"
 				class="aspect-square size-full object-cover object-center"
 			/>
 		</picture>
-		<h2 class="text-light text-center text-xl font-extrabold">Jinwoo</h2>
+		<h2 class="text-accent text-center text-2xl font-extrabold">Jinwoo</h2>
 	</section>
-	<nav class="flex grow basis-0 flex-col justify-center">
+	<nav
+		class="relative flex grow basis-0 flex-col justify-center"
+		onmouseleave={() => {
+			width = width;
+			height = height;
+			top = top;
+			left = left;
+			opacity = 0;
+		}}
+	>
 		{#each menuItems as section}
 			{#if !section.items}
 				<a
 					href={section.url}
-					class="text-light flex cursor-pointer items-center gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
+					use:positionMotion
+					class:active={routeId === section.url}
+					class="text-light z-10 flex cursor-pointer items-center gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
 				>
 					<svelte:component this={section.icon} class="size-4" />
 					{$t(section.title)}
@@ -108,7 +156,8 @@
 			{:else}
 				<button
 					type="button"
-					class="text-light flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
+					use:positionMotion
+					class="text-light z-10 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
 					onclick={() => toggleSection(section)}
 				>
 					<span class="flex items-center gap-2">
@@ -123,13 +172,15 @@
 				</button>
 			{/if}
 			{#if activeSection === section && section.items}
-				<ul
-					class="border-disabled mb-2 ml-4 flex w-full flex-col gap-0.5 border-l pl-4"
-					transition:slide
-				>
+				<ul class="border-disabled mb-2 ml-4 flex flex-col gap-0.5 border-l pl-3" transition:slide>
 					{#each section.items as item}
-						<li>
-							<a href={item.url} class="flex items-center gap-2">
+						<li class="z-10">
+							<a
+								href={item.url}
+								use:positionMotion
+								class:active={routeId === item.url}
+								class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-sm"
+							>
 								<svelte:component this={item.icon} class="size-4" />
 								{$t(item.title)}
 							</a>
@@ -138,6 +189,23 @@
 				</ul>
 			{/if}
 		{/each}
+		<Motion
+			animate={{
+				top: top,
+				left: left,
+				width: width,
+				height: height,
+				opacity: opacity
+			}}
+			transition={{
+				type: 'spring',
+				stiffness: 400,
+				damping: 30
+			}}
+			let:motion
+		>
+			<li use:motion class="bg-surface/75 absolute z-0 rounded-lg"></li>
+		</Motion>
 	</nav>
 	<div class="flex grow basis-0 flex-col justify-end gap-2">
 		<button class="bg-primary cursor-pointer rounded px-3 py-2" onclick={() => changeLocale('en')}>
@@ -154,3 +222,9 @@
 		</button>
 	</div>
 </aside>
+
+<style>
+	.active {
+		background-color: var(--color-surface);
+	}
+</style>

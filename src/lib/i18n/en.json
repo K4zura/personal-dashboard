@@ -43,6 +43,12 @@
 		"timer": "Timer",
 		"habits": "Habits"
 	},
+	"chart": {
+		"all": "All",
+		"year": "Year",
+		"month": "Month"
+	},
+	"months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 	"settings": "Settings",
 	"title": "My Dashboard",
 	"greeting": "Hello, {name}!",

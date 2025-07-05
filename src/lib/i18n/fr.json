@@ -43,6 +43,25 @@
 		"timer": "Timer",
 		"habits": "Habitudes"
 	},
+	"chart": {
+		"all": "Tout",
+		"year": "Année",
+		"month": "Mois"
+	},
+	"months": [
+		"Jan",
+		"Fév",
+		"Mar",
+		"Avr",
+		"Mai",
+		"Juin",
+		"Juil",
+		"Août",
+		"Sept",
+		"Oct",
+		"Nov",
+		"Déc"
+	],
 	"settings": "Réglages",
 	"title": "Mon Tableau de Bord",
 	"greeting": "Bonjour, {name} !",
