@@ -2,6 +2,7 @@
 	import { onMount, afterUpdate } from 'svelte';
 	import { Chart, registerables } from 'chart.js';
 	import { _ } from 'svelte-i18n';
+	import { incomeData } from '$lib/utils/data';
 
 	// Datos y estado
 	interface DataItem {
@@ -36,8 +37,16 @@
 			(selectedMonth === $_('chart.all') || item.month === selectedMonth)
 	);
 
+	const getCategoryColor = (categoryName: string): string => {
+		const category = incomeData.find((cat) => cat.title === categoryName);
+		return category ? category.color : '#000000'; // Default color (negro)
+	};
+
 	// Labels
-	$: categoryLabels = getCategoryLabels(data);
+	$: categoryLabels = getCategoryLabels(data).filter((label) => {
+		const total = sumCategory(label, filteredData);
+		return total > 0; // Filtra solo las categorías con un valor mayor que 0
+	});
 
 	// Años disponibles
 	$: availableYears = [...new Set(data.map((item) => item.year))];
@@ -55,6 +64,7 @@
 		}
 	}
 
+	$: datasetColors = categoryLabels.map((label) => getCategoryColor(label));
 	// Creación del gráfico
 	const createChart = () => {
 		if (!barCanvas) return;
@@ -68,28 +78,32 @@
 				labels: categoryLabels,
 				datasets: [
 					{
-						label: 'Q1',
+						label: '',
 						data:
 							selectedMonth === $_('chart.all')
 								? categoryLabels.map((label) => sumCategory(label, filteredData))
 								: categoryLabels.map((label) => filteredData.map((d) => d[label] || 0)),
-						backgroundColor: ['#7000e1', '#fc8800', '#00b0e8'],
+						backgroundColor: datasetColors,
 						borderRadius: 6,
-						borderSkipped: false
+						borderSkipped: false,
+						barPercentage: 0.5,
+						maxBarThickness: 150
+						// hoverBackgroundColor: 'rgba(0, 0, 0, 0.3)'
 					}
 				]
 			},
 			options: {
 				responsive: true,
 				maintainAspectRatio: false,
+				color: '#efeffe',
 				plugins: {
 					title: {
-						display: true,
-						text: 'Comparación Trimestral por Producto',
-						font: { size: 18, weight: 'bold' },
-						color: '#1F2937'
+						display: false,
+						text: 'Ingresos Mensuales',
+						font: { size: 18, weight: 'bold' }
 					},
 					legend: {
+						display: false,
 						position: 'top',
 						labels: {
 							usePointStyle: true,
@@ -101,7 +115,7 @@
 					y: {
 						beginAtZero: true,
 						grid: {
-							color: '#F3F4F6'
+							color: '#F3F4F659'
 						}
 					},
 					x: {
@@ -117,11 +131,10 @@
 	// Actualización del gráfico
 	const updateChart = () => {
 		if (chartInstance) {
+			const filteredDatasetData = categoryLabels.map((label) => sumCategory(label, filteredData));
 			chartInstance.data.labels = categoryLabels;
-			chartInstance.data.datasets[0].data =
-				selectedMonth === $_('chart.all')
-					? categoryLabels.map((label) => sumCategory(label, filteredData))
-					: categoryLabels.map((label) => filteredData.map((d) => d[label] || 0));
+			chartInstance.data.datasets[0].data = filteredDatasetData;
+			chartInstance.data.datasets[0].backgroundColor = datasetColors;
 			chartInstance.update();
 		}
 	};
@@ -144,7 +157,7 @@
 		<select
 			bind:value={selectedYear}
 			id="year"
-			class="bg-dark border-border rounded border px-3 py-1"
+			class="bg-dark border-border rounded border px-3 py-1 pr-8"
 		>
 			{#each availableYears as year}
 				<option value={year}>{year}</option>
@@ -158,7 +171,7 @@
 		<select
 			bind:value={selectedMonth}
 			id="month"
-			class="bg-dark border-border rounded border px-3 py-1"
+			class="bg-dark border-border rounded border px-3 py-1 pr-8"
 		>
 			{#each availableMonths as month}
 				<option value={month}>{month}</option>
@@ -167,55 +180,9 @@
 	</div>
 </div>
 
-<div class="page-container">
-	<div class="charts-grid">
-		<div class="chart-card full-width">
-			<canvas bind:this={barCanvas}></canvas>
-		</div>
-	</div>
+<div class="chart-card full-width">
+	<canvas
+		class="bg-surface shadow-dark min-h-[350px] rounded-xl p-4 shadow-lg"
+		bind:this={barCanvas}
+	></canvas>
 </div>
-
-<style>
-	.charts-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-		gap: 2rem;
-		max-width: 1200px;
-		margin: 0 auto;
-	}
-
-	.chart-card {
-		background: var(--color-light);
-		border-radius: 12px;
-		padding: 1.5rem;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-		transition: all 0.3s ease;
-		height: 400px;
-	}
-
-	.chart-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-	}
-
-	.chart-card.full-width {
-		grid-column: 1 / -1;
-	}
-
-	canvas {
-		width: 100% !important;
-		height: 100% !important;
-	}
-
-	@media (max-width: 768px) {
-		.charts-grid {
-			grid-template-columns: 1fr;
-			gap: 1rem;
-		}
-
-		.chart-card {
-			padding: 1rem;
-			height: 350px;
-		}
-	}
-</style>

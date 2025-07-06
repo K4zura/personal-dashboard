@@ -25,7 +25,31 @@
 	},
 	"finances": {
 		"title": "Finances",
-		"income": "Rentrée",
+		"income": {
+			"title": "Rentrée",
+			"description": "Votre source de revenus",
+			"add": "Ajouter une entrée",
+			"total": "Total du mois",
+			"fixed": "Rentrée fixe",
+			"regular_income": "Rentrée régulière",
+			"variable": "Rentrée variable",
+			"irregular_income": "Rentrée irrégulière",
+			"active": "Rentrée active",
+			"active_sources": "Sources actives",
+			"different_categories": "Différentes catégories",
+			"vs_last_month": "Vs le mois dernier",
+			"based_on_30": "Basé sur les 30 jours",
+			"filter": "Filtrer",
+			"income_history": "Historique des entrées",
+			"history_desc": "Liste détaillée de toutes vos entrées",
+			"concept": "Concept",
+			"category": "Categorie",
+			"type": "Type",
+			"date": "Date",
+			"amount": "Montant",
+			"income_chart": "Graphe des entrées",
+			"chart_desc": "Graphe de vos entrées"
+		},
 		"expenses": "Dépenses",
 		"savings": "Ahorrés",
 		"budget": "Budget"
@@ -47,6 +71,10 @@
 		"all": "Tout",
 		"year": "Année",
 		"month": "Mois"
+	},
+	"types": {
+		"fixed_income": "Fixe",
+		"variable_income": "Variable"
 	},
 	"months": [
 		"Jan",

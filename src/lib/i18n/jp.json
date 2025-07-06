@@ -25,7 +25,31 @@
 	},
 	"finances": {
 		"title": "財務",
-		"income": "収入",
+		"income": {
+			"title": "収入",
+			"description": "入金元の情報",
+			"add": "入金を追加",
+			"total": "月の合計",
+			"fixed": "固定収入",
+			"regular_income": "通常の収入",
+			"variable": "変動収入",
+			"irregular_income": "不規則な収入",
+			"active": "有効な収入",
+			"active_sources": "有効な収入元",
+			"different_categories": "異なるカテゴリー",
+			"vs_last_month": "前月との比較",
+			"based_on_30": "30日での基準",
+			"filter": "フィルター",
+			"income_history": "収入履歴",
+			"history_desc": "収入の履歴の詳細",
+			"concept": "概念",
+			"category": "カテゴリー",
+			"type": "種類",
+			"date": "日付",
+			"amount": "金額",
+			"income_chart": "収入グラフ",
+			"chart_desc": "収入のグラフ"
+		},
 		"expenses": "費用",
 		"savings": "貯蓄",
 		"budget": "予算"
@@ -47,6 +71,10 @@
 		"all": "全て",
 		"year": "年",
 		"month": "月"
+	},
+	"types": {
+		"fixed_income": "固定",
+		"variable_income": "変動"
 	},
 	"months": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
 	"settings": "設定",

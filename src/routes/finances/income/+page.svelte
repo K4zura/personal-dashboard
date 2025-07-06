@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Chart from '$lib/components/Chart.svelte';
+	import SectionCard from '$lib/components/shared/SectionCard.svelte';
+	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import { incomeData, type Income } from '$lib/utils/data';
 	import { _ } from 'svelte-i18n';
 
@@ -45,5 +47,76 @@
 </script>
 
 <h1>{$_('title')}</h1>
-<h1 class="text-primary text-xl font-bold">{$_('finances.income')}</h1>
-<Chart data={chartData} />
+<h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
+<div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
+	<StatCard title={$_('finances.income.total')} value={`$${totalAmount}`} percentage="+8.2%"
+		>{$_('finances.income.vs_last_month')}</StatCard
+	>
+	<StatCard title={$_('finances.income.fixed')} value={`$${totalFixedAmount}`}
+		>{$_('finances.income.regular_income')}</StatCard
+	>
+	<StatCard title={$_('finances.income.variable')} value={`$${totalVariableAmount}`}
+		>{$_('finances.income.irregular_income')}</StatCard
+	>
+	<StatCard title={$_('finances.income.active')} value="4"
+		>{$_('finances.income.different_categories')}</StatCard
+	>
+	<SectionCard
+		title={$_('finances.income.income_chart')}
+		subtitle={$_('finances.income.chart_desc')}
+		colSpan="sm:col-span-2 xl:col-span-4"
+	>
+		<Chart data={chartData} />
+	</SectionCard>
+	<SectionCard
+		title={$_('finances.income.income_history')}
+		subtitle={$_('finances.income.history_desc')}
+		colSpan="sm:col-span-2 xl:col-span-4"
+	>
+		<button
+			slot="filter"
+			class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+		>
+			<!-- <FilterIcon class="size-4" /> -->
+			{$_('finances.income.filter')}
+		</button>
+		<div class="relative overflow-x-auto">
+			<table class="text-light w-full text-left text-sm rtl:text-right">
+				<thead class="bg-border text-tertiary uppercase">
+					<tr>
+						<th scope="col" class="px-6 py-3">{$_('finances.income.concept')}</th>
+						<th scope="col" class="px-6 py-3">{$_('finances.income.category')}</th>
+						<th scope="col" class="px-6 py-3">{$_('finances.income.type')}</th>
+						<th scope="col" class="px-6 py-3">{$_('finances.income.date')}</th>
+						<th scope="col" class="px-6 py-3">{$_('finances.income.amount')}</th>
+					</tr>
+				</thead>
+				<tbody class="font-light">
+					{#each incomeData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as income}
+						<tr class="">
+							<th scope="row" class="px-6 py-4 whitespace-nowrap">
+								{income.title}
+							</th>
+							<td class="flex items-center gap-2 px-6 py-4">
+								<span class={`h-4 w-4 rounded-full bg-${income.category.color}-500`}></span>
+								{income.category.icon}
+								{income.category.name}
+							</td>
+							<td class="px-6 py-4">
+								<span class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium"
+									>{income.type === 'Fixed'
+										? $_('finances.income.fixed')
+										: $_('finances.income.variable')}</span
+								>
+							</td>
+							<td class="px-6 py-4">{income.date.toLocaleDateString()}</td>
+							<td class="text-success px-6 py-4 font-bold">
+								+ ${income.mount.toLocaleString()}
+							</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+	</SectionCard>
+</div>

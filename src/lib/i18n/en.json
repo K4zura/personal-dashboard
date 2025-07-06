@@ -25,7 +25,30 @@
 	},
 	"finances": {
 		"title": "Finances",
-		"income": "Income",
+		"income": {
+			"title": "Income",
+			"description": "Your income sources",
+			"add": "Add income",
+			"total": "Total of Month",
+			"fixed": "Fixed income",
+			"regular_income": "Regular income",
+			"variable": "Variable income",
+			"irregular_income": "Irregular income",
+			"active": "Active income",
+			"different_categories": "Different categories",
+			"vs_last_month": "vs last month",
+			"based_on_30": "Based on 30 days",
+			"filter": "Filter",
+			"income_history": "Income History",
+			"history_desc": "Detailed list of all your income",
+			"concept": "Concept",
+			"category": "Category",
+			"type": "Type",
+			"date": "Date",
+			"amount": "Amount",
+			"income_chart": "Income Chart",
+			"chart_desc": "Chart of your income"
+		},
 		"expenses": "Expenses",
 		"savings": "Savings",
 		"budget": "Budget"
@@ -47,6 +70,10 @@
 		"all": "All",
 		"year": "Year",
 		"month": "Month"
+	},
+	"types": {
+		"fixed_income": "Fixed",
+		"variable_income": "Variable"
 	},
 	"months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 	"settings": "Settings",
