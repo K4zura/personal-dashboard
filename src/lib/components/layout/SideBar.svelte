@@ -120,7 +120,9 @@
 	};
 </script>
 
-<aside class="bg-secondary flex h-full flex-col justify-between rounded p-2 [grid-area:aside]">
+<aside
+	class="bg-secondary relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto rounded p-2 transition-transform [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:h-screen not-md:w-[240px] not-md:-translate-x-[240px] not-md:rounded-none peer-has-checked:translate-x-0"
+>
 	<section class="mx-2 mt-2 flex grow basis-0 flex-col items-center gap-0.5">
 		<picture class="border-dark mx-1 size-36 overflow-hidden rounded-full border-4">
 			<img
