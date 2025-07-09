@@ -87,7 +87,14 @@
 		"title": "Productivité",
 		"projects": {
 			"title": "Projets",
-			"description": "Vos projets"
+			"description": "Vos projets",
+			"total_projects": "Projets totaux",
+			"active_projects": "Projets actifs",
+			"completed_percent": "Pourcentage complété",
+			"inprogress": "En cours",
+			"attention_required": "Attention requise",
+			"delayed": "Retardé",
+			"need_action_urgent": "Action urgente requise"
 		},
 		"tasks": {
 			"title": "Tâches",

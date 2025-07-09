@@ -87,7 +87,14 @@
 		"title": "生産性",
 		"projects": {
 			"title": "プロジェクト",
-			"description": "あなたのプロジェクト"
+			"description": "あなたのプロジェクト",
+			"total_projects": "総プロジェクト数",
+			"active_projects": "進行中のプロジェクト",
+			"completed_percent": "完了率",
+			"inprogress": "進行中",
+			"attention_required": "注意が必要",
+			"delayed": "遅延中",
+			"need_action_urgent": "緊急対応が必要"
 		},
 		"tasks": {
 			"title": "タスク",
