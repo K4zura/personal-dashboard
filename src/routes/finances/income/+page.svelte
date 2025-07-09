@@ -66,6 +66,7 @@
 		subtitle={$_('finances.income.chart_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
+		{#snippet filter()}{/snippet}
 		<Chart data={chartData} />
 	</SectionCard>
 	<SectionCard
@@ -73,13 +74,14 @@
 		subtitle={$_('finances.income.history_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		<button
-			slot="filter"
-			class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
-		>
-			<!-- <FilterIcon class="size-4" /> -->
-			{$_('finances.income.filter')}
-		</button>
+		{#snippet filter()}
+			<button
+				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+			>
+				<!-- <FilterIcon class="size-4" /> -->
+				{$_('finances.income.filter')}
+			</button>
+		{/snippet}
 		<div class="relative overflow-x-auto">
 			<table class="text-light w-full text-left text-sm rtl:text-right">
 				<thead class="bg-border text-tertiary uppercase">

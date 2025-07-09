@@ -27,9 +27,9 @@
 		};
 	});
 
-	$: totalSpent = expenses.reduce((acc, e) => acc + e.spent, 0);
-	$: totalBudget = expenses.reduce((acc, e) => acc + e.budget, 0);
-	$: totalSpentPercentage = (totalSpent / totalBudget) * 100;
+	const totalSpent = $derived(expenses.reduce((acc, e) => acc + e.spent, 0));
+	const totalBudget = $derived(expenses.reduce((acc, e) => acc + e.budget, 0));
+	const totalSpentPercentage = $derived((totalSpent / totalBudget) * 100);
 </script>
 
 <h1>{$_('title')}</h1>
@@ -56,6 +56,7 @@
 		subtitle="Budget Tracking by Category"
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
+		{#snippet filter()}{/snippet}
 		<CategoryCard {expenses} />
 	</SectionCard>
 	<SectionCard
@@ -63,12 +64,13 @@
 		subtitle="Detailed list of all your income"
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		<button
-			slot="filter"
-			class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
-		>
-			{$_('finances.income.filter')}
-		</button>
+		{#snippet filter()}
+			<button
+				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+			>
+				{$_('finances.income.filter')}
+			</button>
+		{/snippet}
 		<div class="relative overflow-x-auto">
 			<table class="text-light w-full text-left text-sm rtl:text-right">
 				<thead class="bg-border text-tertiary uppercase">

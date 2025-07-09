@@ -24,16 +24,17 @@
 	import { getStores } from '$app/stores';
 	const { page } = getStores();
 	import { Motion } from 'svelte-motion';
-	let top = 0;
-	let left = 0;
-	let width = 0;
-	let height = 0;
-	let opacity = 0;
-	$: routeId = $page.route.id;
+
+	let top = $state(0);
+	let left = $state(0);
+	let width = $state(0);
+	let height = $state(0);
+	let opacity = $state(0);
+	let routeId = $derived($page.url.pathname);
 
 	// const t = _;
 
-	const menuItems = [
+	const menuItems = $state([
 		{
 			title: 'aside.dashboard', // La clave para Dashboard
 			icon: Home,
@@ -73,35 +74,33 @@
 			icon: Settings,
 			url: '/settings'
 		}
-	];
+	]);
 
 	let activeSection: {
 		title: string;
 		icon: any;
 		items?: Array<{ title: string; url: string; icon: any }>;
-	} | null = null;
+	} | null = $state(null);
 
-	const toggleSection = (
+	function toggleSection(
 		section: {
 			title: string;
 			icon: any;
 			items?: Array<{ title: string; url: string; icon: any }>;
 		} | null
-	) => {
+	) {
 		activeSection = activeSection === section ? null : section;
-	};
+	}
 
-	$: {
-		// Recorremos las secciones que tienen submenú
+	$effect(() => {
 		menuItems.forEach((section) => {
 			if (section.items) {
-				// Si alguna de las URL de los ítems está en la ruta actual, abrimos el submenú
 				if (section.items.some((item) => routeId?.startsWith(item.url))) {
 					activeSection = section;
 				}
 			}
 		});
-	}
+	});
 	let positionMotion = (node: HTMLElement) => {
 		let refNode = () => {
 			let mint = node.getBoundingClientRect();
@@ -127,7 +126,7 @@
 		<picture class="border-dark mx-1 size-36 overflow-hidden rounded-full border-4">
 			<img
 				loading="eager"
-				src="/src/assets/images/jinwoo.avif"
+				src="/assets/images/jinwoo.avif"
 				alt="img profile of Jinwoo"
 				class="aspect-square size-full object-cover object-center"
 			/>
@@ -135,16 +134,13 @@
 		<h2 class="text-accent text-center text-2xl font-extrabold">Jinwoo</h2>
 	</section>
 	<nav
-		class="relative flex grow basis-0 flex-col justify-center"
+		class="relative flex flex-col justify-center"
 		onmouseleave={() => {
-			width = width;
-			height = height;
-			top = top;
-			left = left;
 			opacity = 0;
 		}}
 	>
 		{#each menuItems as section}
+			{@const IconItem = !section.items ? section.icon : section.icon}
 			{#if !section.items}
 				<a
 					href={section.url}
@@ -152,18 +148,20 @@
 					class:active={routeId === section.url}
 					class="text-light z-10 flex cursor-pointer items-center gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
 				>
-					<svelte:component this={section.icon} class="size-4" />
+					<IconItem class="size-4" />
 					{$t(section.title)}
 				</a>
 			{:else}
 				<button
 					type="button"
+					aria-expanded={activeSection === section}
+					aria-controls="id-seccion"
 					use:positionMotion
 					class="text-light z-10 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
 					onclick={() => toggleSection(section)}
 				>
 					<span class="flex items-center gap-2">
-						<svelte:component this={section.icon} class="size-4" />
+						<IconItem class="size-4" />
 						{$t(section.title)}
 					</span>
 					{#if activeSection === section}
@@ -176,6 +174,7 @@
 			{#if activeSection === section && section.items}
 				<ul class="border-disabled mb-2 ml-4 flex flex-col gap-0.5 border-l pl-3" transition:slide>
 					{#each section.items as item}
+						{@const IconSubItem = section.items ? item.icon : item.icon}
 						<li class="z-10">
 							<a
 								href={item.url}
@@ -183,7 +182,7 @@
 								class:active={routeId === item.url}
 								class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-sm"
 							>
-								<svelte:component this={item.icon} class="size-4" />
+								<IconSubItem class="size-4" />
 								{$t(item.title)}
 							</a>
 						</li>
@@ -193,11 +192,11 @@
 		{/each}
 		<Motion
 			animate={{
-				top: top,
-				left: left,
-				width: width,
-				height: height,
-				opacity: opacity
+				top,
+				left,
+				width,
+				height,
+				opacity
 			}}
 			transition={{
 				type: 'spring',

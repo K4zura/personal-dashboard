@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, afterUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import { Chart, registerables } from 'chart.js';
 	import { _ } from 'svelte-i18n';
 	import { incomeData } from '$lib/utils/data';
@@ -11,9 +11,13 @@
 		[key: string]: any;
 	}
 
-	export let data: DataItem[];
-	let selectedYear = new Date().getFullYear();
-	let selectedMonth = $_('chart.all');
+	interface Props {
+		data: DataItem[];
+	}
+
+	const { data }: Props = $props();
+	let selectedYear = $state(new Date().getFullYear());
+	let selectedMonth = $state($_('chart.all'));
 	let barCanvas: HTMLCanvasElement;
 	let chartInstance: Chart<'bar', number[] | any[][], string>;
 
@@ -31,10 +35,12 @@
 	};
 
 	// Datos filtrados
-	$: filteredData = data.filter(
-		(item) =>
-			item.year === selectedYear &&
-			(selectedMonth === $_('chart.all') || item.month === selectedMonth)
+	const filteredData = $derived(
+		data.filter(
+			(item) =>
+				item.year === selectedYear &&
+				(selectedMonth === $_('chart.all') || item.month === selectedMonth)
+		)
 	);
 
 	const getCategoryColor = (categoryName: string): string => {
@@ -43,28 +49,26 @@
 	};
 
 	// Labels
-	$: categoryLabels = getCategoryLabels(data).filter((label) => {
-		const total = sumCategory(label, filteredData);
-		return total > 0; // Filtra solo las categorías con un valor mayor que 0
-	});
+	const categoryLabels = $derived(getCategoryLabels(filteredData));
 
 	// Años disponibles
-	$: availableYears = [...new Set(data.map((item) => item.year))];
+	const availableYears = $derived([...new Set(data.map((item) => item.year))]);
 
 	// Meses disponibles
-	$: availableMonths = [
+	const availableMonths = $derived([
 		$_('chart.all'),
 		...new Set(data.filter((item) => item.year === selectedYear).map((item) => item.month))
-	];
+	]);
 
 	// Comprobación de cambios
-	$: {
+
+	$effect(() => {
 		if (!availableMonths.includes(selectedMonth)) {
 			selectedMonth = $_('chart.all');
 		}
-	}
+	});
 
-	$: datasetColors = categoryLabels.map((label) => getCategoryColor(label));
+	const datasetColors = $derived(categoryLabels.map((label) => getCategoryColor(label)));
 	// Creación del gráfico
 	const createChart = () => {
 		if (!barCanvas) return;
@@ -145,14 +149,13 @@
 		createChart();
 	});
 
-	afterUpdate(() => {
+	$effect(() => {
 		updateChart();
 	});
 </script>
 
 <div class="mb-4 flex flex-wrap gap-4">
 	<div>
-		<!-- svelte-ignore a11y_label_has_associated_control -->
 		<label class="mb-1 block text-sm font-medium" for="year">{$_('chart.year')}</label>
 		<select
 			bind:value={selectedYear}
@@ -166,7 +169,6 @@
 	</div>
 
 	<div>
-		<!-- svelte-ignore a11y_label_has_associated_control -->
 		<label class="mb-1 block text-sm font-medium" for="month">{$_('chart.month')}</label>
 		<select
 			bind:value={selectedMonth}

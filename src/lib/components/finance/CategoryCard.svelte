@@ -2,6 +2,12 @@
 	import { slide } from 'svelte/transition';
 	import type { Expense } from '$lib/utils/data';
 
+	interface Props {
+		expenses: Expenses[];
+	}
+
+	const { expenses }: Props = $props();
+
 	type Expenses = {
 		category: string;
 		spent: number;
@@ -24,9 +30,7 @@
 		return colorClasses[color] ?? 'bg-gray-400';
 	}
 
-	export let expenses: Expenses[] = [];
-
-	let expandedIndex: number | null = null;
+	let expandedIndex: number | null = $state(null);
 </script>
 
 <div class="flex w-full flex-col gap-4">
@@ -39,8 +43,8 @@
 				tabindex="0"
 				aria-expanded={expandedIndex === index}
 				class="cursor-pointer p-4"
-				on:click={() => (expandedIndex = expandedIndex === index ? null : index)}
-				on:keydown={(e) =>
+				onclick={() => (expandedIndex = expandedIndex === index ? null : index)}
+				onkeydown={(e) =>
 					e.key === 'Enter' && (expandedIndex = expandedIndex === index ? null : index)}
 			>
 				<div class="mb-1 flex items-center justify-between">
