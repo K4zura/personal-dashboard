@@ -1,27 +1,35 @@
 {
-	"aside": {
-		"dashboard": "Dashboard",
-		"finances": {
-			"title": "Finances",
-			"income": "Income",
-			"expenses": "Expenses",
-			"savings": "Savings",
-			"budget": "Budget"
-		},
-		"productivity": {
-			"title": "Productivity",
-			"projects": "Projects",
-			"tasks": "Tasks",
-			"notes": "Notes",
-			"calendar": "Calendar"
-		},
-		"personal_development": {
-			"title": "Personal Development",
-			"learning": "Learning",
-			"timer": "Timer",
-			"habits": "Habits"
-		},
-		"settings": "Settings"
+	"common": {
+		"total": "Total of Month",
+		"filter": "Filter",
+		"vs_last_month": "vs last month",
+		"based_on_30": "Based on 30 days",
+		"average": "Daily Average",
+		"oftotal": "of total",
+		"used": "Used",
+		"remaining": "Remaining",
+		"completed": "Completed",
+		"edit": "Edit",
+		"delete": "Delete",
+		"concept": "Concept",
+		"category": "Category",
+		"type": "Type",
+		"date": "Date",
+		"amount": "Amount",
+		"progress": "Progress",
+		"deadline": "Deadline",
+		"expired": "Expired"
+	},
+	"types": {
+		"fixed": "Fixed",
+		"variable": "Variable",
+		"monthly": "Monthly",
+		"daily": "Daily",
+		"occasional": "Occasional"
+	},
+	"dashboard": {
+		"title": "Dashboard",
+		"description": "Your dashboard"
 	},
 	"finances": {
 		"title": "Finances",
@@ -29,23 +37,14 @@
 			"title": "Income",
 			"description": "Your income sources",
 			"add": "Add income",
-			"total": "Total of Month",
 			"fixed": "Fixed income",
 			"regular_income": "Regular income",
 			"variable": "Variable income",
 			"irregular_income": "Irregular income",
 			"active": "Active income",
 			"different_categories": "Different categories",
-			"vs_last_month": "vs last month",
-			"based_on_30": "Based on 30 days",
-			"filter": "Filter",
 			"income_history": "Income History",
 			"history_desc": "Detailed list of all your income",
-			"concept": "Concept",
-			"category": "Category",
-			"type": "Type",
-			"date": "Date",
-			"amount": "Amount",
 			"income_chart": "Income Chart",
 			"chart_desc": "Chart of your income"
 		},
@@ -53,95 +52,83 @@
 			"title": "Expenses",
 			"description": "Your expenses sources",
 			"add": "Add expense",
-			"total": "Total of Month",
-			"fixed": "Fixed expenses",
-			"regular": "Regular expenses",
-			"variable": "Variable expenses",
-			"irregular": "Irregular expenses",
 			"active": "Active expenses",
-			"different_categories": "Different categories",
-			"vs_last_month": "vs last month",
-			"average": "Daily Average",
+			"over_budget": "over budget",
 			"categories": "Categories",
-			"based_on_30": "Based on 30 days",
-			"filter": "Filter",
 			"expenses_history": "Expenses History",
 			"history_desc": "Detailed list of all your expenses",
-			"concept": "Concept",
-			"category": "Category",
-			"type": "Type",
-			"date": "Date",
-			"amount": "Amount"
+			"expenses_by_category": "Expenses by Category",
+			"category_desc": "Click on a category to view expense details",
+			"expense_details": "Expense Details"
 		},
 		"savings": {
 			"title": "Savings",
+			"goal": "Goal",
 			"description": "Your savings sources",
 			"add": "Add savings",
-			"total": "Total of Month",
-			"fixed": "Fixed savings",
-			"regular": "Regular savings",
-			"variable": "Variable savings",
-			"irregular": "Irregular savings",
-			"active": "Active savings",
-			"different_categories": "Different categories",
-			"vs_last_month": "vs last month",
-			"based_on_30": "Based on 30 days",
-			"filter": "Filter",
-			"savings_history": "Savings History",
-			"history_desc": "Detailed list of all your savings",
-			"concept": "Concept",
-			"category": "Category",
-			"type": "Type",
-			"date": "Date",
-			"amount": "Amount"
+			"total_saved": "Total Saved",
+			"total_goal": "Total Goal",
+			"monthly_savings": "Monthly Savings",
+			"sum_all_goals": "Sum of all goals",
+			"active": "Active Goals",
+			"add_goal": "Add savings goal",
+			"missing": "You are missing",
+			"remaining_months": "remaining months",
+			"days_until_deadline": "Days until the deadline",
+			"goal_completed": "You have reached your savings goal"
 		},
 		"budget": {
 			"title": "Budget",
 			"description": "Your budget sources",
-			"add": "Add budget",
-			"total": "Total of Month",
-			"fixed": "Fixed budget",
-			"regular": "Regular budget",
-			"variable": "Variable budget",
-			"irregular": "Irregular budget",
-			"active": "Active budget",
-			"different_categories": "Different categories",
-			"vs_last_month": "vs last month",
-			"based_on_30": "Based on 30 days",
-			"filter": "Filter",
-			"budget_history": "Budget History",
-			"history_desc": "Detailed list of all your budget",
-			"concept": "Concept",
-			"category": "Category",
-			"type": "Type",
-			"date": "Date",
-			"amount": "Amount"
+			"add": "Add budget"
 		}
 	},
 	"productivity": {
 		"title": "Productivity",
-		"projects": "Projects",
-		"tasks": "Tasks",
-		"notes": "Notes",
-		"calendar": "Calendar"
+		"projects": {
+			"title": "Projects",
+			"description": "Your projects"
+		},
+		"tasks": {
+			"title": "Tasks",
+			"description": "Your tasks"
+		},
+		"notes": {
+			"title": "Notes",
+			"description": "Your notes"
+		},
+		"calendar": {
+			"title": "Calendar",
+			"description": "Your calendar"
+		}
 	},
 	"personal_development": {
 		"title": "Personal Development",
-		"learning": "Learning",
-		"timer": "Timer",
-		"habits": "Habits"
+		"learning": {
+			"title": "Learning",
+			"description": "Your learning"
+		},
+		"timer": {
+			"title": "Timer",
+			"description": "Your timer"
+		},
+		"habits": {
+			"title": "Habits",
+			"description": "Your habits"
+		}
 	},
-	"chart": {
+	"settings": {
+		"title": "Settings",
+		"description": "Your settings"
+	},
+	"calendar": {
 		"all": "All",
 		"year": "Year",
-		"month": "Month"
+		"month": "Month",
+		"month2": "Months",
+		"days": "Days",
+		"months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 	},
-	"types": {
-		"fixed_income": "Fixed",
-		"variable_income": "Variable"
-	},
-	"months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-	"settings": "Settings",
 	"title": "My Dashboard",
 	"greeting": "Hello, {name}!",
 	"logout": "Logout"

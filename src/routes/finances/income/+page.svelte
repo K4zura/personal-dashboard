@@ -42,15 +42,15 @@
 		return Object.values(grouped);
 	}
 
-	const monthNames = [...$_('months')];
+	const monthNames = [...$_('calendar.months')];
 	const chartData = transformIncomeData(incomeData, monthNames);
 </script>
 
 <h1>{$_('title')}</h1>
 <h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
-	<StatCard title={$_('finances.income.total')} value={`$${totalAmount}`} percentage="+8.2%"
-		>{$_('finances.income.vs_last_month')}</StatCard
+	<StatCard title={$_('common.total')} value={`$${totalAmount}`} percentage="+8.2%"
+		>{$_('common.vs_last_month')}</StatCard
 	>
 	<StatCard title={$_('finances.income.fixed')} value={`$${totalFixedAmount}`}
 		>{$_('finances.income.regular_income')}</StatCard
@@ -79,18 +79,18 @@
 				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
 			>
 				<!-- <FilterIcon class="size-4" /> -->
-				{$_('finances.income.filter')}
+				{$_('common.filter')}
 			</button>
 		{/snippet}
 		<div class="relative overflow-x-auto">
 			<table class="text-light w-full text-left text-sm rtl:text-right">
 				<thead class="bg-border text-tertiary uppercase">
 					<tr>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.concept')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.category')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.type')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.date')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.amount')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.concept')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.category')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.type')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.date')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.amount')}</th>
 					</tr>
 				</thead>
 				<tbody class="font-light">
@@ -106,9 +106,7 @@
 							</td>
 							<td class="px-6 py-4">
 								<span class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium"
-									>{income.type === 'Fixed'
-										? $_('finances.income.fixed')
-										: $_('finances.income.variable')}</span
+									>{income.type === 'Fixed' ? $_('types.fixed') : $_('types.variable')}</span
 								>
 							</td>
 							<td class="px-6 py-4">{income.date.toLocaleDateString()}</td>

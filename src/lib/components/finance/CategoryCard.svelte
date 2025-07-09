@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import type { Expense } from '$lib/utils/data';
+	import { _ } from 'svelte-i18n';
 
 	interface Props {
 		expenses: Expenses[];
@@ -67,12 +68,14 @@
 					></div>
 				</div>
 				<footer class="text-xs text-gray-500">
-					{percentage.toFixed(1)}% used · Remaining: ${remaining}
+					{percentage.toFixed(1)}% {$_('common.used').toLowerCase()} · {$_(
+						'common.remaining'
+					).toLowerCase()}: ${remaining}
 				</footer>
 			</header>
 			{#if expandedIndex === index}
 				<section class="text-light px-8 pb-6 text-sm transition-all" transition:slide>
-					<h2 class="text-lg font-bold">Detalle de Gastos</h2>
+					<h2 class="text-lg font-bold">{$_('finances.expenses.expense_details')}</h2>
 					<ul class="mt-1 grid grid-cols-2 gap-3">
 						{#each expenseList as { title, date, mount, frequency }}
 							{@const usedPercent = ((mount / spent) * 100).toFixed(1)}
@@ -80,10 +83,17 @@
 								<div role="group" class="flex items-center justify-between">
 									<div class="flex items-center gap-3">
 										<span class={`h-3 w-3 rounded-full ${colorClasses[color]}`}></span>
-										<div class="flex flex-col">
+										<div class="flex flex-col items-start">
 											<h3 class="text-base font-semibold">{title}</h3>
 											<span class="bg-accent text-surface rounded-full px-3 py-1 font-semibold">
-												{frequency}
+												{frequency.slice(0, 3)}
+												{#if frequency.endsWith('Ocasional')}
+													{$_('types.occasional')}
+												{:else if frequency.endsWith('Diario')}
+													{$_('types.daily')}
+												{:else}
+													{$_('types.monthly')}
+												{/if}
 											</span>
 										</div>
 									</div>
@@ -154,7 +164,7 @@
 									></div>
 								</div>
 								<span class="text-muted flex flex-col items-start text-xs">
-									{usedPercent} % of total
+									{usedPercent} % {$_('common.oftotal')}
 								</span>
 							</li>
 						{/each}

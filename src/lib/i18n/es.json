@@ -1,150 +1,135 @@
 {
-	"aside": {
-		"dashboard": "Panel",
-		"finances": {
-			"title": "Finanzas",
-			"income": "Ingresos",
-			"expenses": "Gastos",
-			"savings": "Ahorros",
-			"budget": "Presupuesto"
-		},
-		"productivity": {
-			"title": "Productividad",
-			"projects": "Proyectos",
-			"tasks": "Tareas",
-			"notes": "Notas",
-			"calendar": "Calendario"
-		},
-		"personal_development": {
-			"title": "Desarrollo Personal",
-			"timer": "Tiempo",
-			"learning": "Aprendizaje",
-			"habits": "Hábitos"
-		},
-		"settings": "Ajustes"
+	"common": {
+		"total": "Total del mes",
+		"filter": "Filtrar",
+		"vs_last_month": "vs mes anterior",
+		"based_on_30": "Basado en 30 días",
+		"average": "Promedio diario",
+		"oftotal": "del total",
+		"used": "Utilizado",
+		"remaining": "Restante",
+		"completed": "Completado",
+		"edit": "Editar",
+		"delete": "Eliminar",
+		"concept": "Concepto",
+		"category": "Categoría",
+		"type": "Tipo",
+		"date": "Fecha",
+		"amount": "Monto",
+		"progress": "Progreso",
+		"deadline": "Fecha límite",
+		"expired": "Vencido"
+	},
+	"types": {
+		"fixed": "Fijo",
+		"variable": "Variable",
+		"monthly": "Mensual",
+		"daily": "Diario",
+		"occasional": "Ocasional"
+	},
+	"dashboard": {
+		"title": "Panel",
+		"description": "Tu panel"
 	},
 	"finances": {
 		"title": "Finanzas",
 		"income": {
 			"title": "Ingresos",
-			"description": "Tu fuente de ingresos",
+			"description": "Tus fuentes de ingreso",
 			"add": "Agregar ingreso",
-			"total": "Total del mes",
-			"fixed": "Ingresos fijos",
-			"regular_income": "Ingresos regulares",
-			"variable": "Ingresos variables",
-			"irregular_income": "Ingresos irregulares",
+			"fixed": "Ingreso fijo",
+			"regular_income": "Ingreso regular",
+			"variable": "Ingreso variable",
+			"irregular_income": "Ingreso irregular",
 			"active": "Ingresos activos",
-			"active_sources": "Fuentes activas",
-			"different_categories": "Diferentes categorías",
-			"vs_last_month": "Vs último mes",
-			"based_on_30": "Basado en los 30 días",
-			"filter": "Filtrar",
+			"different_categories": "Categorías diferentes",
 			"income_history": "Historial de ingresos",
 			"history_desc": "Lista detallada de todos tus ingresos",
-			"concept": "Concepto",
-			"category": "Categoría",
-			"type": "Tipo",
-			"date": "Fecha",
-			"amount": "Monto",
-			"income_chart": "Gráfico de ingresos",
+			"income_chart": "Gráfica de ingresos",
 			"chart_desc": "Gráfico de tus ingresos"
 		},
 		"expenses": {
 			"title": "Gastos",
-			"description": "Tu fuente de gastos",
+			"description": "Tus fuentes de gasto",
 			"add": "Agregar gasto",
-			"total": "Total del mes",
-			"fixed": "Gastos fijos",
-			"regular_expenses": "Gastos regulares",
-			"variable": "Gastos variables",
-			"irregular_expenses": "Gastos irregulares",
 			"active": "Gastos activos",
-			"active_sources": "Fuentes activas",
-			"different_categories": "Diferentes categorías",
-			"vs_last_month": "Vs último mes",
-			"average": "Gastos promedio",
+			"over_budget": "sobre presupuesto",
 			"categories": "Categorías",
-			"based_on_30": "Basado en los 30 días",
-			"filter": "Filtrar",
 			"expenses_history": "Historial de gastos",
 			"history_desc": "Lista detallada de todos tus gastos",
-			"concept": "Concepto",
-			"category": "Categoría",
-			"type": "Tipo",
-			"date": "Fecha",
-			"amount": "Monto"
+			"expenses_by_category": "Gastos por categoría",
+			"category_desc": "Haz clic en una categoría para ver los detalles del gasto",
+			"expense_details": "Detalles del gasto"
 		},
 		"savings": {
 			"title": "Ahorros",
-			"description": "Tu fuente de ahorros",
+			"goal": "Meta",
+			"description": "Tus fuentes de ahorro",
 			"add": "Agregar ahorro",
-			"total": "Total del mes",
-			"fixed": "Ahorros fijos",
-			"regular": "Ahorros regulares",
-			"variable": "Ahorros variables",
-			"irregular": "Ahorros irregulares",
-			"active": "Ahorros activos",
-			"different_categories": "Diferentes categorías",
-			"vs_last_month": "Vs último mes",
-			"based_on_30": "Basado en los 30 días",
-			"filter": "Filtrar",
-			"savings_history": "Historial de ahorros",
-			"history_desc": "Lista detallada de todos tus ahorros",
-			"concept": "Concepto",
-			"category": "Categoría",
-			"type": "Tipo",
-			"date": "Fecha",
-			"amount": "Monto"
+			"total_saved": "Total ahorrado",
+			"total_goal": "Meta total",
+			"monthly_savings": "Ahorro mensual",
+			"sum_all_goals": "Suma de todas las metas",
+			"active": "Metas activas",
+			"add_goal": "Agregar meta de ahorro",
+			"missing": "Te faltan",
+			"remaining_months": "meses restantes",
+			"days_until_deadline": "Días hasta la fecha límite",
+			"goal_completed": "Has alcanzado tu meta de ahorro"
 		},
 		"budget": {
 			"title": "Presupuesto",
-			"description": "Tu presupuesto mensual",
-			"add": "Agregar presupuesto",
-			"total": "Total del mes",
-			"fixed": "Presupuesto fijo",
-			"regular": "Presupuesto regular",
-			"variable": "Presupuesto variable",
-			"irregular": "Presupuesto irregular",
-			"active": "Presupuesto activo",
-			"different_categories": "Diferentes categorías",
-			"vs_last_month": "Vs último mes",
-			"based_on_30": "Basado en los 30 días",
-			"filter": "Filtrar",
-			"budget_history": "Historial de presupuesto",
-			"history_desc": "Lista detallada de todos tus presupuestos",
-			"concept": "Concepto",
-			"category": "Categoría",
-			"type": "Tipo",
-			"date": "Fecha",
-			"amount": "Monto"
+			"description": "Tus fuentes de presupuesto",
+			"add": "Agregar presupuesto"
 		}
 	},
 	"productivity": {
 		"title": "Productividad",
-		"projects": "Proyectos",
-		"tasks": "Tareas",
-		"notes": "Notas",
-		"calendar": "Calendario"
+		"projects": {
+			"title": "Proyectos",
+			"description": "Tus proyectos"
+		},
+		"tasks": {
+			"title": "Tareas",
+			"description": "Tus tareas"
+		},
+		"notes": {
+			"title": "Notas",
+			"description": "Tus notas"
+		},
+		"calendar": {
+			"title": "Calendario",
+			"description": "Tu calendario"
+		}
 	},
 	"personal_development": {
 		"title": "Desarrollo Personal",
-		"timer": "Tiempo",
-		"learning": "Aprendizaje",
-		"habits": "Hábitos"
+		"learning": {
+			"title": "Aprendizaje",
+			"description": "Tu aprendizaje"
+		},
+		"timer": {
+			"title": "Temporizador",
+			"description": "Tu temporizador"
+		},
+		"habits": {
+			"title": "Hábitos",
+			"description": "Tus hábitos"
+		}
 	},
-	"chart": {
+	"settings": {
+		"title": "Configuración",
+		"description": "Tu configuración"
+	},
+	"calendar": {
 		"all": "Todos",
 		"year": "Año",
-		"month": "Mes"
+		"month": "Mes",
+		"month2": "Meses",
+		"days": "Días",
+		"months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 	},
-	"types": {
-		"fixed_income": "Fijo",
-		"variable_income": "Variable"
-	},
-	"months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"],
-	"settings": "Ajustes",
 	"title": "Mi Panel",
-	"greeting": "¡Hola, {name}!",
+	"greeting": "Hola, {name}!",
 	"logout": "Cerrar sesión"
 }

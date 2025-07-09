@@ -47,12 +47,18 @@
 
 <!-- <p>{$t('greeting', { values: { name: 'Carlos' } })}</p> -->
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
-	<StatCard title="Total Saved" value="$20000" percentage="+8.2%">vs Previous Month</StatCard>
-	<StatCard title="Total Goal" value="$45000">
+	<StatCard title={$t('finances.savings.total_saved')} value="$20000" percentage="+8.2%"
+		>{$t('common.vs_last_month')}</StatCard
+	>
+	<StatCard title={$t('finances.savings.total_goal')} value="$45000">
 		<ProgressBar />
 	</StatCard>
-	<StatCard title="Monthly Savings" value="$2200">Sum of All Goals</StatCard>
-	<StatCard title="Active Goals" value="5">0 Completed</StatCard>
+	<StatCard title={$t('finances.savings.monthly_savings')} value="$2200">
+		{$t('finances.savings.sum_all_goals')}
+	</StatCard>
+	<StatCard title={$t('finances.savings.active')} value="5">
+		0 {$t('common.completed')}
+	</StatCard>
 	{#each goals as goal}
 		<SectionCard title={goal.title} subtitle={goal.category} colSpan="sm:col-span-2">
 			{#snippet filter()}{/snippet}

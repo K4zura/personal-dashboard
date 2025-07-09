@@ -2,6 +2,7 @@
 	import { format } from 'date-fns';
 	import { onMount } from 'svelte';
 	import type { SavingGoal } from '$lib/types/savings';
+	import { _ } from 'svelte-i18n';
 	export let goal: SavingGoal;
 
 	let editing = false;
@@ -46,14 +47,14 @@
 		<div class="absolute inset-0 z-20 flex items-center justify-center rounded backdrop-blur">
 			<div class="relative animate-bounce px-6 py-4 text-center">
 				<h3 class="text-success text-3xl font-extrabold drop-shadow-md">
-					¡Goal ({goal.title}) Completed! 🎉
+					¡{$_('finances.savings.goal')} ({goal.title}) {$_('common.completed')}! 🎉
 				</h3>
-				<p class="mt-2 text-base text-white/90">You have reached your savings goal</p>
+				<p class="mt-2 text-base text-white/90">{$_('finances.savings.goal_completed')}</p>
 			</div>
 		</div>
 	{/if}
 	<div class="text-accent flex justify-between text-sm font-bold">
-		<span>Progress</span>
+		<span>{$_('common.progress')}</span>
 		<span>{percent.toFixed(1)}%</span>
 	</div>
 	<div class="bg-border h-3 w-full overflow-x-hidden rounded">
@@ -68,28 +69,28 @@
 	</div>
 	<div class="mt-3 grid grid-cols-2 grid-rows-2 gap-2">
 		<div>
-			<p class="text-accent text-sm font-semibold">You are missing</p>
+			<p class="text-accent text-sm font-semibold">{$_('finances.savings.missing')}</p>
 			<p class="text-error font-bold">${remaining.toLocaleString()}</p>
 		</div>
 		<div>
-			<p class="text-accent text-sm font-semibold">Monthly savings</p>
+			<p class="text-accent text-sm font-semibold">{$_('finances.savings.monthly_savings')}</p>
 			<p class="text-success font-bold">${goal.monthly.toLocaleString()}</p>
 		</div>
 		<div>
-			<p class="text-accent text-sm font-semibold">Remaining months</p>
-			<p class="text-light font-bold">{monthsLeft} months</p>
+			<p class="text-accent text-sm font-semibold">{$_('finances.savings.remaining_months')}</p>
+			<p class="text-light font-bold">{monthsLeft} {$_('calendar.month2').toLowerCase()}</p>
 		</div>
 		<div>
-			<p class="text-accent text-sm font-semibold">Days until the deadline</p>
+			<p class="text-accent text-sm font-semibold">{$_('finances.savings.days_until_deadline')}</p>
 			{#if deadlinePassed}
-				<p class="text-error font-bold">Expired</p>
+				<p class="text-error font-bold">{$_('common.expired')}</p>
 			{:else}
-				<p class="text-success font-bold">{daysLeft} days</p>
+				<p class="text-success font-bold">{daysLeft} {$_('calendar.days').toLowerCase()}</p>
 			{/if}
 		</div>
 	</div>
 	<div class="border-border mt-2 flex justify-between border-t py-1.5 text-sm">
-		<p class="text-accent font-bold">Deadline:</p>
+		<p class="text-accent font-bold">{$_('common.deadline')}:</p>
 		<p class=" text-light font-semibold">{format(new Date(goal.deadline), 'MM/dd/yyyy')}</p>
 	</div>
 	<div class="flex gap-2">
@@ -97,12 +98,12 @@
 			on:click={addSavings}
 			class="bg-accent hover:bg-accent/80 text-surface flex-1 cursor-pointer rounded p-2 font-bold"
 		>
-			Add Savings Up</button
-		>
+			{$_('finances.savings.add_goal')}
+		</button>
 		<button
 			class="bg-tertiary hover:bg-secondary text-surface cursor-pointer rounded px-3 font-semibold"
 		>
-			Edit
+			{$_('common.edit')}
 		</button>
 	</div>
 </article>

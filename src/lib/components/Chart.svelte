@@ -17,7 +17,7 @@
 
 	const { data }: Props = $props();
 	let selectedYear = $state(new Date().getFullYear());
-	let selectedMonth = $state($_('chart.all'));
+	let selectedMonth = $state($_('calendar.all'));
 	let barCanvas: HTMLCanvasElement;
 	let chartInstance: Chart<'bar', number[] | any[][], string>;
 
@@ -39,7 +39,7 @@
 		data.filter(
 			(item) =>
 				item.year === selectedYear &&
-				(selectedMonth === $_('chart.all') || item.month === selectedMonth)
+				(selectedMonth === $_('calendar.all') || item.month === selectedMonth)
 		)
 	);
 
@@ -56,7 +56,7 @@
 
 	// Meses disponibles
 	const availableMonths = $derived([
-		$_('chart.all'),
+		$_('calendar.all'),
 		...new Set(data.filter((item) => item.year === selectedYear).map((item) => item.month))
 	]);
 
@@ -64,7 +64,7 @@
 
 	$effect(() => {
 		if (!availableMonths.includes(selectedMonth)) {
-			selectedMonth = $_('chart.all');
+			selectedMonth = $_('calendar.all');
 		}
 	});
 
@@ -84,7 +84,7 @@
 					{
 						label: '',
 						data:
-							selectedMonth === $_('chart.all')
+							selectedMonth === $_('calendar.all')
 								? categoryLabels.map((label) => sumCategory(label, filteredData))
 								: categoryLabels.map((label) => filteredData.map((d) => d[label] || 0)),
 						backgroundColor: datasetColors,
@@ -156,7 +156,7 @@
 
 <div class="mb-4 flex flex-wrap gap-4">
 	<div>
-		<label class="mb-1 block text-sm font-medium" for="year">{$_('chart.year')}</label>
+		<label class="mb-1 block text-sm font-medium" for="year">{$_('calendar.year')}</label>
 		<select
 			bind:value={selectedYear}
 			id="year"
@@ -169,7 +169,7 @@
 	</div>
 
 	<div>
-		<label class="mb-1 block text-sm font-medium" for="month">{$_('chart.month')}</label>
+		<label class="mb-1 block text-sm font-medium" for="month">{$_('calendar.month')}</label>
 		<select
 			bind:value={selectedMonth}
 			id="month"

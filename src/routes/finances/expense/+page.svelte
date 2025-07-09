@@ -38,48 +38,50 @@
 
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
 	<StatCard
-		title={$_('finances.expenses.total')}
+		title={$_('common.total')}
 		value="${totalSpent}"
 		percentage="+{totalSpentPercentage.toFixed(1)}%"
 	>
-		{$_('finances.expenses.vs_last_month')}
+		{$_('common.vs_last_month')}
 	</StatCard>
 	<StatCard title={$_('finances.budget.title')} value="${totalBudget}">
 		<ProgressBar />
 	</StatCard>
-	<StatCard title={$_('finances.expenses.average')} value="$16">
-		{$_('finances.expenses.based_on_30')}
+	<StatCard title={$_('common.average')} value="$16">
+		{$_('common.based_on_30')}
 	</StatCard>
-	<StatCard title={$_('finances.expenses.categories')} value="5">2 over budget</StatCard>
+	<StatCard title={$_('finances.expenses.categories')} value="5"
+		>2 {$_('finances.expenses.over_budget')}</StatCard
+	>
 	<SectionCard
-		title="Expenses by Category"
-		subtitle="Budget Tracking by Category"
+		title={$_('finances.expenses.expenses_by_category')}
+		subtitle={$_('finances.expenses.category_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
 		{#snippet filter()}{/snippet}
 		<CategoryCard {expenses} />
 	</SectionCard>
 	<SectionCard
-		title="Income History"
-		subtitle="Detailed list of all your income"
+		title={$_('finances.expenses.expenses_history')}
+		subtitle={$_('finances.expenses.history_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
 		{#snippet filter()}
 			<button
 				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
 			>
-				{$_('finances.income.filter')}
+				{$_('common.filter')}
 			</button>
 		{/snippet}
 		<div class="relative overflow-x-auto">
 			<table class="text-light w-full text-left text-sm rtl:text-right">
 				<thead class="bg-border text-tertiary uppercase">
 					<tr>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.concept')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.category')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.type')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.date')}</th>
-						<th scope="col" class="px-6 py-3">{$_('finances.income.amount')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.concept')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.category')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.type')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.date')}</th>
+						<th scope="col" class="px-6 py-3">{$_('common.amount')}</th>
 					</tr>
 				</thead>
 				<tbody class="font-light">
@@ -94,7 +96,17 @@
 								{expense.category.name}
 							</td>
 							<td class="px-6 py-4">
-								<span class="bg-disabled rounded-full px-2 py-1.5">{expense.frequency}</span>
+								<span class="bg-disabled rounded-full px-2 py-1.5">
+									{expense.frequency.slice(0, 3)}
+
+									{#if expense.frequency.endsWith('Ocasional')}
+										{$_('types.occasional')}
+									{:else if expense.frequency.endsWith('Diario')}
+										{$_('types.daily')}
+									{:else}
+										{$_('types.monthly')}
+									{/if}
+								</span>
 							</td>
 							<td class="px-6 py-4">{expense.date.toLocaleDateString()}</td>
 							<td class="text-error px-6 py-4 font-bold">

@@ -37,41 +37,41 @@
 
 	const menuItems = $state([
 		{
-			title: 'aside.dashboard', // La clave para Dashboard
+			title: 'dashboard.title', // La clave para Dashboard
 			icon: Home,
 			url: '/dashboard'
 		},
 		{
-			title: 'aside.finances.title', // La clave para Finances
+			title: 'finances.title', // La clave para Finances
 			icon: DollarSign,
 			items: [
-				{ title: 'aside.finances.income', url: '/finances/income', icon: TrendingUp },
-				{ title: 'aside.finances.expenses', url: '/finances/expense', icon: TrendingDown },
-				{ title: 'aside.finances.savings', url: '/finances/savings', icon: PiggyBank },
-				{ title: 'aside.finances.budget', url: '/finances/budget', icon: Wallet }
+				{ title: 'finances.income.title', url: '/finances/income', icon: TrendingUp },
+				{ title: 'finances.expenses.title', url: '/finances/expense', icon: TrendingDown },
+				{ title: 'finances.savings.title', url: '/finances/savings', icon: PiggyBank },
+				{ title: 'finances.budget.title', url: '/finances/budget', icon: Wallet }
 			]
 		},
 		{
-			title: 'aside.productivity.title', // La clave para Productivity
+			title: 'productivity.title', // La clave para Productivity
 			icon: Target,
 			items: [
-				{ title: 'aside.productivity.projects', url: '/productivity/projects', icon: Folder },
-				{ title: 'aside.productivity.tasks', url: '/productivity/tasks', icon: Check },
-				{ title: 'aside.productivity.notes', url: '/productivity/notes', icon: Notebook },
-				{ title: 'aside.productivity.calendar', url: '/productivity/calendar', icon: Calendar }
+				{ title: 'productivity.projects.title', url: '/productivity/projects', icon: Folder },
+				{ title: 'productivity.tasks.title', url: '/productivity/tasks', icon: Check },
+				{ title: 'productivity.notes.title', url: '/productivity/notes', icon: Notebook },
+				{ title: 'productivity.calendar.title', url: '/productivity/calendar', icon: Calendar }
 			]
 		},
 		{
-			title: 'aside.personal_development.title', // La clave para Personal Development
+			title: 'personal_development.title', // La clave para Personal Development
 			icon: BookHeart,
 			items: [
-				{ title: 'aside.personal_development.timer', url: '/personal/timer', icon: Clock },
-				{ title: 'aside.personal_development.learning', url: '/personal/learning', icon: Book },
-				{ title: 'aside.personal_development.habits', url: '/personal/habits', icon: Target }
+				{ title: 'personal_development.timer.title', url: '/personal/timer', icon: Clock },
+				{ title: 'personal_development.learning.title', url: '/personal/learning', icon: Book },
+				{ title: 'personal_development.habits.title', url: '/personal/habits', icon: Target }
 			]
 		},
 		{
-			title: 'aside.settings', // La clave para Settings
+			title: 'settings.title', // La clave para Settings
 			icon: Settings,
 			url: '/settings'
 		}

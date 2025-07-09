@@ -1,152 +1,148 @@
 {
-	"aside": {
-		"dashboard": "ダッシュボード",
-		"finances": {
-			"title": "財務",
-			"income": "収入",
-			"expenses": "費用",
-			"savings": "貯蓄",
-			"budget": "予算"
-		},
-		"productivity": {
-			"title": "生産性",
-			"projects": "プロジェクト",
-			"tasks": "タスク",
-			"notes": "ノート",
-			"calendar": "カレンダー"
-		},
-		"personal_development": {
-			"title": "個人開発",
-			"learning": "学習",
-			"timer": "タイマー",
-			"habits": "習慣"
-		},
-		"settings": "設定"
+	"common": {
+		"total": "月合計",
+		"filter": "フィルター",
+		"vs_last_month": "前月比",
+		"based_on_30": "30日間に基づく",
+		"average": "1日平均",
+		"oftotal": "合計のうち",
+		"used": "使用済み",
+		"remaining": "残り",
+		"completed": "完了",
+		"edit": "編集",
+		"delete": "削除",
+		"concept": "コンセプト",
+		"category": "カテゴリー",
+		"type": "タイプ",
+		"date": "日付",
+		"amount": "金額",
+		"progress": "進捗",
+		"deadline": "期限",
+		"expired": "期限切れ"
+	},
+	"types": {
+		"fixed": "固定",
+		"variable": "変動",
+		"monthly": "毎月",
+		"daily": "毎日",
+		"occasional": "不定期"
+	},
+	"dashboard": {
+		"title": "ダッシュボード",
+		"description": "あなたのダッシュボード"
 	},
 	"finances": {
 		"title": "財務",
 		"income": {
 			"title": "収入",
-			"description": "入金元の情報",
-			"add": "入金を追加",
-			"total": "月の合計",
+			"description": "収入源",
+			"add": "収入を追加",
 			"fixed": "固定収入",
-			"regular_income": "通常の収入",
+			"regular_income": "定期収入",
 			"variable": "変動収入",
-			"irregular_income": "不規則な収入",
-			"active": "有効な収入",
-			"active_sources": "有効な収入元",
+			"irregular_income": "不定期収入",
+			"active": "アクティブな収入",
 			"different_categories": "異なるカテゴリー",
-			"vs_last_month": "前月との比較",
-			"based_on_30": "30日での基準",
-			"filter": "フィルター",
 			"income_history": "収入履歴",
-			"history_desc": "収入の履歴の詳細",
-			"concept": "概念",
-			"category": "カテゴリー",
-			"type": "種類",
-			"date": "日付",
-			"amount": "金額",
+			"history_desc": "すべての収入の詳細リスト",
 			"income_chart": "収入グラフ",
 			"chart_desc": "収入のグラフ"
 		},
 		"expenses": {
-			"title": "費用",
-			"description": "費用の情報",
-			"add": "費用を追加",
-			"total": "月の合計",
-			"fixed": "固定費用",
-			"regular_expenses": "通常の費用",
-			"variable": "変動費用",
-			"irregular_expenses": "不規則な費用",
-			"active": "有効な費用",
-			"active_sources": "有効な費用元",
-			"different_categories": "異なるカテゴリー",
-			"vs_last_month": "前月との比較",
-			"based_on_30": "30日での基準",
-			"filter": "フィルター",
-			"expenses_history": "費用履歴",
-			"history_desc": "費用の履歴の詳細",
-			"concept": "概念",
-			"category": "カテゴリー",
-			"type": "種類",
-			"date": "日付",
-			"amount": "金額",
-			"average": "平均",
-			"categories": "カテゴリー"
+			"title": "支出",
+			"description": "支出源",
+			"add": "支出を追加",
+			"active": "アクティブな支出",
+			"over_budget": "予算オーバー",
+			"categories": "カテゴリー",
+			"expenses_history": "支出履歴",
+			"history_desc": "すべての支出の詳細リスト",
+			"expenses_by_category": "カテゴリー別支出",
+			"category_desc": "カテゴリをクリックすると詳細が表示されます",
+			"expense_details": "支出の詳細"
 		},
 		"savings": {
-			"title": "貯蓄",
-			"description": "貯蓄の情報",
-			"add": "貯蓄を追加",
-			"total": "月の合計",
-			"fixed": "固定貯蓄",
-			"regular_savings": "通常の貯蓄",
-			"variable": "変動貯蓄",
-			"irregular_savings": "不規則な貯蓄",
-			"active": "有効な貯蓄",
-			"active_sources": "有効な貯蓄元",
-			"different_categories": "異なるカテゴリー",
-			"vs_last_month": "前月との比較",
-			"based_on_30": "30日での基準",
-			"filter": "フィルター",
-			"savings_history": "貯蓄履歴",
-			"history_desc": "貯蓄の履歴の詳細",
-			"concept": "概念",
-			"category": "カテゴリー",
-			"type": "種類",
-			"date": "日付",
-			"amount": "金額"
+			"title": "貯金",
+			"goal": "目標",
+			"description": "貯金源",
+			"add": "貯金を追加",
+			"total_saved": "貯金合計",
+			"total_goal": "目標合計",
+			"monthly_savings": "月間貯金",
+			"sum_all_goals": "全目標の合計",
+			"active": "アクティブな目標",
+			"add_goal": "貯金目標を追加",
+			"missing": "不足金額",
+			"remaining_months": "残り月数",
+			"days_until_deadline": "締切までの日数",
+			"goal_completed": "貯金目標を達成しました"
 		},
 		"budget": {
 			"title": "予算",
-			"description": "予算の情報",
-			"add": "予算を追加",
-			"total": "月の合計",
-			"fixed": "固定予算",
-			"regular_budget": "通常の予算",
-			"variable": "変動予算",
-			"irregular_budget": "不規則な予算",
-			"active": "有効な予算",
-			"active_sources": "有効な予算元",
-			"different_categories": "異なるカテゴリー",
-			"vs_last_month": "前月との比較",
-			"based_on_30": "30日での基準",
-			"filter": "フィルター",
-			"budget_history": "予算履歴",
-			"history_desc": "予算の履歴の詳細",
-			"concept": "概念",
-			"category": "カテゴリー",
-			"type": "種類",
-			"date": "日付",
-			"amount": "金額"
+			"description": "予算源",
+			"add": "予算を追加"
 		}
 	},
 	"productivity": {
 		"title": "生産性",
-		"projects": "プロジェクト",
-		"tasks": "タスク",
-		"notes": "ノート",
-		"calendar": "カレンダー"
+		"projects": {
+			"title": "プロジェクト",
+			"description": "あなたのプロジェクト"
+		},
+		"tasks": {
+			"title": "タスク",
+			"description": "あなたのタスク"
+		},
+		"notes": {
+			"title": "ノート",
+			"description": "あなたのノート"
+		},
+		"calendar": {
+			"title": "カレンダー",
+			"description": "あなたのカレンダー"
+		}
 	},
 	"personal_development": {
-		"title": "個人開発",
-		"learning": "学習",
-		"timer": "タイマー",
-		"habits": "習慣"
+		"title": "自己啓発",
+		"learning": {
+			"title": "学習",
+			"description": "あなたの学習"
+		},
+		"timer": {
+			"title": "タイマー",
+			"description": "あなたのタイマー"
+		},
+		"habits": {
+			"title": "習慣",
+			"description": "あなたの習慣"
+		}
 	},
-	"chart": {
-		"all": "全て",
+	"settings": {
+		"title": "設定",
+		"description": "あなたの設定"
+	},
+	"calendar": {
+		"all": "すべて",
 		"year": "年",
-		"month": "月"
+		"month": "月",
+		"month2": "ヶ月",
+		"days": "日",
+		"months": [
+			"1月",
+			"2月",
+			"3月",
+			"4月",
+			"5月",
+			"6月",
+			"7月",
+			"8月",
+			"9月",
+			"10月",
+			"11月",
+			"12月"
+		]
 	},
-	"types": {
-		"fixed_income": "固定",
-		"variable_income": "変動"
-	},
-	"months": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-	"settings": "設定",
-	"title": "ダッシュボード",
-	"greeting": "こんにちは、{name}！",
+	"title": "マイダッシュボード",
+	"greeting": "こんにちは、{name}さん！",
 	"logout": "ログアウト"
 }
