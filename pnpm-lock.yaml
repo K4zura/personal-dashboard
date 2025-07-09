@@ -20,6 +20,9 @@ importers:
       chart.js:
         specifier: ^4.5.0
         version: 4.5.0
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       lucide-svelte:
         specifier: ^0.525.0
         version: 0.525.0(svelte@5.35.2)
@@ -1078,6 +1081,9 @@ packages:
   d@1.0.2:
     resolution: {integrity: sha512-MOqHvMWF9/9MX6nza0KgvFH4HpMU0EF5uUDXqX/BtxtU8NfB0QzRtJ8Oe/6SuS4kbhyzVJwjd97EA4PKrzJ8bw==}
     engines: {node: '>=0.12'}
+
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   debug@4.4.1:
     resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
@@ -2922,6 +2928,8 @@ snapshots:
     dependencies:
       es5-ext: 0.10.64
       type: 2.7.3
+
+  date-fns@4.1.0: {}
 
   debug@4.4.1:
     dependencies:

@@ -60,6 +60,7 @@
 		"@fontsource-variable/oxanium": "^5.2.6",
 		"@supabase/supabase-js": "^2.50.3",
 		"chart.js": "^4.5.0",
+		"date-fns": "^4.1.0",
 		"lucide-svelte": "^0.525.0",
 		"svelte-chartjs": "^3.1.5",
 		"svelte-i18n": "^4.0.1",
