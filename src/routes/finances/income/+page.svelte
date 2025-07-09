@@ -3,6 +3,7 @@
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import { incomeData, type Income } from '$lib/utils/data';
+	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
 	let totalAmount = 0;
@@ -49,24 +50,35 @@
 <h1>{$_('title')}</h1>
 <h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
-	<StatCard title={$_('common.total')} value={`$${totalAmount}`} percentage="+8.2%"
-		>{$_('common.vs_last_month')}</StatCard
-	>
-	<StatCard title={$_('finances.income.fixed')} value={`$${totalFixedAmount}`}
-		>{$_('finances.income.regular_income')}</StatCard
-	>
-	<StatCard title={$_('finances.income.variable')} value={`$${totalVariableAmount}`}
-		>{$_('finances.income.irregular_income')}</StatCard
-	>
-	<StatCard title={$_('finances.income.active')} value="4"
-		>{$_('finances.income.different_categories')}</StatCard
-	>
+	<StatCard title={$_('common.total')} value={`$${totalAmount}`} percentage="+8.2%">
+		{#snippet icon()}
+			<TrendingUp class="size-4 text-gray-300" />
+		{/snippet}
+		{$_('common.vs_last_month')}
+	</StatCard>
+	<StatCard title={$_('finances.income.fixed')} value={`$${totalFixedAmount}`}>
+		{#snippet icon()}
+			<DollarSign class="size-4 text-gray-300" />
+		{/snippet}
+		{$_('finances.income.regular_income')}
+	</StatCard>
+	<StatCard title={$_('finances.income.variable')} value={`$${totalVariableAmount}`}>
+		{#snippet icon()}
+			<Wallet class="size-4 text-gray-300" />
+		{/snippet}
+		{$_('finances.income.irregular_income')}
+	</StatCard>
+	<StatCard title={$_('finances.income.active')} value="4">
+		{#snippet icon()}
+			<Tag class="size-4 text-gray-300" />
+		{/snippet}
+		{$_('finances.income.different_categories')}
+	</StatCard>
 	<SectionCard
 		title={$_('finances.income.income_chart')}
 		subtitle={$_('finances.income.chart_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		{#snippet filter()}{/snippet}
 		<Chart data={chartData} />
 	</SectionCard>
 	<SectionCard

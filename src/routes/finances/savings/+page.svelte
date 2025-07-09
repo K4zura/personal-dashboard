@@ -3,6 +3,7 @@
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
+	import { CalendarIcon, PiggyBank, Target, TrendingUp } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
 	const t = _;
@@ -47,21 +48,32 @@
 
 <!-- <p>{$t('greeting', { values: { name: 'Carlos' } })}</p> -->
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
-	<StatCard title={$t('finances.savings.total_saved')} value="$20000" percentage="+8.2%"
-		>{$t('common.vs_last_month')}</StatCard
-	>
+	<StatCard title={$t('finances.savings.total_saved')} value="$20000" percentage="+8.2%">
+		{#snippet icon()}
+			<PiggyBank class="size-4 text-gray-300" />
+		{/snippet}
+		{$t('common.vs_last_month')}
+	</StatCard>
 	<StatCard title={$t('finances.savings.total_goal')} value="$45000">
+		{#snippet icon()}
+			<Target class="size-4 text-gray-300" />
+		{/snippet}
 		<ProgressBar />
 	</StatCard>
 	<StatCard title={$t('finances.savings.monthly_savings')} value="$2200">
+		{#snippet icon()}
+			<TrendingUp class="size-4 text-gray-300" />
+		{/snippet}
 		{$t('finances.savings.sum_all_goals')}
 	</StatCard>
 	<StatCard title={$t('finances.savings.active')} value="5">
-		0 {$t('common.completed')}
+		{#snippet icon()}
+			<CalendarIcon class="size-4 text-gray-300" />
+		{/snippet}
+		0 {$t('common.completed').toLowerCase()}
 	</StatCard>
 	{#each goals as goal}
 		<SectionCard title={goal.title} subtitle={goal.category} colSpan="sm:col-span-2">
-			{#snippet filter()}{/snippet}
 			<GoalCard {goal} />
 		</SectionCard>
 	{/each}

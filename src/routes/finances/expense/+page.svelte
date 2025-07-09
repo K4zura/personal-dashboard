@@ -4,6 +4,7 @@
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
 	import { expenseCategories, expenseData, type Expense } from '$lib/utils/data';
+	import { AlertTriangle, CreditCard, ShoppingCart, TrendingDown } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
 	type Expenses = {
@@ -42,23 +43,34 @@
 		value="${totalSpent}"
 		percentage="+{totalSpentPercentage.toFixed(1)}%"
 	>
+		{#snippet icon()}
+			<TrendingDown class="size-4 text-gray-300" />
+		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
 	<StatCard title={$_('finances.budget.title')} value="${totalBudget}">
+		{#snippet icon()}
+			<CreditCard class="size-4 text-gray-300" />
+		{/snippet}
 		<ProgressBar />
 	</StatCard>
 	<StatCard title={$_('common.average')} value="$16">
+		{#snippet icon()}
+			<ShoppingCart class="size-4 text-gray-300" />
+		{/snippet}
 		{$_('common.based_on_30')}
 	</StatCard>
-	<StatCard title={$_('finances.expenses.categories')} value="5"
-		>2 {$_('finances.expenses.over_budget')}</StatCard
-	>
+	<StatCard title={$_('finances.expenses.categories')} value="5">
+		{#snippet icon()}
+			<AlertTriangle class="size-4 text-gray-300" />
+		{/snippet}
+		2 {$_('finances.expenses.over_budget')}
+	</StatCard>
 	<SectionCard
 		title={$_('finances.expenses.expenses_by_category')}
 		subtitle={$_('finances.expenses.category_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		{#snippet filter()}{/snippet}
 		<CategoryCard {expenses} />
 	</SectionCard>
 	<SectionCard

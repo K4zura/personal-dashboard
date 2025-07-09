@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	interface Props {
-		filter: Snippet;
+		filter?: Snippet;
 		children: Snippet;
 		title: string;
 		subtitle: string;
