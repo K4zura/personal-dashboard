@@ -18,6 +18,7 @@
 		ChevronDown,
 		ChevronUp
 	} from 'lucide-svelte';
+	import imgProfile from '$assets/images/jinwoo.avif';
 	import { slide } from 'svelte/transition';
 	import { t } from 'svelte-i18n';
 	import { changeLocale } from '$lib/i18n';
@@ -126,7 +127,7 @@
 		<picture class="border-dark mx-1 size-36 overflow-hidden rounded-full border-4">
 			<img
 				loading="eager"
-				src="/src/assets/images/jinwoo.webp"
+				src={imgProfile}
 				alt="img profile of Jinwoo"
 				class="aspect-square size-full object-cover object-center"
 			/>
