@@ -126,7 +126,7 @@
 		<picture class="border-dark mx-1 size-36 overflow-hidden rounded-full border-4">
 			<img
 				loading="eager"
-				src="/assets/images/jinwoo.avif"
+				src="/src/assets/images/jinwoo.webp"
 				alt="img profile of Jinwoo"
 				class="aspect-square size-full object-cover object-center"
 			/>
