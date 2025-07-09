@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '../../app.css';
 	import '$lib/i18n';
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
