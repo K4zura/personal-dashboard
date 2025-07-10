@@ -32,6 +32,14 @@
 	let height = $state(0);
 	let opacity = $state(0);
 	let routeId = $derived($page.url.pathname);
+	const { data } = $props();
+	let userName = $state('Jinwoo');
+	let userImg = $state(imgProfile);
+
+	if (data.user) {
+		userName = data.user.user_metadata.full_name;
+		userImg = data.user.user_metadata.avatar_url;
+	}
 
 	// const t = _;
 
@@ -127,12 +135,12 @@
 		<picture class="border-dark mx-1 size-36 overflow-hidden rounded-full border-4">
 			<img
 				loading="eager"
-				src={imgProfile}
+				src={userImg}
 				alt="img profile of Jinwoo"
 				class="aspect-square size-full object-cover object-center"
 			/>
 		</picture>
-		<h2 class="text-accent text-center text-2xl font-extrabold">Jinwoo</h2>
+		<h2 class="text-accent text-center text-2xl font-extrabold">{userName}</h2>
 	</section>
 	<nav
 		class="relative flex flex-col justify-center"

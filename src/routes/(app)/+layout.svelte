@@ -4,8 +4,22 @@
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
 	import SideBar from '$lib/components/layout/SideBar.svelte';
+	import { invalidate } from '$app/navigation';
+	let { data, children } = $props();
+	let { supabase, session } = data;
+	$effect(() => {
+		({ supabase, session } = data);
+	});
 
-	let { children } = $props();
+	$effect(() => {
+		const { data } = supabase.auth.onAuthStateChange((event, newSession) => {
+			if (newSession?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+		return () => data.subscription.unsubscribe();
+	});
+
 	let loading = $state(true);
 
 	onMount(async () => {
@@ -27,7 +41,7 @@
 			>O
 			<input type="checkbox" class="absolute inset-0 h-full w-full opacity-0" /></button
 		>
-		<SideBar />
+		<SideBar {data} />
 
 		<main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
 			{@render children()}
