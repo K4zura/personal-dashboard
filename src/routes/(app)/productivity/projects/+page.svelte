@@ -1,8 +1,20 @@
 <script lang="ts">
+	import ProjectCard from '$lib/components/shared/ProjectCard.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import { AlertCircle, CalendarIcon, CheckCircle, Clock, FolderOpen } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
+
+	type Project = {
+		title: string;
+		description: string;
+	};
+
+	const project: Project = {
+		title: 'Creation of Dashboard',
+		description:
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad eligendi provident autem pariatur aut ratione tempore eaque soluta sint veniam!'
+	};
 </script>
 
 <h1>{$_('title')}</h1>
@@ -37,7 +49,9 @@
 	</StatCard>
 	<!--  -->
 	<!-- CARD SECTIONS -->
-	<SectionCard title="project" subtitle="mini project" colSpan="sm:col-span-2 xl:col-span-4">
-		a
-	</SectionCard>
+	<ProjectCard {project}></ProjectCard>
+	<ProjectCard {project}></ProjectCard>
+	<ProjectCard {project}></ProjectCard>
+	<ProjectCard {project}></ProjectCard>
+	<!-- <SectionCard title="Creation of Dashboard" subtitle="mini project" colSpan="">a</SectionCard> -->
 </div>

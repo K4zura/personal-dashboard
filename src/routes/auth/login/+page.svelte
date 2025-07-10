@@ -12,7 +12,7 @@
 		<Field id="password" type="password">Password</Field>
 		<a
 			href="/"
-			class="text-dark hover:drop-shadow-primary -translate-y-3 px-2 text-xs font-bold drop-shadow-md drop-shadow-transparent"
+			class="text-dark hover:drop-shadow-primary -translate-y-1 px-2 text-xs font-bold drop-shadow-md drop-shadow-transparent lg:-translate-y-3"
 			>Forgot the password?</a
 		>
 	{/snippet}
