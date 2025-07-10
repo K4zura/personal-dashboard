@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { InfoIcon, UserIcon } from 'lucide-svelte';
+	import { Goal, InfoIcon, UserIcon } from 'lucide-svelte';
 	import type { Snippet } from 'svelte';
 	import { slide } from 'svelte/transition';
 
@@ -44,10 +44,13 @@
 	</div>
 
 	<div class="mt-2 flex justify-evenly">
-		<button id="google" class="bg-dark size-12 cursor-pointer rounded-full p-2.5 lg:size-16">
+		<a
+			href="/auth/login/google"
+			class="bg-dark size-12 cursor-pointer rounded-full p-2.5 lg:size-16"
+		>
 			<!-- <GoogleIcon class="size-full" /> -->
-			G
-		</button>
+			<Goal class="text-light pointer-events-none size-full" />
+		</a>
 		<a href={`/dashboard`} class="bg-dark size-12 cursor-pointer rounded-full p-2.5 lg:size-16">
 			<UserIcon class="text-light pointer-events-none size-full" />
 		</a>

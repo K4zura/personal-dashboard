@@ -4,8 +4,24 @@
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
 	import SideBar from '$lib/components/layout/SideBar.svelte';
+	import { invalidate } from '$app/navigation';
+	let { data, children } = $props();
+	let { supabase, session } = data;
+	$effect(() => {
+		({ supabase, session } = data);
+	});
 
-	let { children } = $props();
+	$effect(() => {
+		const { data } = supabase.auth.onAuthStateChange((event, newSession) => {
+			if (newSession?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+		return () => data.subscription.unsubscribe();
+	});
+
+	console.log(data.user);
+
 	let loading = $state(true);
 
 	onMount(async () => {
