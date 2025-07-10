@@ -58,6 +58,7 @@
 	"dependencies": {
 		"@fontsource-variable/m-plus-1-code": "^5.2.6",
 		"@fontsource-variable/oxanium": "^5.2.6",
+		"@supabase/ssr": "^0.6.1",
 		"@supabase/supabase-js": "^2.50.3",
 		"chart.js": "^4.5.0",
 		"date-fns": "^4.1.0",
