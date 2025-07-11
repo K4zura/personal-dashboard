@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Google from '$assets/icons/google.svelte';
+	import Google from '$lib/components/icons/Google.svelte';
 	import Field from '$lib/components/auth/Field.svelte';
 	import { User, UserIcon } from 'lucide-svelte';
 
