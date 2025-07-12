@@ -16,7 +16,7 @@
 <article class={`bg-surface relative flex flex-col justify-center gap-4 rounded p-4 lg:col-span-2`}>
 	<div class="flex justify-between">
 		<h1>{project.title}</h1>
-		<Badge text="Completado" color="bg-green-600" rounded="-full" />
+		<Badge text="Completado" color="bg-success text-surface" rounded="-full" />
 	</div>
 	<p>
 		{project.description}

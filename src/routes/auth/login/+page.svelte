@@ -37,11 +37,11 @@
 >
 
 <button
-	class="bg-secondary group relative my-3 w-full cursor-pointer overflow-hidden rounded py-2 font-bold"
+	class="bg-primary group relative my-3 w-full cursor-pointer overflow-hidden rounded py-2 font-bold"
 >
 	<p class="text-light relative z-10">START</p>
 	<div
-		class="absolute inset-0 h-full w-0 bg-[#477fff] transition-all duration-300 group-hover:w-full"
+		class="absolute inset-0 h-full w-0 bg-accent transition-all duration-300 group-hover:w-full"
 	></div>
 </button>
 
@@ -54,7 +54,7 @@
 	class="group bg-light text-surface group relative my-1.5 flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded py-1.5 font-bold"
 >
 	<div
-		class="absolute inset-0 h-full w-0 bg-[#477fff] transition-all duration-300 group-hover:w-full"
+		class="absolute inset-0 h-full w-0 bg-accent transition-all duration-300 group-hover:w-full"
 	></div>
 	<Google classes="relative pointer-events-none size-6" />
 	<p class="relative">Google</p>
@@ -64,7 +64,7 @@
 	class="group bg-light text-surface group relative my-1.5 flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded py-1.5 font-bold"
 >
 	<div
-		class="absolute inset-0 h-full w-0 bg-[#477fff] transition-all duration-300 group-hover:w-full"
+		class="absolute inset-0 h-full w-0 bg-accent transition-all duration-300 group-hover:w-full"
 	></div>
 	<UserIcon class="pointer-events-none relative size-6" />
 	<p class="relative">Guest</p>

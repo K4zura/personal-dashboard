@@ -7,6 +7,19 @@
 	import { invalidate } from '$app/navigation';
 	let { data, children } = $props();
 	let { supabase, session } = data;
+
+	let theme = $state('');
+
+	function applyTheme(t: string) {
+		theme = t;
+		document.documentElement.className = t;
+		localStorage.setItem('theme', t);
+	}
+	function onChange(event: Event) {
+		const select = event.target as HTMLSelectElement; // ① cast explícito
+		applyTheme(select.value);
+	}
+
 	$effect(() => {
 		({ supabase, session } = data);
 	});
@@ -23,6 +36,7 @@
 	let loading = $state(true);
 
 	onMount(async () => {
+		applyTheme(localStorage.getItem('theme') ?? theme);
 		await waitLocale(); // Espera a que el idioma se cargue
 		loading = false; // Cambia el estado de carga cuando el idioma esté listo
 	});
@@ -35,7 +49,19 @@
 {#if loading}
 	<div>Loading...</div>
 {:else}
-	<div id="app" class="p-4 md:gap-4">
+	<div id="app" class="relative p-4 md:gap-4">
+		<select
+			bind:value={theme}
+			onchange={onChange}
+			class="bg-surface text-text absolute top-2 right-2 rounded border-0 py-1 ring-0"
+		>
+			<option value="theme-dark">Dark</option>
+			<option value="theme-light">Light</option>
+			<option value="theme-jinwoo">Jinwoo</option>
+			<option value="theme-dracula">Dracula</option>
+			<option value="theme-aurora">Aurora</option>
+			<option value="theme-neon">Neon</option>
+		</select>
 		<button
 			class="peer bg-primary absolute top-0 left-0 hidden h-8 w-8 cursor-pointer rounded-br-xl transition-transform not-md:block has-checked:translate-x-[240px]"
 			>O

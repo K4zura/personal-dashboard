@@ -18,9 +18,144 @@
 	--color-muted: #a0a0a0;
 	--color-border: #3f4a5a;
 	--color-hover: #74d3ce;
-	--color-accent: #fcd5ce;
+	--color-accent: #b19cd9;
 	--color-overlay: rgba(0, 0, 0, 0.5);
 	--color-disabled: #4f5d75;
+	--color-purple: #8e44ad;
+	--color-glow: #00fff7;
+	--color-shadow: #050517;
+}
+
+/* ─── LIGHT  (scope por selector .light) ────────────────────── */
+.theme-light {
+	/* fondos y texto base */
+	--color-dark: #f5f7ff;
+	--color-light: #0b132b;
+
+	/* escala de marca */
+	--color-primary: #4faead;
+	--color-secondary: #567fa0;
+	--color-tertiary: #c6e6e5;
+
+	/* superficies y bordes */
+	--color-surface: #ffffff; /* tarjetas / modales                             */
+	--color-border: #d2d9e6; /* bordes sutiles                                 */
+
+	/* estados (no cambian mucho) */
+	--color-error: #ff4e4e; /* un toque más vivo sobre claro                  */
+	--color-success: #5ecfa9;
+	--color-warning: #ffce3d;
+	--color-info: #55c7f4;
+
+	/* utilitarios */
+	--color-muted: #6f6f8b; /* texto deshabilitado                            */
+	--color-hover: #5ad0c9; /* hover del primary                              */
+	--color-accent: #cbb5e4; /* púrpura pastel (coherente con bg claro)        */
+	--color-overlay: rgba(255, 255, 255, 0.55); /* blur / backdrop sobre modales */
+	--color-disabled: #a9b3c7;
+
+	/* extras Solo‑Leveling */
+	--color-purple: #7b39c4; /* ligeramente más brillante                      */
+	--color-glow: #00d8d0; /* se sigue viendo “cian neón”                    */
+	--color-shadow: #e3e7ff;
+}
+
+.theme-jinwoo {
+	--color-dark: #2e2f3c;
+	--color-light: #ffffff;
+	--color-primary: #1098f7;
+	--color-secondary: #decccc;
+	--color-tertiary: #b89e97;
+	--color-surface: #3a3b4a;
+	--color-error: #f88379;
+	--color-success: #7fe7c3;
+	--color-warning: #fcdba5;
+	--color-info: #8cd2f7;
+	--color-muted: #b0b0b0;
+	--color-border: #4a4b59;
+	--color-hover: #0c7ed6;
+	--color-accent: #d8bfd8;
+	--color-overlay: rgba(0, 0, 0, 0.5);
+	--color-disabled: #6a6a78;
+}
+
+.theme-neon {
+	--color-dark: #070a12; /* fondo principal muy oscuro */
+	--color-light: #e7faff; /* texto y detalles claros    */
+
+	--color-primary: #00fff7; /* cian láser */
+	--color-secondary: #ff00e6; /* magenta brillante */
+	--color-tertiary: #12b3ff; /* azul eléctrico suave */
+
+	--color-surface: #111528; /* tarjetas / paneles */
+	--color-border: #27304c; /* separadores           */
+
+	--color-error: #ff426a;
+	--color-success: #00ffa3;
+	--color-warning: #ffc800;
+	--color-info: #5ad2ff;
+
+	--color-muted: #767a94;
+	--color-hover: #15ffe8; /* highlight sobre primario */
+	--color-accent: #f5a3ff; /* rosa pastel para toques */
+	--color-overlay: rgba(0, 0, 0, 0.6);
+	--color-disabled: #434a68;
+
+	/* extras */
+	--color-purple: #ae00ff;
+	--color-glow: #00fff7;
+	--color-shadow: #090c1a;
+}
+
+.theme-dracula {
+	--color-dark: #282a36; /* fondo “Dracula” clásico */
+	--color-light: #f8f8f2; /* texto claro             */
+
+	--color-primary: #bd93f9; /* púrpura icónico */
+	--color-secondary: #6272a4; /* gris‑azulado */
+	--color-tertiary: #8be9fd; /* cian pastel   */
+
+	--color-surface: #44475a; /* cards / modales */
+	--color-border: #5b5f79;
+
+	--color-error: #ff5555;
+	--color-success: #50fa7b;
+	--color-warning: #f1fa8c;
+	--color-info: #8be9fd;
+
+	--color-muted: #6d7086;
+	--color-hover: #caa9fa; /* tono claro del primary */
+	--color-accent: #ff79c6; /* rosa vampírico */
+	--color-overlay: rgba(40, 42, 54, 0.7);
+	--color-disabled: #4d5166;
+
+	/* extras */
+	--color-purple: #9580ff;
+	--color-glow: #8be9fd;
+	--color-shadow: #1c1d27;
+}
+
+.theme-aurora {
+	--color-dark: #eef4ff;
+	--color-light: #1b2040;
+
+	--color-primary: #7ab5ff;
+	--color-secondary: #e0a4ff;
+	--color-tertiary: #a7f0d1;
+
+	--color-surface: #ffffff;
+	--color-border: #d8e2ff;
+
+	--color-error: #ff6f91;
+	--color-success: #6fe8c5;
+	--color-warning: #ffd977;
+	--color-info: #8cc7ff;
+
+	--color-muted: #7e86a0;
+	--color-hover: #9acaff;
+	--color-accent: #ffc3ff;
+	--color-overlay: rgba(255, 255, 255, 0.6);
+	--color-disabled: #b7bed6;
 }
 
 html {

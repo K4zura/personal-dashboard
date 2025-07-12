@@ -3,11 +3,27 @@
 	import '$lib/i18n';
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
+	// Ejemplo Svelte: selector de tema
+	let theme = $state('light');
+
+	// Persistir en localStorage
+	function applyTheme(t: string) {
+		theme = t;
+		document.documentElement.className = t; // reemplaza completa
+		localStorage.setItem('theme', t);
+	}
+	function onChange(event: Event) {
+		const select = event.target as HTMLSelectElement; // ① cast explícito
+		applyTheme(select.value);
+	}
+
+	// Cargar preferencia al iniciar
 
 	let { children } = $props();
 	let loading = $state(true);
 
 	onMount(async () => {
+		applyTheme(localStorage.getItem('theme') ?? theme);
 		await waitLocale(); // Espera a que el idioma se cargue
 		loading = false; // Cambia el estado de carga cuando el idioma esté listo
 	});
@@ -25,7 +41,19 @@
 			{@render children()}
 		</div>
 	</main> -->
-	<main class="bg-dark flex h-screen items-center justify-center">
+	<main class="bg-dark flex h-dvh items-center justify-center">
+		<select
+			bind:value={theme}
+			onchange={onChange}
+			class="bg-surface text-text absolute top-2 right-2 rounded border-0  py-1 ring-0"
+		>
+			<option value="theme-dark">Dark</option>
+			<option value="theme-light">Light</option>
+			<option value="theme-jinwoo">Jinwoo</option>
+			<option value="theme-dracula">Dracula</option>
+			<option value="theme-aurora">Aurora</option>
+			<option value="theme-neon">Neon</option>
+		</select>
 		<div
 			class="bg-surface border-primary relative flex h-min w-[450px] min-w-80 flex-col items-center overflow-hidden border-4 px-8 py-6"
 		>

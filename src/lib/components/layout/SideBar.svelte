@@ -129,7 +129,7 @@
 </script>
 
 <aside
-	class="bg-secondary relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto rounded p-2 transition-transform [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:h-screen not-md:w-[240px] not-md:-translate-x-[240px] not-md:rounded-none peer-has-checked:translate-x-0"
+	class="bg-surface relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto rounded p-2 transition-transform [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:h-screen not-md:w-[240px] not-md:-translate-x-[240px] not-md:rounded-none peer-has-checked:translate-x-0"
 >
 	<section class="mx-2 mt-2 flex grow basis-0 flex-col items-center gap-0.5">
 		<picture class="border-dark mx-1 size-36 overflow-hidden rounded-full border-4">
@@ -143,7 +143,7 @@
 		<h2 class="text-accent text-center text-2xl font-extrabold">{userName}</h2>
 	</section>
 	<nav
-		class="relative flex flex-col justify-center"
+		class="relative flex flex-col justify-center gap-1"
 		onmouseleave={() => {
 			opacity = 0;
 		}}
@@ -214,7 +214,7 @@
 			}}
 			let:motion
 		>
-			<li use:motion class="bg-surface/75 absolute z-0 rounded-lg"></li>
+			<li use:motion class="bg-hover absolute z-0 rounded-lg"></li>
 		</Motion>
 	</nav>
 	<div class="flex grow basis-0 flex-col justify-end gap-2">
@@ -235,6 +235,6 @@
 
 <style>
 	.active {
-		background-color: var(--color-surface);
+		background-color: var(--color-hover);
 	}
 </style>
