@@ -1,8 +1,10 @@
-<script lang="ts">
-	import { _ } from 'svelte-i18n';
-
-	const t = _;
+<script>
+	let { data } = $props();
+	console.log(data.income);
 </script>
 
-<h1>{$t('title')}</h1>
-<h1 class="text-primary text-xl font-bold">Home</h1>
+<ul class="bg-accent h-full w-full">
+	{#each data.income as incm (incm.id)}
+		<li class="text-dark text-2xl">{incm.name}</li>
+	{/each}
+</ul>

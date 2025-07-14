@@ -95,4 +95,8 @@ class="bg-secondary after:bg-secondary before:bg-secondary relative my-4 h-1 w-f
 </div>
 
 <p class="text-sm">NEW_USER?</p>
-<a href="/auth/register" class="text-sm font-semibold text-primary hover:drop-shadow-secondary drop-shadow-sm drop-shadow-transparent">REGISTER_NOW</a>
+<a
+	href="/auth/register"
+	class="text-primary hover:drop-shadow-secondary text-sm font-semibold drop-shadow-sm drop-shadow-transparent"
+	>REGISTER_NOW</a
+>

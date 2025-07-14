@@ -1,6 +1,9 @@
-// routes/+page.server.ts
-import { redirect } from '@sveltejs/kit';
+import * as db from '$lib/db';
 
-export function load() {
-	throw redirect(302, '/dashboard');
+export async function load() {
+	const income = await db.income.all();
+	console.log(income);
+	return {
+		props: { income }
+	};
 }
