@@ -1,14 +1,8 @@
-// src/routes/+layout.ts
 import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr';
-// import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
+// import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
 import type { LayoutLoad } from './$types';
-import type { Session, SupabaseClient, User } from '@supabase/supabase-js';
 
-export const load: LayoutLoad = async ({
-	fetch,
-	data,
-	depends
-}): Promise<{ supabase: SupabaseClient; session: Session; user: User | null }> => {
+export const load: LayoutLoad = async ({ data, depends, fetch }) => {
 	depends('supabase:auth');
 
 	const supabase = isBrowser()
@@ -36,15 +30,13 @@ export const load: LayoutLoad = async ({
 				}
 			);
 
-	/**
-	 * It's fine to use `getSession` here, because on the client, `getSession` is
-	 * safe, and on the server, it reads `session` from the `LayoutData`, which
-	 * safely checked the session using `safeGetSession`.
-	 */
 	const {
 		data: { session }
 	} = await supabase.auth.getSession();
 
-	const user = session?.user ?? null;
-	return { supabase, session: session!, user };
+	const {
+		data: { user }
+	} = await supabase.auth.getUser();
+
+	return { session, supabase, user };
 };

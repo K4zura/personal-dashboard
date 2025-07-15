@@ -132,7 +132,9 @@
 	class="bg-surface relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto rounded p-2 transition-transform [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:h-screen not-md:w-[240px] not-md:-translate-x-[240px] not-md:rounded-none peer-has-checked:translate-x-0"
 >
 	<section class="mx-2 mt-2 flex grow basis-0 flex-col items-center gap-1">
-		<picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4 shadow-[0_0_5px_2px] shadow-primary">
+		<picture
+			class="border-dark shadow-primary mx-1 size-28 overflow-hidden rounded-full border-4 shadow-[0_0_5px_2px]"
+		>
 			<img
 				loading="eager"
 				src={userImg}
@@ -236,5 +238,31 @@
 <style>
 	.active {
 		background-color: var(--color-hover);
+	}
+
+	aside {
+		--sb-track-color: #232e3300;
+		--sb-thumb-color: #6baf8d00;
+		--sb-size: 0px;
+	}
+
+	aside::-webkit-scrollbar {
+		width: var(--sb-size);
+	}
+
+	aside::-webkit-scrollbar-track {
+		background: var(--sb-track-color);
+		border-radius: 3px;
+	}
+
+	aside::-webkit-scrollbar-thumb {
+		background: var(--sb-thumb-color);
+		border-radius: 3px;
+	}
+
+	@supports not selector(::-webkit-scrollbar) {
+		aside {
+			scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+		}
 	}
 </style>

@@ -30,7 +30,7 @@ export const incomeCategories: Category[] = [
 ];
 
 export interface Income {
-	title: string;
+	name: string;
 	category: Category;
 	type: string;
 	date: Date;
@@ -38,72 +38,72 @@ export interface Income {
 	color: string;
 }
 
-export const incomeData: Income[] = [
-	{
-		title: 'Consultoria',
-		category: incomeCategories[0],
-		type: 'Variable',
-		date: new Date('2025-01-14'),
-		mount: 300,
-		color: '#47ff7f'
-	},
-	{
-		title: 'Venta de camisetas',
-		category: incomeCategories[1], // Negocio
-		type: 'Variable',
-		date: new Date('2025-01-20'),
-		mount: 150,
-		color: '#ff477f'
-	},
-	{
-		title: 'Dividendos ETF',
-		category: incomeCategories[2], // Inversiones
-		type: 'Fixed',
-		date: new Date('2025-02-01'),
-		mount: 120,
-		color: '#7f47ff'
-	},
-	{
-		title: 'Sueldo mensual',
-		category: incomeCategories[3], // Trabajo
-		type: 'Fixed',
-		date: new Date('2025-02-28'),
-		mount: 400,
-		color: '#477fff'
-	},
-	{
-		title: 'Proyecto diseño web',
-		category: incomeCategories[0], // Freelance
-		type: 'Variable',
-		date: new Date('2024-03-12'),
-		mount: 500,
-		color: '#7fff47'
-	},
-	{
-		title: 'Ventas tienda online',
-		category: incomeCategories[1], // Negocio
-		type: 'Variable',
-		date: new Date('2024-03-25'),
-		mount: 350,
-		color: '#ff7fff'
-	},
-	{
-		title: 'Acciones Apple',
-		category: incomeCategories[2], // Inversiones
-		type: 'Fixed',
-		date: new Date('2024-04-10'),
-		mount: 200,
-		color: '#2f2f3d'
-	},
-	{
-		title: 'Sueldo mensual',
-		category: incomeCategories[3], // Trabajo
-		type: 'Fixed',
-		date: new Date('2024-04-30'),
-		mount: 1250,
-		color: '#ff7f47'
-	}
-];
+// export const incomeData: Income[] = [
+// 	{
+// 		title: 'Consultoria',
+// 		category: incomeCategories[0],
+// 		type: 'Variable',
+// 		date: new Date('2025-01-14'),
+// 		mount: 300,
+// 		color: '#47ff7f'
+// 	},
+// 	{
+// 		title: 'Venta de camisetas',
+// 		category: incomeCategories[1], // Negocio
+// 		type: 'Variable',
+// 		date: new Date('2025-01-20'),
+// 		mount: 150,
+// 		color: '#ff477f'
+// 	},
+// 	{
+// 		title: 'Dividendos ETF',
+// 		category: incomeCategories[2], // Inversiones
+// 		type: 'Fixed',
+// 		date: new Date('2025-02-01'),
+// 		mount: 120,
+// 		color: '#7f47ff'
+// 	},
+// 	{
+// 		title: 'Sueldo mensual',
+// 		category: incomeCategories[3], // Trabajo
+// 		type: 'Fixed',
+// 		date: new Date('2025-02-28'),
+// 		mount: 400,
+// 		color: '#477fff'
+// 	},
+// 	{
+// 		title: 'Proyecto diseño web',
+// 		category: incomeCategories[0], // Freelance
+// 		type: 'Variable',
+// 		date: new Date('2024-03-12'),
+// 		mount: 500,
+// 		color: '#7fff47'
+// 	},
+// 	{
+// 		title: 'Ventas tienda online',
+// 		category: incomeCategories[1], // Negocio
+// 		type: 'Variable',
+// 		date: new Date('2024-03-25'),
+// 		mount: 350,
+// 		color: '#ff7fff'
+// 	},
+// 	{
+// 		title: 'Acciones Apple',
+// 		category: incomeCategories[2], // Inversiones
+// 		type: 'Fixed',
+// 		date: new Date('2024-04-10'),
+// 		mount: 200,
+// 		color: '#2f2f3d'
+// 	},
+// 	{
+// 		title: 'Sueldo mensual',
+// 		category: incomeCategories[3], // Trabajo
+// 		type: 'Fixed',
+// 		date: new Date('2024-04-30'),
+// 		mount: 1250,
+// 		color: '#ff7f47'
+// 	}
+// ];
 
 export interface Expense {
 	title: string;

@@ -2,13 +2,14 @@
 	import Chart from '$lib/components/Chart.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import { incomeData, type Income } from '$lib/utils/data';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
-	let totalAmount = 0;
-	let totalFixedAmount = 0;
-	let totalVariableAmount = 0;
+	let totalAmount = $state(0);
+	let totalFixedAmount = $state(0);
+	let totalVariableAmount = $state(0);
+	const { data } = $props();
+	const { incomeList } = $derived(data);
 
 	interface DataItem {
 		year: number;
@@ -20,9 +21,10 @@
 		const grouped: Record<string, DataItem> = {};
 
 		for (const item of data) {
-			const month = monthNames[item.date.getMonth()];
-			const year = item.date.getFullYear();
-			const category = item.title;
+			let date = new Date(item.date);
+			const month = monthNames[date.getMonth()];
+			const year = date.getFullYear();
+			const category = item.name;
 			const amount = item.mount;
 
 			// Calcular los totales directamente
@@ -44,25 +46,35 @@
 	}
 
 	const monthNames = [...$_('calendar.months')];
-	const chartData = transformIncomeData(incomeData, monthNames);
+	const chartData = transformIncomeData(incomeList, monthNames);
 </script>
 
 <h1>{$_('title')}</h1>
 <h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
-	<StatCard title={$_('common.total')} value={`$${totalAmount}`} percentage="+8.2%">
+	<StatCard
+		title={$_('common.total')}
+		value={`$${new Intl.NumberFormat('es-CO').format(totalAmount)}`}
+		percentage="+8.2%"
+	>
 		{#snippet icon()}
 			<TrendingUp class="size-4 text-gray-300" />
 		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
-	<StatCard title={$_('finances.income.fixed')} value={`$${totalFixedAmount}`}>
+	<StatCard
+		title={$_('finances.income.fixed')}
+		value={`$${new Intl.NumberFormat('es-CO').format(totalFixedAmount)}`}
+	>
 		{#snippet icon()}
 			<DollarSign class="size-4 text-gray-300" />
 		{/snippet}
 		{$_('finances.income.regular_income')}
 	</StatCard>
-	<StatCard title={$_('finances.income.variable')} value={`$${totalVariableAmount}`}>
+	<StatCard
+		title={$_('finances.income.variable')}
+		value={`$${new Intl.NumberFormat('es-CO').format(totalVariableAmount)}`}
+	>
 		{#snippet icon()}
 			<Wallet class="size-4 text-gray-300" />
 		{/snippet}
@@ -79,7 +91,7 @@
 		subtitle={$_('finances.income.chart_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		<Chart data={chartData} />
+		<Chart data={chartData} incomeData={incomeList} />
 	</SectionCard>
 	<SectionCard
 		title={$_('finances.income.income_history')}
@@ -106,22 +118,22 @@
 					</tr>
 				</thead>
 				<tbody class="font-light">
-					{#each incomeData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as income}
+					{#each incomeList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as income}
 						<tr class="">
 							<th scope="row" class="px-6 py-4 whitespace-nowrap">
-								{income.title}
+								{income.name}
 							</th>
 							<td class="flex items-center gap-2 px-6 py-4">
-								<span class={`h-4 w-4 rounded-full bg-${income.category.color}-500`}></span>
-								{income.category.icon}
-								{income.category.name}
+								<span class={`h-4 w-4 rounded-full bg-[${income.color}]`}></span>
+								<!-- {income.category.icon} -->
+								{income.category}
 							</td>
 							<td class="px-6 py-4">
 								<span class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium"
 									>{income.type === 'Fixed' ? $_('types.fixed') : $_('types.variable')}</span
 								>
 							</td>
-							<td class="px-6 py-4">{income.date.toLocaleDateString()}</td>
+							<td class="px-6 py-4">{income.date}</td>
 							<td class="text-success px-6 py-4 font-bold">
 								+ ${income.mount.toLocaleString()}
 							</td>

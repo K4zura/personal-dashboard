@@ -19,6 +19,6 @@
 	<div class="flex flex-col">
 		<p class="text-2xl font-bold">{value}</p>
 		<span class="text-xs text-green-400">{percentage}</span>
-		<p class="text-xs text-gray-300">{@render children()}</p>
+		<p class="text-light/65 text-xs">{@render children()}</p>
 	</div>
 </article>

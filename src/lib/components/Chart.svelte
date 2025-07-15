@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { Chart, registerables } from 'chart.js';
 	import { _ } from 'svelte-i18n';
-	import { incomeData } from '$lib/utils/data';
+	import type { Income } from '$lib/utils/data';
 
 	// Datos y estado
 	interface DataItem {
@@ -13,9 +13,10 @@
 
 	interface Props {
 		data: DataItem[];
+		incomeData: Income[];
 	}
 
-	const { data }: Props = $props();
+	const { data, incomeData }: Props = $props();
 	let selectedYear = $state(new Date().getFullYear());
 	let selectedMonth = $state($_('calendar.all'));
 	let barCanvas: HTMLCanvasElement;
@@ -44,7 +45,7 @@
 	);
 
 	const getCategoryColor = (categoryName: string): string => {
-		const category = incomeData.find((cat) => cat.title === categoryName);
+		const category = incomeData.find((cat) => cat.name === categoryName);
 		return category ? category.color : '#000000'; // Default color (negro)
 	};
 

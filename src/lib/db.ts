@@ -8,8 +8,8 @@ export const supabase = createClient(
 // TODO: add your queries/inserts/updates/deletes here
 export const income = {
 	async all() {
-		const { data } = await supabase.from('income').select('*');
+		const { data: income } = await supabase.from('income').select('*');
 
-		return data;
+		return income;
 	}
 };

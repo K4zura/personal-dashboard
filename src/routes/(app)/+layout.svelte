@@ -93,4 +93,30 @@
 			/* grid-template-rows: auto 1fr; */
 		}
 	}
+
+	main {
+		--sb-track-color: #232e3300;
+		--sb-thumb-color: var(--color-primary);
+		--sb-size: 3px;
+	}
+
+	main::-webkit-scrollbar {
+		width: var(--sb-size);
+	}
+
+	main::-webkit-scrollbar-track {
+		background: var(--sb-track-color);
+		border-radius: 3px;
+	}
+
+	main::-webkit-scrollbar-thumb {
+		background: var(--sb-thumb-color);
+		border-radius: 3px;
+	}
+
+	@supports not selector(::-webkit-scrollbar) {
+		main {
+			scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+		}
+	}
 </style>
