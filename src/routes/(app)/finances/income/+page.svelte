@@ -2,6 +2,7 @@
 	import Chart from '$lib/components/Chart.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
+	import type { Income } from '$lib/utils/data.js';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -47,6 +48,19 @@
 
 	const monthNames = [...$_('calendar.months')];
 	const chartData = transformIncomeData(incomeList, monthNames);
+
+	const submitIncome = async () => {
+		const { error } = await data.supabase.from('income').insert({
+			name: 'prueba',
+			category: 'categoria',
+			type: 'tipo',
+			date: '2025-07-17',
+			mount: 150,
+			color: '#ff477f',
+			userId: data.user?.id
+		});
+		console.log(error);
+	};
 </script>
 
 <h1>{$_('title')}</h1>
@@ -101,6 +115,7 @@
 		{#snippet filter()}
 			<button
 				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+				onclick={submitIncome}
 			>
 				<!-- <FilterIcon class="size-4" /> -->
 				{$_('common.filter')}
