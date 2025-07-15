@@ -41,7 +41,13 @@
 		userImg = data.user.user_metadata.avatar_url;
 	}
 
-	// const t = _;
+	let { supabase } = $derived(data);
+	const logout = async () => {
+		const { error } = await supabase.auth.signOut();
+		if (error) {
+			console.error(error);
+		}
+	};
 
 	const menuItems = $state([
 		{
@@ -232,6 +238,7 @@
 		<button class="bg-primary cursor-pointer rounded px-3 py-2" onclick={() => changeLocale('jp')}>
 			日本語
 		</button>
+		<button class="bg-primary cursor-pointer rounded px-3 py-2" onclick={logout}>Logout</button>
 	</div>
 </aside>
 
