@@ -241,6 +241,9 @@
 			<li use:motion class="bg-hover absolute z-0 rounded-lg"></li>
 		</Motion>
 	</nav>
+	<div class="flex grow basis-0 flex-col justify-end gap-2">
+		<button class="bg-primary cursor-pointer rounded px-3 py-2" onclick={logout}>Logout</button>
+	</div>
 </aside>
 
 <style>
