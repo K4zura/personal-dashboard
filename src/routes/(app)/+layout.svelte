@@ -4,20 +4,33 @@
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
 	import SideBar from '$lib/components/layout/SideBar.svelte';
-	import { invalidate } from '$app/navigation';
+	import { afterNavigate, beforeNavigate, invalidate } from '$app/navigation';
 	import { createSupabase } from '$lib/services/supabaseClient';
 	import { setSession } from '$lib/stores/session';
 	import { sideBarOpen } from '$lib/stores/interactions';
 	import { Menu } from 'lucide-svelte';
 	import { changeLocale } from '$lib/i18n';
+	import { fade, fly } from 'svelte/transition';
+	import { getStores } from '$app/stores';
+	import { cubicIn, cubicOut } from 'svelte/easing';
+	import Loader from '$lib/components/layout/Loader.svelte';
+
+	const { page } = getStores();
+	const supabase = createSupabase(fetch);
 
 	let { data, children } = $props();
 	let { session } = data;
-
-	const supabase = createSupabase(fetch);
-
+	let pathname = $state($page.url.pathname);
 	let theme = $state('Dark');
 	let lang = $state('es');
+	let isLoading = $state(true);
+	let pageLoading = $state(false);
+
+	beforeNavigate(({ to }) => (pageLoading = !!to?.route.id));
+
+	afterNavigate(() => {
+		pageLoading = false;
+	});
 
 	function applyTheme(t: string) {
 		theme = t;
@@ -42,6 +55,10 @@
 	}
 
 	$effect(() => {
+		pathname = $page.url.pathname;
+	});
+
+	$effect(() => {
 		const { data: listener } = supabase.auth.onAuthStateChange((event, newSession) => {
 			setSession(newSession);
 			if (newSession?.expires_at !== session?.expires_at) {
@@ -51,13 +68,11 @@
 		return () => listener.subscription.unsubscribe();
 	});
 
-	let loading = $state(true);
-
 	onMount(async () => {
 		applyTheme(localStorage.getItem('theme') ?? theme);
 		applyLang(localStorage.getItem('lang') ?? lang);
 		await waitLocale();
-		loading = false;
+		isLoading = false;
 	});
 </script>
 
@@ -65,8 +80,10 @@
 	<title>Personal Dashboard</title>
 </svelte:head>
 
-{#if loading}
-	<div>Loading...</div>
+{#if isLoading}
+	<div class="flex h-screen items-center justify-center">
+		<Loader />
+	</div>
 {:else}
 	<div id="app" class="relative md:gap-4 md:p-4">
 		<div class="absolute top-2 right-2">
@@ -102,10 +119,20 @@
 			<Menu class="m-1 size-5" />
 		</button>
 		<SideBar {data} />
-
-		<main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main] not-md:p-6">
-			{@render children()}
-		</main>
+		{#if pageLoading}
+			<div class="bg-dark z-50 flex h-screen items-center justify-center [grid-area:main]">
+				<Loader />
+			</div>
+		{/if}
+		{#key pathname}
+			<main
+				in:fly={{ easing: cubicOut, x: 10, duration: 300, delay: 400 }}
+				out:fly={{ easing: cubicIn, x: -10, duration: 300 }}
+				class="flex flex-col gap-4 overflow-y-auto p-3 transition-all [grid-area:main] not-md:p-6"
+			>
+				{@render children()}
+			</main>
+		{/key}
 	</div>
 {/if}
 

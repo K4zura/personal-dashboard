@@ -1,10 +1,6 @@
-import { createClient } from '@supabase/supabase-js';
+import { createSupabase } from './services/supabaseClient';
 
-export const supabase = createClient(
-	import.meta.env.VITE_PUBLIC_SUPABASE_URL,
-	import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY
-);
-
+const supabase = createSupabase(fetch);
 // TODO: add your queries/inserts/updates/deletes here
 export const income = {
 	async all(userId: string | undefined) {
