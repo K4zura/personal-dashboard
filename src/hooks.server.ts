@@ -5,12 +5,13 @@ import { sequence } from '@sveltejs/kit/hooks';
 // import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public'
 
 const supabase: Handle = async ({ event, resolve }) => {
-	event.locals.supabase = createServerClient(
-		import.meta.env.VITE_PUBLIC_SUPABASE_URL,
-		import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
+	event.locals.supabase = createServerClient(import.meta.env.VITE_PUBLIC_SUPABASE_URL, import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
 		{
 			cookies: {
-				getAll: () => event.cookies.getAll(),
+				getAll: async () => {
+					const cookies = event.cookies.getAll();
+					return cookies.map((c) => ({ name: c.name, value: c.value }));
+				},
 				setAll: (cookiesToSet) => {
 					cookiesToSet.forEach(({ name, value, options }) => {
 						event.cookies.set(name, value, { ...options, path: '/' });

@@ -16,7 +16,8 @@
 		Clock,
 		Book,
 		ChevronDown,
-		ChevronUp
+		ChevronUp,
+		X
 	} from 'lucide-svelte';
 	import imgProfile from '$assets/images/jinwoo.avif';
 	import { slide } from 'svelte/transition';
@@ -25,6 +26,9 @@
 	import { getStores } from '$app/stores';
 	const { page } = getStores();
 	import { Motion } from 'svelte-motion';
+	import { clearSession } from '$lib/stores/session';
+	import { redirect } from '@sveltejs/kit';
+	import { sideBarOpen } from '$lib/stores/interactions';
 
 	let top = $state(0);
 	let left = $state(0);
@@ -47,6 +51,8 @@
 		if (error) {
 			console.error(error);
 		}
+		clearSession();
+		redirect(302, '/auth/login');
 	};
 
 	const menuItems = $state([
@@ -135,8 +141,18 @@
 </script>
 
 <aside
-	class="bg-surface relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto rounded p-2 transition-transform [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:h-screen not-md:w-[240px] not-md:-translate-x-[240px] not-md:rounded-none peer-has-checked:translate-x-0"
+	class="bg-surface shadow-dark relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto rounded p-2 transition-transform ease-linear [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:w-[240px] not-md:rounded-none not-md:shadow-[2px_0_4px_0] not-md:{$sideBarOpen
+		? 'translate-x-0'
+		: '-translate-x-[256px]'}"
 >
+	<button
+		onclick={() => {
+			$sideBarOpen = false;
+		}}
+		class="peer hover:bg-hover text-primary shadow-dark absolute top-1 right-1 hidden cursor-pointer rounded shadow not-md:block"
+	>
+		<X class="m-1 size-4" />
+	</button>
 	<section class="mx-2 mt-2 flex grow basis-0 flex-col items-center gap-1">
 		<picture
 			class="border-dark shadow-primary mx-1 size-28 overflow-hidden rounded-full border-4 shadow-[0_0_5px_2px]"

@@ -5,40 +5,59 @@
 	import { waitLocale } from 'svelte-i18n';
 	import SideBar from '$lib/components/layout/SideBar.svelte';
 	import { invalidate } from '$app/navigation';
-	let { data, children } = $props();
-	let { supabase, session } = data;
+	import { createSupabase } from '$lib/services/supabaseClient';
+	import { setSession } from '$lib/stores/session';
+	import { sideBarOpen } from '$lib/stores/interactions';
+	import { Menu } from 'lucide-svelte';
+	import { changeLocale } from '$lib/i18n';
 
-	let theme = $state('');
+	let { data, children } = $props();
+	let { session } = data;
+
+	const supabase = createSupabase(fetch);
+
+	let theme = $state('Dark');
+	let lang = $state('es');
 
 	function applyTheme(t: string) {
 		theme = t;
 		document.documentElement.className = t;
 		localStorage.setItem('theme', t);
 	}
+
+	function applyLang(l: string) {
+		lang = l;
+		localStorage.setItem('lang', l);
+		changeLocale(l);
+	}
+
 	function onChange(event: Event) {
-		const select = event.target as HTMLSelectElement; // ① cast explícito
+		const select = event.target as HTMLSelectElement;
 		applyTheme(select.value);
 	}
 
-	$effect(() => {
-		({ supabase, session } = data);
-	});
+	function onChangeLang(event: Event) {
+		const select = event.target as HTMLSelectElement;
+		applyLang(select.value);
+	}
 
 	$effect(() => {
-		const { data } = supabase.auth.onAuthStateChange((event, newSession) => {
+		const { data: listener } = supabase.auth.onAuthStateChange((event, newSession) => {
+			setSession(newSession);
 			if (newSession?.expires_at !== session?.expires_at) {
 				invalidate('supabase:auth');
 			}
 		});
-		return () => data.subscription.unsubscribe();
+		return () => listener.subscription.unsubscribe();
 	});
 
 	let loading = $state(true);
 
 	onMount(async () => {
 		applyTheme(localStorage.getItem('theme') ?? theme);
-		await waitLocale(); // Espera a que el idioma se cargue
-		loading = false; // Cambia el estado de carga cuando el idioma esté listo
+		applyLang(localStorage.getItem('lang') ?? lang);
+		await waitLocale();
+		loading = false;
 	});
 </script>
 
@@ -49,27 +68,42 @@
 {#if loading}
 	<div>Loading...</div>
 {:else}
-	<div id="app" class="relative p-4 md:gap-4">
-		<select
-			bind:value={theme}
-			onchange={onChange}
-			class="bg-surface text-text absolute top-2 right-2 rounded border-0 py-1 ring-0"
-		>
-			<option value="theme-dark">Dark</option>
-			<option value="theme-light">Light</option>
-			<option value="theme-jinwoo">Jinwoo</option>
-			<option value="theme-dracula">Dracula</option>
-			<option value="theme-aurora">Aurora</option>
-			<option value="theme-neon">Neon</option>
-		</select>
+	<div id="app" class="relative md:gap-4 md:p-4">
+		<div class="absolute top-2 right-2">
+			<select
+				bind:value={theme}
+				onchange={onChange}
+				class="bg-surface text-text rounded border-0 py-1 ring-0"
+			>
+				<option value="theme-dark">Dark</option>
+				<option value="theme-light">Light</option>
+				<option value="theme-jinwoo">Jinwoo</option>
+				<option value="theme-dracula">Dracula</option>
+				<option value="theme-aurora">Aurora</option>
+				<option value="theme-neon">Neon</option>
+			</select>
+			<select
+				bind:value={lang}
+				onchange={onChangeLang}
+				class="bg-surface text-text rounded border-0 py-1 ring-0"
+			>
+				<option value="en">English</option>
+				<option value="es">Español</option>
+				<option value="fr">Français</option>
+				<option value="jp">日本語</option>
+			</select>
+		</div>
 		<button
-			class="peer bg-primary absolute top-0 left-0 hidden h-8 w-8 cursor-pointer rounded-br-xl transition-transform not-md:block has-checked:translate-x-[240px]"
-			>O
-			<input type="checkbox" class="absolute inset-0 h-full w-full opacity-0" /></button
+			onclick={() => {
+				$sideBarOpen = true;
+			}}
+			class="peer shadow-border absolute top-5 left-1 hidden cursor-pointer rounded-lg shadow not-md:block"
 		>
+			<Menu class="m-1 size-5" />
+		</button>
 		<SideBar {data} />
 
-		<main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
+		<main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main] not-md:p-6">
 			{@render children()}
 		</main>
 	</div>

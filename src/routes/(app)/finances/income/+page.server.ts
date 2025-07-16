@@ -3,5 +3,5 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals: user }) => {
 	const income = await db.income.all(user.user?.id);
-	return { income: income ?? [] };
+	return { incomeList: income ?? [] };
 };

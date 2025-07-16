@@ -2,6 +2,7 @@
 	import Chart from '$lib/components/Chart.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
+	import { user } from '$lib/stores/session.js';
 	import type { Income } from '$lib/utils/data.js';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
@@ -11,6 +12,7 @@
 	let totalVariableAmount = $state(0);
 	const { data } = $props();
 	const { incomeList } = $derived(data);
+	console.log($user)
 
 	interface DataItem {
 		year: number;
@@ -47,6 +49,7 @@
 	}
 
 	const monthNames = [...$_('calendar.months')];
+	// svelte-ignore state_referenced_locally
 	const chartData = transformIncomeData(incomeList, monthNames);
 
 	const submitIncome = async () => {
