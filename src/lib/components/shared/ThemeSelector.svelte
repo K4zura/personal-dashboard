@@ -22,7 +22,7 @@
 <select
 	bind:value={theme}
 	onchange={onChange}
-	class="bg-surface text-text rounded border-0 py-1 ring-0"
+	class="bg-surface text-light rounded border-0 py-1 text-sm lowercase ring-0"
 >
 	<option value="theme-dark">Dark</option>
 	<option value="theme-jinwoo">Jinwoo</option>

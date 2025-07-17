@@ -141,9 +141,9 @@
 </script>
 
 <aside
-	class="bg-surface shadow-dark relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto p-2 transition-transform ease-linear [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:w-[240px] not-md:rounded-none not-md:shadow-[2px_0_4px_0] not-md:{$sideBarOpen
-		? 'translate-x-0'
-		: '-translate-x-[256px]'}"
+	class="bg-surface shadow-dark relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto p-2 transition-transform ease-linear [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:w-[240px] not-md:rounded-none not-md:shadow-[2px_0_4px_0] {$sideBarOpen
+		? 'not-md:translate-x-0'
+		: 'not-md:-translate-x-[256px]'}"
 >
 	<button
 		onclick={() => {
@@ -238,7 +238,7 @@
 			}}
 			let:motion
 		>
-			<li use:motion class="bg-hover absolute z-0 rounded-lg"></li>
+			<li use:motion class="bg-hover absolute z-0 list-none rounded-lg"></li>
 		</Motion>
 	</nav>
 	<div class="flex grow basis-0 flex-col justify-end gap-2">

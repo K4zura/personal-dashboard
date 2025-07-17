@@ -4,11 +4,13 @@
 	import LangSelector from '../shared/LangSelector.svelte';
 </script>
 
-<header class="flex h-14 items-center justify-between px-6 backdrop-blur-xl [grid-area:header]">
+<header
+	class="flex min-h-14 items-center justify-between px-10 backdrop-blur-xl [grid-area:header] not-sm:flex-col not-sm:gap-2 not-sm:py-1 md:px-6"
+>
 	<div>
 		<SearchBar />
 	</div>
-	<div>
+	<div class="flex items-center justify-center gap-2">
 		<ThemeSelector />
 		<LangSelector />
 	</div>

@@ -62,7 +62,7 @@
 			onclick={() => {
 				$sideBarOpen = true;
 			}}
-			class="peer shadow-border absolute top-5 left-1 hidden cursor-pointer rounded-lg shadow not-md:block"
+			class="peer shadow-border absolute top-2.5 left-1 hidden cursor-pointer rounded-lg shadow not-md:block"
 		>
 			<Menu class="m-1 size-5" />
 		</button>
