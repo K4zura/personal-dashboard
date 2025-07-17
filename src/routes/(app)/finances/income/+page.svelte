@@ -128,7 +128,7 @@
 			<table class="text-light w-full text-left text-sm rtl:text-right">
 				<thead class="bg-border text-tertiary uppercase">
 					<tr>
-						<th scope="col" class="px-6 py-3">{$_('common.concept')}</th>
+						<th scope="col" class="px-6 py-3 whitespace-nowrap">{$_('common.concept')}</th>
 						<th scope="col" class="px-6 py-3">{$_('common.type')}</th>
 						<th scope="col" class="px-6 py-3">{$_('common.date')}</th>
 						<th scope="col" class="px-6 py-3">{$_('common.amount')}</th>
@@ -141,7 +141,8 @@
 								{income.name}
 							</th>
 							<td class="px-6 py-4">
-								<span class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium"
+								<span
+									class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium whitespace-nowrap"
 									>{income.type === 'Fixed' ? $_('types.fixed') : $_('types.variable')}</span
 								>
 							</td>

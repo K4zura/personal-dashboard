@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
+
 	export let color: string = '#FF3E00';
 	export let unit: string = 'px';
 	export let duration: string = '1.5s';
@@ -9,6 +11,8 @@
 <span
 	style="--size: {size}{unit}; --color:{color}; --duration: {duration};"
 	class:pause-animation={pause}
+	in:fade={{ duration: 500 }}
+	out:fade={{ duration: 100 }}
 >
 	<div></div>
 	<div></div>

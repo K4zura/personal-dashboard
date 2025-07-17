@@ -25,7 +25,10 @@
 		({ path } = data);
 	});
 
-	beforeNavigate(({ to }) => (pageLoading = !!to?.route.id));
+	beforeNavigate(({ to }) => {
+		pageLoading = !!to?.route.id;
+		$sideBarOpen = false;
+	});
 
 	afterNavigate(() => {
 		pageLoading = false;

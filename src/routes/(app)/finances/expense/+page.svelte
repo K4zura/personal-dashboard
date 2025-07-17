@@ -33,7 +33,9 @@
 	const totalSpentPercentage = $derived((totalSpent / totalBudget) * 100);
 </script>
 
-<h1>{$_('title')}</h1>
+<svelte:head>
+	<title>Dashboard | {$_('finances.expenses.title')}</title>
+</svelte:head>
 
 <h1 class="text-primary text-xl font-bold">{$_('finances.expenses.title')}</h1>
 
@@ -102,13 +104,13 @@
 							<th scope="row" class="px-6 py-4 whitespace-nowrap">
 								{expense.title}
 							</th>
-							<td class="flex items-center gap-2 px-6 py-4">
+							<td class="flex items-center gap-2 px-6 py-4 whitespace-nowrap">
 								<span class={`h-4 w-4 rounded-full bg-${expense.category.color}-500`}></span>
 								{expense.category.icon}
 								{expense.category.name}
 							</td>
 							<td class="px-6 py-4">
-								<span class="bg-disabled rounded-full px-2 py-1.5">
+								<span class="bg-disabled rounded-full px-2 py-1.5 whitespace-nowrap">
 									{expense.frequency.slice(0, 3)}
 
 									{#if expense.frequency.endsWith('Ocasional')}

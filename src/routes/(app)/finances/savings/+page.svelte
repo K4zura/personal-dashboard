@@ -42,7 +42,9 @@
 	];
 </script>
 
-<h1>{$t('title')}</h1>
+<svelte:head>
+	<title>Dashboard | {$_('finances.savings.title')}</title>
+</svelte:head>
 
 <h1 class="text-primary text-xl font-bold">{$t('finances.savings.title')}</h1>
 
