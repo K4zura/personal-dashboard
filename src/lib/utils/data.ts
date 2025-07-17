@@ -29,14 +29,14 @@ export const incomeCategories: Category[] = [
 	}
 ];
 
-export interface Income {
-	name: string;
-	category: Category;
-	type: string;
-	date: Date;
-	mount: number;
-	color: string;
-}
+// export interface Income {
+// 	name: string;
+// 	category: Category;
+// 	type: string;
+// 	date: Date;
+// 	mount: number;
+// 	color: string;
+// }
 
 // export const incomeData: Income[] = [
 // 	{

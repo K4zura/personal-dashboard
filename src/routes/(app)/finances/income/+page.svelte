@@ -2,7 +2,7 @@
 	import Chart from '$lib/components/Chart.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import type { Income } from '$lib/utils/data.js';
+	import type Income from '$lib/types/income.js';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -53,7 +53,6 @@
 	const submitIncome = async () => {
 		const { error } = await data.supabase.from('income').insert({
 			name: 'prueba',
-			category: 'categoria',
 			type: 'tipo',
 			date: '2025-07-17',
 			mount: 150,
@@ -64,7 +63,10 @@
 	};
 </script>
 
-<h1>{$_('title')}</h1>
+<svelte:head>
+	<title>Dashboard | {$_('finances.income.title')}</title>
+</svelte:head>
+
 <h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
 	<StatCard
@@ -127,23 +129,17 @@
 				<thead class="bg-border text-tertiary uppercase">
 					<tr>
 						<th scope="col" class="px-6 py-3">{$_('common.concept')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.category')}</th>
 						<th scope="col" class="px-6 py-3">{$_('common.type')}</th>
 						<th scope="col" class="px-6 py-3">{$_('common.date')}</th>
 						<th scope="col" class="px-6 py-3">{$_('common.amount')}</th>
 					</tr>
 				</thead>
 				<tbody class="font-light">
-					{#each incomeList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as income}
+					{#each incomeList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as income: Income}
 						<tr class="">
 							<th scope="row" class="px-6 py-4 whitespace-nowrap">
 								{income.name}
 							</th>
-							<td class="flex items-center gap-2 px-6 py-4">
-								<span class={`h-4 w-4 rounded-full bg-[${income.color}]`}></span>
-								<!-- {income.category.icon} -->
-								{income.category}
-							</td>
 							<td class="px-6 py-4">
 								<span class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium"
 									>{income.type === 'Fixed' ? $_('types.fixed') : $_('types.variable')}</span

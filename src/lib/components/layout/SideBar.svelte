@@ -141,7 +141,7 @@
 </script>
 
 <aside
-	class="bg-surface shadow-dark relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto rounded p-2 transition-transform ease-linear [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:w-[240px] not-md:rounded-none not-md:shadow-[2px_0_4px_0] not-md:{$sideBarOpen
+	class="bg-surface shadow-dark relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto p-2 transition-transform ease-linear [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:w-[240px] not-md:rounded-none not-md:shadow-[2px_0_4px_0] not-md:{$sideBarOpen
 		? 'translate-x-0'
 		: '-translate-x-[256px]'}"
 >
@@ -179,7 +179,7 @@
 					href={section.url}
 					use:positionMotion
 					class:active={routeId === section.url}
-					class="text-light z-10 flex cursor-pointer items-center gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
+					class="text-light hover:text-dark z-10 flex cursor-pointer items-center gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold transition-colors duration-300 select-none"
 				>
 					<IconItem class="size-4" />
 					{$t(section.title)}
@@ -190,7 +190,7 @@
 					aria-expanded={activeSection === section}
 					aria-controls="id-seccion"
 					use:positionMotion
-					class="text-light z-10 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold select-none"
+					class="text-light hover:text-dark z-10 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold transition-colors duration-300 select-none"
 					onclick={() => toggleSection(section)}
 				>
 					<span class="flex items-center gap-2">
@@ -213,7 +213,7 @@
 								href={item.url}
 								use:positionMotion
 								class:active={routeId === item.url}
-								class="flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-sm"
+								class="hover:text-dark flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-sm transition-colors duration-300"
 							>
 								<IconSubItem class="size-4" />
 								{$t(item.title)}
@@ -249,6 +249,7 @@
 <style>
 	.active {
 		background-color: var(--color-hover);
+		color: var(--color-dark);
 	}
 
 	aside {

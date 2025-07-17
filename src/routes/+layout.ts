@@ -1,8 +1,11 @@
 import type { LayoutLoad } from './$types';
 import { createSupabase } from '$lib/services/supabaseClient';
 
-export const load: LayoutLoad = async ({ fetch }) => {
-	const supabase = createSupabase(fetch)
+export const prerender = true;
+
+export const load: LayoutLoad = async ({ fetch, url }) => {
+	const supabase = createSupabase(fetch);
+	const path: string = url.pathname;
 
 	const {
 		data: { session }
@@ -12,5 +15,5 @@ export const load: LayoutLoad = async ({ fetch }) => {
 		data: { user }
 	} = await supabase.auth.getUser();
 
-	return { session, supabase, user };
+	return { session, supabase, user, path };
 };

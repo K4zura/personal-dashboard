@@ -3,6 +3,8 @@
 	import '$lib/i18n';
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
+	import ThemeSelector from '$lib/components/shared/ThemeSelector.svelte';
+	import LangSelector from '$lib/components/shared/LangSelector.svelte';
 	// Ejemplo Svelte: selector de tema
 	let theme = $state('light');
 
@@ -41,19 +43,11 @@
 			{@render children()}
 		</div>
 	</main> -->
-	<main class="bg-dark flex h-dvh items-center justify-center">
-		<select
-			bind:value={theme}
-			onchange={onChange}
-			class="bg-surface text-text absolute top-2 right-2 rounded border-0  py-1 ring-0"
-		>
-			<option value="theme-dark">Dark</option>
-			<option value="theme-light">Light</option>
-			<option value="theme-jinwoo">Jinwoo</option>
-			<option value="theme-dracula">Dracula</option>
-			<option value="theme-aurora">Aurora</option>
-			<option value="theme-neon">Neon</option>
-		</select>
+	<main class="bg-dark relative flex h-dvh items-center justify-center">
+		<div class="absolute top-5 right-5 flex gap-2">
+			<ThemeSelector />
+			<LangSelector />
+		</div>
 		<div
 			class="bg-surface border-primary relative flex h-min w-[450px] min-w-80 flex-col items-center overflow-hidden border-4 px-8 py-6"
 		>
