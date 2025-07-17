@@ -1,8 +1,6 @@
 import type { LayoutLoad } from './$types';
 import { createSupabase } from '$lib/services/supabaseClient';
 
-export const prerender = true;
-
 export const load: LayoutLoad = async ({ fetch, url }) => {
 	const supabase = createSupabase(fetch);
 	const path: string = url.pathname;
