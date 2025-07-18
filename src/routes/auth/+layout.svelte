@@ -5,51 +5,46 @@
 	import { waitLocale } from 'svelte-i18n';
 	import ThemeSelector from '$lib/components/shared/ThemeSelector.svelte';
 	import LangSelector from '$lib/components/shared/LangSelector.svelte';
-	// Ejemplo Svelte: selector de tema
+	import Loader from '$lib/components/layout/Loader.svelte';
+
 	let theme = $state('light');
 
-	// Persistir en localStorage
 	function applyTheme(t: string) {
 		theme = t;
-		document.documentElement.className = t; // reemplaza completa
+		document.documentElement.className = t;
 		localStorage.setItem('theme', t);
 	}
 	function onChange(event: Event) {
-		const select = event.target as HTMLSelectElement; // ① cast explícito
+		const select = event.target as HTMLSelectElement;
 		applyTheme(select.value);
 	}
-
-	// Cargar preferencia al iniciar
 
 	let { children } = $props();
 	let loading = $state(true);
 
 	onMount(async () => {
 		applyTheme(localStorage.getItem('theme') ?? theme);
-		await waitLocale(); // Espera a que el idioma se cargue
-		loading = false; // Cambia el estado de carga cuando el idioma esté listo
+		await waitLocale();
+		loading = false;
 	});
 </script>
 
 <svelte:head>
-	<title>Login Dashboard</title>
+	<title>Dashboard | Auth</title>
 </svelte:head>
 
 {#if loading}
-	<div>Loading...</div>
+	<div class="flex h-screen items-center justify-center">
+		<Loader />
+	</div>
 {:else}
-	<!-- <main class="flex h-screen w-screen items-center justify-center">
-		<div class="relative z-10 flex w-[920px] items-center select-none">
-			{@render children()}
-		</div>
-	</main> -->
-	<main class="bg-dark relative flex h-dvh items-center justify-center">
-		<div class="absolute top-5 right-5 flex gap-2">
+	<main class="bg-dark relative flex min-h-dvh flex-col items-center justify-center gap-3 px-7">
+		<div class="mr-5 flex gap-2 self-end">
 			<ThemeSelector />
 			<LangSelector />
 		</div>
 		<div
-			class="bg-surface border-primary relative flex h-min w-[450px] min-w-80 flex-col items-center overflow-hidden border-4 px-8 py-6"
+			class="bg-surface border-primary relative flex h-min w-full max-w-[450px] min-w-80 flex-col items-center overflow-hidden border-4 px-8 py-6"
 		>
 			<span class="bg-tertiary absolute -inset-2 size-8 rotate-45"></span>
 			<span class="bg-accent absolute -top-2 -right-2 size-8 rotate-45"></span>

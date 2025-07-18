@@ -89,7 +89,7 @@
 			'aside main main';
 		grid-template-columns: 0 1fr;
 		grid-template-rows: auto 1fr;
-		height: 100vh;
+		height: 100dvh;
 		max-height: 100vh;
 	}
 	@media (width >= 768px) {
