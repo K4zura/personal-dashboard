@@ -32,7 +32,7 @@
 			"page": "Login",
 			"title": "ACCESS_PORTAL",
 			"subtitle": "ENTER_CREDENTIALS",
-			"field_1": "Username",
+			"field_1": "E-mail",
 			"field_2": "Password",
 			"forgot_password": "Forgot the password?",
 			"start": "START",

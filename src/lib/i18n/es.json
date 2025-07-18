@@ -32,7 +32,7 @@
 			"page": "Iniciar sesión",
 			"title": "PORTAL_DE_ACCESO",
 			"subtitle": "INGRESA_TUS_CREDENCIALES",
-			"field_1": "Nombre de usuario",
+			"field_1": "Correo electrónico",
 			"field_2": "Contraseña",
 			"forgot_password": "¿Olvidaste tu contraseña?",
 			"start": "INICIAR",

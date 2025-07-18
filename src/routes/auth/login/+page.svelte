@@ -6,27 +6,29 @@
 </script>
 
 <svelte:head>
-	<title>Dashboard | {$_('auth.login.page')}</title>
+	<title>{$_('auth.login.page')}</title>
 </svelte:head>
 
 <Header title={$_('auth.login.title')} subtitle={$_('auth.login.subtitle')} />
 
-<Field type="text" id="username">{$_('auth.login.field_1')}</Field>
-<Field type="password" id="password">{$_('auth.login.field_2')}</Field>
-<a
-	href="/"
-	class="text-light hover:drop-shadow-primary -translate-y-1 self-end px-2 text-xs font-semibold drop-shadow-md drop-shadow-transparent sm:text-sm lg:-translate-y-1"
-	>{$_('auth.login.forgot_password')}</a
->
+<form method="POST" action="/auth/login/email" class="flex w-full flex-col">
+	<Field type="email" id="email">{$_('auth.login.field_1')}</Field>
+	<Field type="password" id="password">{$_('auth.login.field_2')}</Field>
+	<a
+		href="/"
+		class="text-light hover:drop-shadow-primary -translate-y-1 self-end px-2 text-xs font-semibold drop-shadow-md drop-shadow-transparent sm:text-sm lg:-translate-y-1"
+		>{$_('auth.login.forgot_password')}</a
+	>
 
-<button
-	class="bg-primary group relative my-3 w-full cursor-pointer overflow-hidden rounded py-1 font-bold not-sm:text-sm sm:py-2"
->
-	<p class="text-light relative z-10">{$_('auth.login.start')}</p>
-	<div
-		class="bg-accent absolute inset-0 h-full w-0 transition-all duration-300 group-hover:w-full"
-	></div>
-</button>
+	<button
+		class="bg-primary group relative my-3 w-full cursor-pointer overflow-hidden rounded py-1 font-bold not-sm:text-sm sm:py-2"
+	>
+		<p class="text-light relative z-10">{$_('auth.login.start')}</p>
+		<div
+			class="bg-accent absolute inset-0 h-full w-0 transition-all duration-300 group-hover:w-full"
+		></div>
+	</button>
+</form>
 
 <SocialLinks />
 
