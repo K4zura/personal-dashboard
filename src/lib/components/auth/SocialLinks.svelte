@@ -1,10 +1,11 @@
 <script>
 	import { Chrome, Github, User } from 'lucide-svelte';
+	import { _ } from 'svelte-i18n';
 </script>
 
 <div class="my-1 flex w-full items-center">
 	<div class="to-secondary h-0.5 flex-1 bg-gradient-to-r from-transparent"></div>
-	<span class="px-4 text-xs">ALTERNATIVE_ACCESS_METHODS</span>
+	<span class="px-4 text-xs">{$_('auth.login.alternative')}</span>
 	<div class="from-secondary h-0.5 flex-1 bg-gradient-to-r to-transparent"></div>
 </div>
 

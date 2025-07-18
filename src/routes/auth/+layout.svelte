@@ -7,23 +7,10 @@
 	import LangSelector from '$lib/components/shared/LangSelector.svelte';
 	import Loader from '$lib/components/layout/Loader.svelte';
 
-	let theme = $state('light');
-
-	function applyTheme(t: string) {
-		theme = t;
-		document.documentElement.className = t;
-		localStorage.setItem('theme', t);
-	}
-	function onChange(event: Event) {
-		const select = event.target as HTMLSelectElement;
-		applyTheme(select.value);
-	}
-
 	let { children } = $props();
 	let loading = $state(true);
 
 	onMount(async () => {
-		applyTheme(localStorage.getItem('theme') ?? theme);
 		await waitLocale();
 		loading = false;
 	});
@@ -39,7 +26,7 @@
 	</div>
 {:else}
 	<main class="bg-dark relative flex min-h-dvh flex-col items-center justify-center gap-3 px-7">
-		<div class="mr-5 flex gap-2 self-end">
+		<div class="flex gap-2 self-center">
 			<ThemeSelector />
 			<LangSelector />
 		</div>

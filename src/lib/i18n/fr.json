@@ -27,6 +27,32 @@
 		"daily": "Quotidien",
 		"occasional": "Occasionnel"
 	},
+	"auth": {
+		"login": {
+			"page": "Connexion",
+			"title": "PORTAIL_D'ACCÈS",
+			"subtitle": "ENTREZ_VOS_IDENTIFIANTS",
+			"field_1": "Nom d'utilisateur",
+			"field_2": "Mot de passe",
+			"forgot_password": "Mot de passe oublié ?",
+			"start": "COMMENCER",
+			"alternative": "MÉTHODES_D'ACCÈS_ALTERNATIVES",
+			"new_user": "NOUVEL UTILISATEUR ?",
+			"register_now": "S'INSCRIRE_MAINTENANT"
+		},
+		"register": {
+			"page": "Inscription",
+			"title": "CRÉER_UN_UTILISATEUR",
+			"subtitle": "INSCRIRE_UN_NOUVEL_UTILISATEUR",
+			"field_1": "Nom d'utilisateur",
+			"field_2": "E-mail",
+			"field_3": "Mot de passe",
+			"start": "COMMENCER",
+			"alternative": "MÉTHODES_D'ACCÈS_ALTERNATIVES",
+			"existing_user": "UTILISATEUR EXISTANT ?",
+			"login_now": "SE_CONNECTER_MAINTENANT"
+		}
+	},
 	"dashboard": {
 		"title": "Tableau de bord",
 		"description": "Votre tableau de bord"

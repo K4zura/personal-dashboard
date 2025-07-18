@@ -27,6 +27,32 @@
 		"daily": "Daily",
 		"occasional": "Occasional"
 	},
+	"auth": {
+		"login": {
+			"page": "Login",
+			"title": "ACCESS_PORTAL",
+			"subtitle": "ENTER_CREDENTIALS",
+			"field_1": "Username",
+			"field_2": "Password",
+			"forgot_password": "Forgot the password?",
+			"start": "START",
+			"alternative": "ALTERNATIVE_ACCESS_METHODS",
+			"new_user": "NEW USER?",
+			"register_now": "REGISTER_NOW"
+		},
+		"register": {
+			"page": "Register",
+			"title": "CREATE_USER",
+			"subtitle": "REGISTER_NEW_USER",
+			"field_1": "Username",
+			"field_2": "E-mail",
+			"field_3": "Password",
+			"start": "START",
+			"alternative": "ALTERNATIVE_ACCESS_METHODS",
+			"existing_user": "EXISTING USER?",
+			"login_now": "LOGIN_NOW"
+		}
+	},
 	"dashboard": {
 		"title": "Dashboard",
 		"description": "Your dashboard"

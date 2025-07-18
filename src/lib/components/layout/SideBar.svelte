@@ -29,6 +29,7 @@
 	import { clearSession } from '$lib/stores/session';
 	import { redirect } from '@sveltejs/kit';
 	import { sideBarOpen } from '$lib/stores/interactions';
+	import { goto } from '$app/navigation';
 
 	let top = $state(0);
 	let left = $state(0);
@@ -52,7 +53,7 @@
 			console.error(error);
 		}
 		clearSession();
-		redirect(302, '/auth/login');
+		goto('/auth/login');
 	};
 
 	const menuItems = $state([
@@ -158,7 +159,6 @@
 			class="border-dark shadow-primary mx-1 size-28 overflow-hidden rounded-full border-4 shadow-[0_0_5px_2px]"
 		>
 			<img
-				loading="eager"
 				src={userImg}
 				alt="img profile of Jinwoo"
 				class="aspect-square size-full object-cover object-center"

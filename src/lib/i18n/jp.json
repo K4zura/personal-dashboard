@@ -27,6 +27,32 @@
 		"daily": "毎日",
 		"occasional": "不定期"
 	},
+	"auth": {
+		"login": {
+			"page": "ログイン",
+			"title": "アクセスポータル",
+			"subtitle": "資格情報を入力してください",
+			"field_1": "ユーザー名",
+			"field_2": "パスワード",
+			"forgot_password": "パスワードをお忘れですか？",
+			"start": "開始",
+			"alternative": "代替アクセス方法",
+			"new_user": "新規ユーザーですか？",
+			"register_now": "今すぐ登録"
+		},
+		"register": {
+			"page": "登録",
+			"title": "ユーザーを作成",
+			"subtitle": "新しいユーザーを登録する",
+			"field_1": "ユーザー名",
+			"field_2": "メールアドレス",
+			"field_3": "パスワード",
+			"start": "開始",
+			"alternative": "代替アクセス方法",
+			"existing_user": "既存のユーザーですか？",
+			"login_now": "今すぐログイン"
+		}
+	},
 	"dashboard": {
 		"title": "ダッシュボード",
 		"description": "あなたのダッシュボード"
