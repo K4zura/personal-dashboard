@@ -22,12 +22,10 @@
 	import imgProfile from '$assets/images/jinwoo.avif';
 	import { slide } from 'svelte/transition';
 	import { t } from 'svelte-i18n';
-	import { changeLocale } from '$lib/i18n';
 	import { getStores } from '$app/stores';
 	const { page } = getStores();
 	import { Motion } from 'svelte-motion';
 	import { clearSession } from '$lib/stores/session';
-	import { redirect } from '@sveltejs/kit';
 	import { sideBarOpen } from '$lib/stores/interactions';
 	import { goto } from '$app/navigation';
 
@@ -159,7 +157,7 @@
 			class="border-dark shadow-primary mx-1 size-28 overflow-hidden rounded-full border-4 shadow-[0_0_5px_2px]"
 		>
 			<img
-				src={userImg}
+				src={userImg ?? imgProfile}
 				alt="img profile of Jinwoo"
 				class="aspect-square size-full object-cover object-center"
 			/>

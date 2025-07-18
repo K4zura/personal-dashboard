@@ -12,7 +12,8 @@ export const POST: RequestHandler = async ({ locals: { supabase }, request }) =>
 		password: password,
 		options: {
 			data: {
-				username: username
+				display_name: username,
+				full_name: username
 			}
 		}
 	});

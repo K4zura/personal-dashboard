@@ -5,7 +5,9 @@ import { sequence } from '@sveltejs/kit/hooks';
 // import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public'
 
 const supabase: Handle = async ({ event, resolve }) => {
-	event.locals.supabase = createServerClient(import.meta.env.VITE_PUBLIC_SUPABASE_URL, import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
+	event.locals.supabase = createServerClient(
+		import.meta.env.VITE_PUBLIC_SUPABASE_URL,
+		import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
 		{
 			cookies: {
 				getAll: async () => {
@@ -58,7 +60,11 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	) {
 		redirect(303, '/dashboard');
 	}
-	if (!event.locals.session && !event.url.pathname.startsWith('/auth')) {
+	if (
+		!event.locals.session &&
+		!event.url.pathname.startsWith('/auth') &&
+		!event.url.pathname.startsWith('/verify')
+	) {
 		redirect(303, '/auth/login');
 	}
 
