@@ -36,12 +36,13 @@
 	let opacity = $state(0);
 	let routeId = $derived($page.url.pathname);
 	const { data } = $props();
+	const { userProfile } = data;
 	let userName = $state('Jinwoo');
 	let userImg = $state(imgProfile);
 
-	if (data.user) {
-		userName = data.user.user_metadata.full_name;
-		userImg = data.user.user_metadata.avatar_url;
+	if (data.userProfile) {
+		userName = userProfile.fullname;
+		userImg = userProfile.img_profile;
 	}
 
 	let { supabase } = $derived(data);

@@ -1,15 +1,13 @@
-import { createSupabase } from '$lib/services/supabaseClient';
+import { getOrCreateUserProfile } from '$lib/components/auth';
+import { store } from '$lib/stores/config.svelte';
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async (event) => {
-	const supabase = createSupabase(event.fetch, event.cookies);
-
-	const {
-		data: { session }
-	} = await supabase.auth.getSession();
-
+export const load: LayoutServerLoad = async ({ locals }) => {
+	const userProfile = await getOrCreateUserProfile(locals);
+	store.lang = userProfile.lang;
+	store.theme = userProfile.theme;
+	console.log(store.lang);
 	return {
-		session,
-		user: session?.user ?? null
+		userProfile
 	};
 };
