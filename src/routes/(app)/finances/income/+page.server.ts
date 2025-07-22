@@ -1,7 +1,7 @@
 import * as db from '$lib/db';
-import type { PageServerLoad } from './$types';
+// import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals: user }) => {
-	const income = await db.income.all(user.user?.id);
+export const load = async ({ locals }) => {
+	const income = await db.income.all(locals);
 	return { incomeList: income ?? [] };
 };

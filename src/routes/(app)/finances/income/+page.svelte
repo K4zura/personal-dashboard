@@ -5,10 +5,12 @@
 	import type Income from '$lib/types/income.js';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
+	import AddModal from '$lib/components/shared/AddModal.svelte';
 
 	let totalAmount = $state(0);
 	let totalFixedAmount = $state(0);
 	let totalVariableAmount = $state(0);
+	let openModal = $state(false);
 	const { data } = $props();
 	const { incomeList } = $derived(data);
 
@@ -26,7 +28,7 @@
 			const month = monthNames[date.getMonth()];
 			const year = date.getFullYear();
 			const category = item.name;
-			const amount = item.mount;
+			const amount = item.amount;
 
 			// Calcular los totales directamente
 			totalAmount += amount;
@@ -49,25 +51,31 @@
 	const monthNames = [...$_('calendar.months')];
 	// svelte-ignore state_referenced_locally
 	const chartData = transformIncomeData(incomeList, monthNames);
-
-	const submitIncome = async () => {
-		const { error } = await data.supabase.from('income').insert({
-			name: 'prueba',
-			type: 'tipo',
-			date: '2025-07-17',
-			mount: 150,
-			color: '#ff477f',
-			userId: data.user?.id
-		});
-		console.log(error);
-	};
 </script>
 
 <svelte:head>
 	<title>Dashboard | {$_('finances.income.title')}</title>
 </svelte:head>
 
-<h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
+{#if openModal}
+	<AddModal
+		title="Income"
+		action="income"
+		fields={[
+			['name', 'text', '2'],
+			['type', 'select', '1'],
+			['date', 'date', '1'],
+			['amount', 'number', '2']
+		]}
+	/>
+{/if}
+<div class="flex items-center justify-between">
+	<h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
+	<button
+		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
+		onclick={() => (openModal = !openModal)}>Add Income</button
+	>
+</div>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
 	<StatCard
 		title={$_('common.total')}
@@ -118,7 +126,6 @@
 		{#snippet filter()}
 			<button
 				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
-				onclick={submitIncome}
 			>
 				<!-- <FilterIcon class="size-4" /> -->
 				{$_('common.filter')}
@@ -148,7 +155,7 @@
 							</td>
 							<td class="px-6 py-4">{income.date}</td>
 							<td class="text-success px-6 py-4 font-bold">
-								+ ${income.mount.toLocaleString()}
+								+ ${new Intl.NumberFormat('es-CO').format(income.amount)}
 							</td>
 						</tr>
 					{/each}

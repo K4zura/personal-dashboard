@@ -1,10 +1,14 @@
-import { createSupabase } from './services/supabaseClient';
+// import { createSupabase } from './services/supabaseClient';
 
-const supabase = createSupabase(fetch);
+// const supabase = createSupabase(fetch);
 // TODO: add your queries/inserts/updates/deletes here
 export const income = {
-	async all(userId: string | undefined) {
-		const { data: income } = await supabase.from('income').select().eq('userId', userId);
+	async all(locals: App.Locals) {
+		// const users = await locals.supabase.from('users').select();
+		const { data: income } = await locals.supabase
+			.from('income')
+			.select()
+			.eq('user_id', locals.user?.id);
 
 		return income;
 	}
