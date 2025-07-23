@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { changeLocale } from '$lib/i18n';
+	import { store } from '$lib/stores/config.svelte';
 	import { onMount } from 'svelte';
+	import * as db from '$lib/db';
 
-	let lang: string = $state('es');
+	let lang: string = $state(store.lang || 'jp');
 
 	function applyLang(l: string) {
 		lang = l;
@@ -10,13 +12,14 @@
 		changeLocale(l);
 	}
 
-	function onChangeLang(event: Event) {
+	async function onChangeLang(event: Event) {
 		const select = event.target as HTMLSelectElement;
 		applyLang(select.value);
+		await db.income.changeLang(select.value);
 	}
 
 	onMount(async () => {
-		applyLang(localStorage.getItem('lang') ?? lang);
+		applyLang(lang ?? localStorage.getItem('lang'));
 	});
 </script>
 

@@ -7,6 +7,7 @@ export const POST: RequestHandler = async ({ locals: { supabase, user }, request
 	const type = formData.get('type') as string;
 	const date = new Date(formData.get('date') as string);
 	const amount = formData.get('amount') as string;
+	const color = formData.get('color') as string;
 
 	const income = await supabase
 		.from('income')
@@ -15,6 +16,7 @@ export const POST: RequestHandler = async ({ locals: { supabase, user }, request
 			type: type,
 			date: date,
 			amount: amount,
+			color: color,
 			user_id: user?.id
 		})
 		.select();

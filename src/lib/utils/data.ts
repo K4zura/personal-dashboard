@@ -106,11 +106,12 @@ export const incomeCategories: Category[] = [
 // ];
 
 export interface Expense {
-	title: string;
+	name: string;
 	frequency: string;
 	category: Category;
 	date: Date;
-	mount: number;
+	amount: number;
+	type?: string;
 }
 
 export const expenseCategories: Category[] = [
@@ -148,101 +149,101 @@ export const expenseCategories: Category[] = [
 
 export const expenseData: Expense[] = [
 	{
-		title: 'Almuerzo restaurante',
+		name: 'Almuerzo restaurante',
 		category: expenseCategories[0],
 		date: new Date('2024-12-05'),
-		mount: 45,
+		amount: 45,
 		frequency: '📅 Semanal'
 	},
 	{
-		title: 'Comida rápida',
+		name: 'Comida rápida',
 		category: expenseCategories[0],
 		date: new Date('2025-01-10'),
-		mount: 32,
+		amount: 32,
 		frequency: '🔁 Diario'
 	},
 	{
-		title: 'Suscripción Netflix',
+		name: 'Suscripción Netflix',
 		category: expenseCategories[1],
 		date: new Date('2025-02-01'),
-		mount: 38,
+		amount: 38,
 		frequency: '🗓️ Mensual'
 	},
 	{
-		title: 'Compra videojuego',
+		name: 'Compra videojuego',
 		category: expenseCategories[1],
 		date: new Date('2025-03-18'),
-		mount: 60,
+		amount: 60,
 		frequency: '🎯 Ocasional'
 	},
 	{
-		title: 'Recarga gasolina',
+		name: 'Recarga gasolina',
 		category: expenseCategories[2],
 		date: new Date('2024-11-03'),
-		mount: 80,
+		amount: 80,
 		frequency: '📅 Semanal'
 	},
 	{
-		title: 'Transporte público',
+		name: 'Transporte público',
 		category: expenseCategories[2],
 		date: new Date('2025-02-08'),
-		mount: 25,
+		amount: 25,
 		frequency: '🔁 Diario'
 	},
 	{
-		title: 'Uber ida al trabajo',
+		name: 'Uber ida al trabajo',
 		category: expenseCategories[2],
 		date: new Date('2025-04-16'),
-		mount: 40,
+		amount: 40,
 		frequency: '🎯 Ocasional'
 	},
 	{
-		title: 'Compra camiseta',
+		name: 'Compra camiseta',
 		category: expenseCategories[3],
 		date: new Date('2024-10-12'),
-		mount: 50,
+		amount: 50,
 		frequency: '🗓️ Mensual'
 	},
 	{
-		title: 'Zapatos deportivos',
+		name: 'Zapatos deportivos',
 		category: expenseCategories[3],
 		date: new Date('2025-01-20'),
-		mount: 120,
+		amount: 120,
 		frequency: '🎯 Ocasional'
 	},
 	{
-		title: 'Pago energía',
+		name: 'Pago energía',
 		category: expenseCategories[4],
 		date: new Date('2024-12-07'),
-		mount: 70,
+		amount: 70,
 		frequency: '🗓️ Mensual'
 	},
 	{
-		title: 'Pago agua',
+		name: 'Pago agua',
 		category: expenseCategories[4],
 		date: new Date('2025-03-15'),
-		mount: 60,
+		amount: 60,
 		frequency: '🗓️ Mensual'
 	},
 	{
-		title: 'Internet hogar',
+		name: 'Internet hogar',
 		category: expenseCategories[4],
 		date: new Date('2025-02-02'),
-		mount: 55,
+		amount: 55,
 		frequency: '🗓️ Mensual'
 	},
 	{
-		title: 'Café y panadería',
+		name: 'Café y panadería',
 		category: expenseCategories[0],
 		date: new Date('2025-01-11'),
-		mount: 18,
+		amount: 18,
 		frequency: '🔁 Diario'
 	},
 	{
-		title: 'Salida al cine',
+		name: 'Salida al cine',
 		category: expenseCategories[1],
 		date: new Date('2025-05-22'),
-		mount: 30,
+		amount: 30,
 		frequency: '🎯 Ocasional'
 	}
 ];

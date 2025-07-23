@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { store } from '$lib/stores/config.svelte';
 	import { onMount } from 'svelte';
+	import * as db from '$lib/db';
 
-	let theme: string = $state('theme-neo-tokyo');
+	let theme: string = $state(store.theme);
 
 	function applyTheme(t: string) {
 		theme = t;
@@ -9,13 +11,14 @@
 		localStorage.setItem('theme', t);
 	}
 
-	function onChange(event: Event) {
+	async function onChange(event: Event) {
 		const select = event.target as HTMLSelectElement;
 		applyTheme(select.value);
+		await db.income.changeTheme(select.value);
 	}
 
 	onMount(async () => {
-		applyTheme(localStorage.getItem('theme') ?? theme);
+		applyTheme(theme ?? localStorage.getItem('theme'));
 	});
 </script>
 

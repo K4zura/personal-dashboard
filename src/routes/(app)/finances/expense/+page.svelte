@@ -2,6 +2,7 @@
 	import CategoryCard from '$lib/components/finance/CategoryCard.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
+	import Table from '$lib/components/shared/Table.svelte';
 	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
 	import { expenseCategories, expenseData, type Expense } from '$lib/utils/data';
 	import { AlertTriangle, CreditCard, ShoppingCart, TrendingDown } from 'lucide-svelte';
@@ -17,7 +18,7 @@
 
 	const expenses: Expenses[] = expenseCategories.map((category) => {
 		const gastos = expenseData.filter((e) => e.category.name === category.name);
-		const spent = gastos.reduce((acc, g) => acc + g.mount, 0);
+		const spent = gastos.reduce((acc, g) => acc + g.amount, 0);
 
 		return {
 			category: category.name,
@@ -87,49 +88,7 @@
 				{$_('common.filter')}
 			</button>
 		{/snippet}
-		<div class="relative overflow-x-auto">
-			<table class="text-light w-full text-left text-sm rtl:text-right">
-				<thead class="bg-border text-tertiary uppercase">
-					<tr>
-						<th scope="col" class="px-6 py-3">{$_('common.concept')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.category')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.type')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.date')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.amount')}</th>
-					</tr>
-				</thead>
-				<tbody class="font-light">
-					{#each expenseData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as expense}
-						<tr class="">
-							<th scope="row" class="px-6 py-4 whitespace-nowrap">
-								{expense.title}
-							</th>
-							<td class="flex items-center gap-2 px-6 py-4 whitespace-nowrap">
-								<span class={`h-4 w-4 rounded-full bg-${expense.category.color}-500`}></span>
-								{expense.category.icon}
-								{expense.category.name}
-							</td>
-							<td class="px-6 py-4">
-								<span class="bg-disabled rounded-full px-2 py-1.5 whitespace-nowrap">
-									{expense.frequency.slice(0, 3)}
 
-									{#if expense.frequency.endsWith('Ocasional')}
-										{$_('types.occasional')}
-									{:else if expense.frequency.endsWith('Diario')}
-										{$_('types.daily')}
-									{:else}
-										{$_('types.monthly')}
-									{/if}
-								</span>
-							</td>
-							<td class="px-6 py-4">{expense.date.toLocaleDateString()}</td>
-							<td class="text-error px-6 py-4 font-bold">
-								- ${expense.mount.toLocaleString()}
-							</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
+		<Table data={expenseData} category={true} />
 	</SectionCard>
 </div>

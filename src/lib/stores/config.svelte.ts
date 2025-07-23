@@ -1,11 +1,13 @@
 export interface Config {
 	lang: string;
 	theme: string;
+	userID: string;
 }
 
 const emptyState: Config = {
 	lang: '',
-	theme: 'theme-neo-tokyo'
+	theme: 'theme-neo-tokyo',
+	userID: ''
 };
 
 function createStore() {
@@ -29,6 +31,14 @@ function createStore() {
 
 		set theme(value: string) {
 			store.theme = value;
+		},
+
+		get userID() {
+			return store.userID;
+		},
+
+		set userID(value: string) {
+			store.userID = value;
 		}
 	};
 }

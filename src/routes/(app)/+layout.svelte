@@ -12,6 +12,7 @@
 	import { waitLocale } from 'svelte-i18n';
 	import '../../app.css';
 	import Header from '$lib/components/layout/Header.svelte';
+	import { store } from '$lib/stores/config.svelte';
 
 	const supabase = createSupabase(fetch);
 
@@ -45,6 +46,9 @@
 	});
 
 	onMount(async () => {
+		store.lang = data.userProfile.lang;
+		store.theme = data.userProfile.theme;
+		store.userID = data.userProfile.id;
 		await waitLocale();
 		isLoading = false;
 	});

@@ -4,13 +4,15 @@
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import type Income from '$lib/types/income.js';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
-	import { _ } from 'svelte-i18n';
+	import { _, json } from 'svelte-i18n';
 	import AddModal from '$lib/components/shared/AddModal.svelte';
+	import Table from '$lib/components/shared/Table.svelte';
+	import { modalIncomeOpen } from '$lib/stores/interactions.js';
+	import { store } from '$lib/stores/config.svelte.js';
 
 	let totalAmount = $state(0);
 	let totalFixedAmount = $state(0);
 	let totalVariableAmount = $state(0);
-	let openModal = $state(false);
 	const { data } = $props();
 	const { incomeList } = $derived(data);
 
@@ -48,32 +50,31 @@
 		return Object.values(grouped);
 	}
 
-	const monthNames = [...$_('calendar.months')];
+	const monthsNames = $json('calendar.months') as string[];
 	// svelte-ignore state_referenced_locally
-	const chartData = transformIncomeData(incomeList, monthNames);
+	const chartData = transformIncomeData(incomeList, monthsNames);
 </script>
 
 <svelte:head>
 	<title>Dashboard | {$_('finances.income.title')}</title>
 </svelte:head>
 
-{#if openModal}
-	<AddModal
-		title="Income"
-		action="income"
-		fields={[
-			['name', 'text', '2'],
-			['type', 'select', '1'],
-			['date', 'date', '1'],
-			['amount', 'number', '2']
-		]}
-	/>
-{/if}
+<AddModal
+	title="Income"
+	action="income"
+	fields={[
+		['name', 'text', 'col-span-2'],
+		['type', 'select', 'col-span-1'],
+		['date', 'date', 'col-span-1'],
+		['amount', 'number', 'col-span-2'],
+		['color', 'color', 'col-span-2']
+	]}
+/>
 <div class="flex items-center justify-between">
 	<h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
 	<button
 		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
-		onclick={() => (openModal = !openModal)}>Add Income</button
+		onclick={() => ($modalIncomeOpen = true)}>Add Income</button
 	>
 </div>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
@@ -131,36 +132,6 @@
 				{$_('common.filter')}
 			</button>
 		{/snippet}
-		<div class="relative overflow-x-auto">
-			<table class="text-light w-full text-left text-sm rtl:text-right">
-				<thead class="bg-border text-tertiary uppercase">
-					<tr>
-						<th scope="col" class="px-6 py-3 whitespace-nowrap">{$_('common.concept')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.type')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.date')}</th>
-						<th scope="col" class="px-6 py-3">{$_('common.amount')}</th>
-					</tr>
-				</thead>
-				<tbody class="font-light">
-					{#each incomeList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) as income: Income}
-						<tr class="">
-							<th scope="row" class="px-6 py-4 whitespace-nowrap">
-								{income.name}
-							</th>
-							<td class="px-6 py-4">
-								<span
-									class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium whitespace-nowrap"
-									>{income.type === 'Fixed' ? $_('types.fixed') : $_('types.variable')}</span
-								>
-							</td>
-							<td class="px-6 py-4">{income.date}</td>
-							<td class="text-success px-6 py-4 font-bold">
-								+ ${new Intl.NumberFormat('es-CO').format(income.amount)}
-							</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
+		<Table data={incomeList} category={false} />
 	</SectionCard>
 </div>
