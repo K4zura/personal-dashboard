@@ -5,8 +5,9 @@
 		id: string;
 		span: string;
 		forType?: string;
+		values?: string[];
 	}
-	let { id, span, forType }: Props = $props();
+	let { id, span, forType, values }: Props = $props();
 
 	const options = $derived(() => {
 		if (id === 'type' && forType !== 'frecuency') {
@@ -21,7 +22,7 @@
 				{ value: 'monthly', label: $_('types.monthly') }
 			];
 		}
-		return [];
+		return values?.map((value) => ({ value, label: value })) || [];
 	});
 </script>
 

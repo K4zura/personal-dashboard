@@ -8,8 +8,9 @@
 		title: string;
 		action: string;
 		fields: [title: string, type: string, span: string, forType?: string][];
+		values?: string[];
 	}
-	let { title, action, fields }: Props = $props();
+	let { title, action, fields, values }: Props = $props();
 	let color = $state('');
 </script>
 
@@ -28,9 +29,9 @@
 	}}
 >
 	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-	<article class="bg-surface relative h-[500px] w-96 rounded p-4">
+	<article class="bg-surface border-tertiary relative h-max w-96 rounded border-2 p-4">
 		<button
-			class="shadow-secondary hover:bg-secondary absolute top-2 right-2 cursor-pointer rounded p-1 shadow"
+			class="shadow-border hover:bg-border absolute top-2 right-2 cursor-pointer rounded p-1 shadow"
 			onclick={() => ($modalIncomeOpen = false)}
 		>
 			<X class="size-4 stroke-3" />
@@ -42,7 +43,7 @@
 					<label for={field[0]} class="flex flex-col gap-2 {field[2]}">
 						<p class="border-secondary border-l-2 px-1 text-xs font-semibold">{field[0]}</p>
 
-						<Select id={field[0]} span={field[2]} forType={field[3]} />
+						<Select id={field[0]} span={field[2]} forType={field[3]} {values} />
 					</label>
 				{:else if field[1] === 'color'}
 					<div class="col-span-2 flex items-end gap-2">

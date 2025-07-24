@@ -32,8 +32,8 @@
 			const amount = item.amount;
 
 			totalAmount += amount;
-			if (item.type === 'Fixed') totalFixedAmount += amount;
-			if (item.type === 'Variable') totalVariableAmount += amount;
+			if (item.type === 'fixed') totalFixedAmount += amount;
+			if (item.type === 'variable') totalVariableAmount += amount;
 
 			const key = `${year}-${month}`;
 
@@ -71,7 +71,7 @@
 	<h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
 	<button
 		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
-		onclick={() => ($modalIncomeOpen = true)}>Add Income</button
+		onclick={() => ($modalIncomeOpen = true)}>{$_('finances.income.add')}</button
 	>
 </div>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">

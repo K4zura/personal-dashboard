@@ -106,7 +106,11 @@
 		"budget": {
 			"title": "Budget",
 			"description": "Your budget sources",
-			"add": "Add budget"
+			"add": "Add budget",
+			"total": "Budget Total",
+			"total_categories": "total categories",
+			"over_budget": "Over Budget",
+			"need_adjustment": "need adjustment"
 		}
 	},
 	"productivity": {

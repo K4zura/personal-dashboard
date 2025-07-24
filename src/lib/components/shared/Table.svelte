@@ -4,10 +4,11 @@
 
 	interface Props {
 		data: Income[] | Expense[];
+		colors?: Record<string, string>;
 		category: boolean;
 	}
 
-	const { data, category }: Props = $props();
+	const { data, colors, category }: Props = $props();
 </script>
 
 <div class="relative overflow-x-auto">
@@ -31,7 +32,10 @@
 					</th>
 					{#if category && 'category' in row}
 						<td class="flex items-center gap-2 px-6 py-4 whitespace-nowrap">
-							<span class="h-4 w-4 rounded-full" style="background-color: {row.color}"></span>
+							<span
+								class="h-4 w-4 rounded-full"
+								style="background-color: {colors?.[row.category as string]}"
+							></span>
 							<!-- {row.category.icon} -->
 							{row.category}
 						</td>

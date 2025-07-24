@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
 
-	let totalBudget = 1150;
-	let totalSpent = 475;
+	interface Props {
+		totalBudget?: number;
+		totalSpent?: number;
+	}
+	let { totalBudget = 10, totalSpent = 5 }: Props = $props();
 
 	let percentage = (totalSpent / totalBudget) * 100;
 </script>

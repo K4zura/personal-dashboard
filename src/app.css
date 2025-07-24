@@ -19,7 +19,7 @@
 	--color-border: #3f4a5a;
 	--color-hover: #74d3ce;
 	--color-accent: #b19cd9;
-	--color-overlay: rgba(0, 0, 0, 0.5);
+	--color-overlay: rgba(0, 0, 0, 0.9);
 	--color-disabled: #4f5d75;
 	--color-purple: #8e44ad;
 	--color-glow: #00fff7;
@@ -41,7 +41,7 @@
 	--color-border: #3f4a5a;
 	--color-hover: #74d3ce;
 	--color-accent: #b19cd9;
-	--color-overlay: rgba(0, 0, 0, 0.5);
+	--color-overlay: rgba(0, 0, 0, 0.9);
 	--color-disabled: #4f5d75;
 	--color-purple: #8e44ad;
 	--color-glow: #00fff7;
@@ -63,7 +63,7 @@
 	--color-border: #4a4b59;
 	--color-hover: #0c7ed6;
 	--color-accent: #d8bfd8;
-	--color-overlay: rgba(0, 0, 0, 0.5);
+	--color-overlay: rgba(0, 0, 0, 0.9);
 	--color-disabled: #6a6a78;
 }
 
@@ -86,7 +86,7 @@
 	--color-muted: #6d7086;
 	--color-hover: #caa9fa; /* tono claro del primary */
 	--color-accent: #ff79c6; /* rosa vampírico */
-	--color-overlay: rgba(40, 42, 54, 0.7);
+	--color-overlay: rgba(40, 42, 54, 0.9);
 	--color-disabled: #4d5166;
 
 	/* extras */
@@ -114,7 +114,7 @@
 	--color-muted: #7e86a0;
 	--color-hover: #9acaff;
 	--color-accent: #ffc3ff;
-	--color-overlay: rgba(255, 255, 255, 0.6);
+	--color-overlay: rgba(255, 255, 255, 0.9);
 	--color-disabled: #b7bed6;
 }
 
@@ -137,12 +137,39 @@
 	--color-muted: #b79bb5;
 	--color-hover: #f9c5d1;
 	--color-accent: #ffafcc;
-	--color-overlay: rgba(250, 244, 249, 0.75);
+	--color-overlay: rgba(250, 244, 249, 0.9);
 	--color-disabled: #e0c8d1;
 
 	--color-purple: #a29bfe;
 	--color-glow: #ffd6e0;
 	--color-shadow: #ebccd9;
+}
+
+.theme-sakura-dark {
+	--color-dark: #1f1b24;
+	--color-light: #fbe4ec;
+
+	--color-primary: #ffb6c1;
+	--color-secondary: #3e2c41;
+	--color-tertiary: #7d5a74;
+
+	--color-surface: #2a2230;
+	--color-border: #4a3b4f;
+
+	--color-error: #ff6b81;
+	--color-success: #7ed6a7;
+	--color-warning: #ffe066;
+	--color-info: #a29bfe;
+
+	--color-muted: #99889b;
+	--color-hover: #50324c;
+	--color-accent: #ff85a1;
+	--color-overlay: rgba(31, 27, 36, 0.9);
+	--color-disabled: #5e4e5a;
+
+	--color-purple: #c792ea;
+	--color-glow: #ffafd2;
+	--color-shadow: #00000040;
 }
 
 .theme-retro-pop {
@@ -164,7 +191,7 @@
 	--color-muted: #b2b2b2;
 	--color-hover: #ffd166;
 	--color-accent: #6a4c93;
-	--color-overlay: rgba(255, 244, 228, 0.7);
+	--color-overlay: rgba(255, 244, 228, 0.9);
 	--color-disabled: #e0e0e0;
 
 	--color-purple: #7e57c2;
@@ -218,7 +245,7 @@
 	--color-muted: #cdb4db;
 	--color-hover: #ffe066;
 	--color-accent: #ff70a6;
-	--color-overlay: rgba(255, 248, 240, 0.7);
+	--color-overlay: rgba(255, 248, 240, 0.9);
 	--color-disabled: #f0e0d6;
 
 	--color-purple: #9d4edd;
@@ -272,7 +299,7 @@
 	--color-muted: #6d7086;
 	--color-hover: #ff79c6;
 	--color-accent: #8be9fd;
-	--color-overlay: rgba(15, 15, 26, 0.85);
+	--color-overlay: rgba(15, 15, 26, 0.9);
 	--color-disabled: #4d5166;
 
 	--color-purple: #9580ff;
@@ -299,7 +326,7 @@
 	--color-muted: #6ab69f;
 	--color-hover: #81f4e1;
 	--color-accent: #38b2ac;
-	--color-overlay: rgba(11, 61, 59, 0.8);
+	--color-overlay: rgba(11, 61, 59, 0.9);
 	--color-disabled: #3d706d;
 
 	--color-purple: #a29bfe;
@@ -326,7 +353,7 @@
 	--color-muted: #888888;
 	--color-hover: #cccccc;
 	--color-accent: #dddddd;
-	--color-overlay: rgba(26, 26, 26, 0.8);
+	--color-overlay: rgba(26, 26, 26, 0.9);
 	--color-disabled: #555555;
 
 	--color-purple: #9b59b6;
@@ -353,7 +380,7 @@
 	--color-muted: #a29bfe;
 	--color-hover: #be95ff;
 	--color-accent: #ff70a6;
-	--color-overlay: rgba(11, 0, 51, 0.8);
+	--color-overlay: rgba(11, 0, 51, 0.9);
 	--color-disabled: #5e548e;
 
 	--color-purple: #7b2cbf;
@@ -380,7 +407,7 @@
 	--color-muted: #95d5b2;
 	--color-hover: #74c69d;
 	--color-accent: #d8f3dc;
-	--color-overlay: rgba(27, 67, 50, 0.85);
+	--color-overlay: rgba(27, 67, 50, 0.9);
 	--color-disabled: #4f8a6f;
 
 	--color-purple: #6a4c93;
@@ -407,7 +434,7 @@
 	--color-muted: #888888;
 	--color-hover: #77ffb1;
 	--color-accent: #ff6ec7;
-	--color-overlay: rgba(13, 13, 13, 0.85);
+	--color-overlay: rgba(13, 13, 13, 0.9);
 	--color-disabled: #333333;
 
 	--color-purple: #b388eb;
@@ -434,7 +461,7 @@
 	--color-muted: #777777;
 	--color-hover: #dddddd;
 	--color-accent: #bbbbbb;
-	--color-overlay: rgba(17, 17, 17, 0.75);
+	--color-overlay: rgba(17, 17, 17, 0.9);
 	--color-disabled: #444444;
 
 	--color-purple: #8888ff;

@@ -12,10 +12,14 @@
 	const { data } = $props();
 	const { expenseList, categoryList } = $derived(data);
 
+	let colors: Record<string, string> = {};
+
 	const categories = $derived(
 		categoryList.map((category) => {
 			let spent = 0;
 			category.expense.map((g: { amount: any }) => (spent += g.amount));
+
+			colors[category.name] = category.color;
 
 			return {
 				category: category.name,
@@ -44,23 +48,23 @@
 		['type', 'select', 'col-span-1', 'frecuency'],
 		['date', 'date', 'col-span-1'],
 		['amount', 'number', 'col-span-2'],
-		['color', 'color', 'col-span-2'],
-		['category', 'text', 'col-span-2', 'category']
+		['category', 'select', 'col-span-2', 'category']
 	]}
+	values={categoryList.map((category) => category.name)}
 />
 
 <div class="flex items-center justify-between">
 	<h1 class="text-primary text-xl font-bold">{$_('finances.expenses.title')}</h1>
 	<button
 		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
-		onclick={() => ($modalIncomeOpen = true)}>Add Expense</button
+		onclick={() => ($modalIncomeOpen = true)}>{$_('finances.expenses.add')}</button
 	>
 </div>
 
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
 	<StatCard
 		title={$_('common.total')}
-		value="${totalSpent}"
+		value="${new Intl.NumberFormat('es-CO').format(totalSpent)}"
 		percentage="+{totalSpentPercentage.toFixed(1)}%"
 	>
 		{#snippet icon()}
@@ -68,19 +72,22 @@
 		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
-	<StatCard title={$_('finances.budget.title')} value="${totalLimit}">
+	<StatCard
+		title={$_('finances.budget.title')}
+		value="${new Intl.NumberFormat('es-CO').format(totalLimit)}"
+	>
 		{#snippet icon()}
 			<CreditCard class="size-4 text-gray-300" />
 		{/snippet}
-		<ProgressBar />
+		<ProgressBar totalBudget={totalLimit} {totalSpent} />
 	</StatCard>
-	<StatCard title={$_('common.average')} value="$16">
+	<StatCard title={$_('common.average')} value="${new Intl.NumberFormat('es-CO').format(16)}">
 		{#snippet icon()}
 			<ShoppingCart class="size-4 text-gray-300" />
 		{/snippet}
 		{$_('common.based_on_30')}
 	</StatCard>
-	<StatCard title={$_('finances.expenses.categories')} value="5">
+	<StatCard title={$_('finances.expenses.categories')} value={categories.length.toString()}>
 		{#snippet icon()}
 			<AlertTriangle class="size-4 text-gray-300" />
 		{/snippet}
@@ -106,6 +113,6 @@
 			</button>
 		{/snippet}
 
-		<Table data={expenseList} category={true} />
+		<Table data={expenseList} category={true} {colors} />
 	</SectionCard>
 </div>

@@ -32,6 +32,7 @@
 	<option value="theme-dracula">Dracula</option>
 	<option value="theme-aurora">Aurora</option>
 	<option value="theme-sakura">Sakura</option>
+	<option value="theme-sakura-dark">Sakura Dark</option>
 	<option value="theme-retro-pop">Retro Pop</option>
 	<option value="theme-minimal-mint">Minimal Mint</option>
 	<option value="theme-sunrise">Sunrise</option>

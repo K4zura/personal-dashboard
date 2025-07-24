@@ -106,7 +106,11 @@
 		"budget": {
 			"title": "Presupuesto",
 			"description": "Tus fuentes de presupuesto",
-			"add": "Agregar presupuesto"
+			"add": "Agregar presupuesto",
+			"total": "Presupuesto Total",
+			"total_categories": "categorías totales",
+			"over_budget": "Sobre Presupuesto",
+			"need_adjustment": "necesita ajuste"
 		}
 	},
 	"productivity": {
