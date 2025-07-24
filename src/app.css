@@ -21,9 +21,6 @@
 	--color-accent: #b19cd9;
 	--color-overlay: rgba(0, 0, 0, 0.9);
 	--color-disabled: #4f5d75;
-	--color-purple: #8e44ad;
-	--color-glow: #00fff7;
-	--color-shadow: #050517;
 }
 
 .theme-dark {
@@ -43,9 +40,6 @@
 	--color-accent: #b19cd9;
 	--color-overlay: rgba(0, 0, 0, 0.9);
 	--color-disabled: #4f5d75;
-	--color-purple: #8e44ad;
-	--color-glow: #00fff7;
-	--color-shadow: #050517;
 }
 
 .theme-jinwoo {
@@ -68,14 +62,14 @@
 }
 
 .theme-dracula {
-	--color-dark: #282a36; /* fondo “Dracula” clásico */
-	--color-light: #f8f8f2; /* texto claro             */
+	--color-dark: #282a36;
+	--color-light: #f8f8f2;
 
-	--color-primary: #bd93f9; /* púrpura icónico */
-	--color-secondary: #6272a4; /* gris‑azulado */
-	--color-tertiary: #8be9fd; /* cian pastel   */
+	--color-primary: #bd93f9;
+	--color-secondary: #6272a4;
+	--color-tertiary: #8be9fd;
 
-	--color-surface: #44475a; /* cards / modales */
+	--color-surface: #44475a;
 	--color-border: #5b5f79;
 
 	--color-error: #ff5555;
@@ -84,15 +78,10 @@
 	--color-info: #8be9fd;
 
 	--color-muted: #6d7086;
-	--color-hover: #caa9fa; /* tono claro del primary */
-	--color-accent: #ff79c6; /* rosa vampírico */
+	--color-hover: #caa9fa;
+	--color-accent: #ff79c6;
 	--color-overlay: rgba(40, 42, 54, 0.9);
 	--color-disabled: #4d5166;
-
-	/* extras */
-	--color-purple: #9580ff;
-	--color-glow: #8be9fd;
-	--color-shadow: #1c1d27;
 }
 
 .theme-aurora {
@@ -139,10 +128,6 @@
 	--color-accent: #ffafcc;
 	--color-overlay: rgba(250, 244, 249, 0.9);
 	--color-disabled: #e0c8d1;
-
-	--color-purple: #a29bfe;
-	--color-glow: #ffd6e0;
-	--color-shadow: #ebccd9;
 }
 
 .theme-sakura-dark {
@@ -166,10 +151,6 @@
 	--color-accent: #ff85a1;
 	--color-overlay: rgba(31, 27, 36, 0.9);
 	--color-disabled: #5e4e5a;
-
-	--color-purple: #c792ea;
-	--color-glow: #ffafd2;
-	--color-shadow: #00000040;
 }
 
 .theme-retro-pop {
@@ -193,10 +174,6 @@
 	--color-accent: #6a4c93;
 	--color-overlay: rgba(255, 244, 228, 0.9);
 	--color-disabled: #e0e0e0;
-
-	--color-purple: #7e57c2;
-	--color-glow: #ffd166;
-	--color-shadow: #cdb48b;
 }
 
 .theme-minimal-mint {
@@ -220,10 +197,6 @@
 	--color-accent: #00cec9;
 	--color-overlay: rgba(236, 253, 245, 0.8);
 	--color-disabled: #dfe6e9;
-
-	--color-purple: #6c5ce7;
-	--color-glow: #81ecec;
-	--color-shadow: #d3f8e2;
 }
 
 .theme-sunrise {
@@ -247,10 +220,6 @@
 	--color-accent: #ff70a6;
 	--color-overlay: rgba(255, 248, 240, 0.9);
 	--color-disabled: #f0e0d6;
-
-	--color-purple: #9d4edd;
-	--color-glow: #fcbf49;
-	--color-shadow: #f1c27d;
 }
 
 .theme-ice-blue {
@@ -274,10 +243,6 @@
 	--color-accent: #0077b6;
 	--color-overlay: rgba(232, 249, 253, 0.8);
 	--color-disabled: #d6e8f0;
-
-	--color-purple: #5e60ce;
-	--color-glow: #00b4d8;
-	--color-shadow: #bbd0ff;
 }
 
 .theme-neo-tokyo {
@@ -301,10 +266,6 @@
 	--color-accent: #8be9fd;
 	--color-overlay: rgba(15, 15, 26, 0.9);
 	--color-disabled: #4d5166;
-
-	--color-purple: #9580ff;
-	--color-glow: #ff1b6b;
-	--color-shadow: #000010;
 }
 
 .theme-midnight-green {
@@ -328,10 +289,6 @@
 	--color-accent: #38b2ac;
 	--color-overlay: rgba(11, 61, 59, 0.9);
 	--color-disabled: #3d706d;
-
-	--color-purple: #a29bfe;
-	--color-glow: #81f4e1;
-	--color-shadow: #022222;
 }
 
 .theme-carbon {
@@ -355,10 +312,6 @@
 	--color-accent: #dddddd;
 	--color-overlay: rgba(26, 26, 26, 0.9);
 	--color-disabled: #555555;
-
-	--color-purple: #9b59b6;
-	--color-glow: #ffffff;
-	--color-shadow: #101010;
 }
 
 .theme-galaxy {
@@ -382,10 +335,6 @@
 	--color-accent: #ff70a6;
 	--color-overlay: rgba(11, 0, 51, 0.9);
 	--color-disabled: #5e548e;
-
-	--color-purple: #7b2cbf;
-	--color-glow: #9d4edd;
-	--color-shadow: #0a0025;
 }
 
 .theme-dark-forest {
@@ -409,10 +358,6 @@
 	--color-accent: #d8f3dc;
 	--color-overlay: rgba(27, 67, 50, 0.9);
 	--color-disabled: #4f8a6f;
-
-	--color-purple: #6a4c93;
-	--color-glow: #80ed99;
-	--color-shadow: #0c2e20;
 }
 
 .theme-void-glow {
@@ -436,10 +381,6 @@
 	--color-accent: #ff6ec7;
 	--color-overlay: rgba(13, 13, 13, 0.9);
 	--color-disabled: #333333;
-
-	--color-purple: #b388eb;
-	--color-glow: #39ff14;
-	--color-shadow: #000000;
 }
 
 .theme-inkwell {
@@ -463,10 +404,6 @@
 	--color-accent: #bbbbbb;
 	--color-overlay: rgba(17, 17, 17, 0.9);
 	--color-disabled: #444444;
-
-	--color-purple: #8888ff;
-	--color-glow: #f0f0f0;
-	--color-shadow: #000000;
 }
 
 html {

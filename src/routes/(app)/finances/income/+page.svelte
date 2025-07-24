@@ -1,13 +1,14 @@
 <script lang="ts">
-	import Chart from '$lib/components/widgets/Chart.svelte';
+	import AddModal from '$lib/components/shared/AddModal.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
+	import Table from '$lib/components/shared/Table.svelte';
+	import Chart from '$lib/components/widgets/Chart.svelte';
+	import { modalIncomeOpen } from '$lib/stores/interactions.js';
 	import type { Income } from '$lib/types/finances.js';
+	import { formatCurrency } from '$lib/utils/format.js';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _, json } from 'svelte-i18n';
-	import AddModal from '$lib/components/shared/AddModal.svelte';
-	import Table from '$lib/components/shared/Table.svelte';
-	import { modalIncomeOpen } from '$lib/stores/interactions.js';
 
 	let totalAmount = $state(0);
 	let totalFixedAmount = $state(0);
@@ -75,35 +76,25 @@
 	>
 </div>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
-	<StatCard
-		title={$_('common.total')}
-		value={`$${new Intl.NumberFormat('es-CO').format(totalAmount)}`}
-		percentage="+8.2%"
-	>
+	<StatCard title={$_('common.total')} value={formatCurrency(totalAmount)} percentage="+8.2%">
 		{#snippet icon()}
 			<TrendingUp class="size-4 text-gray-300" />
 		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
-	<StatCard
-		title={$_('finances.income.fixed')}
-		value={`$${new Intl.NumberFormat('es-CO').format(totalFixedAmount)}`}
-	>
+	<StatCard title={$_('finances.income.fixed')} value={formatCurrency(totalFixedAmount)}>
 		{#snippet icon()}
 			<DollarSign class="size-4 text-gray-300" />
 		{/snippet}
 		{$_('finances.income.regular_income')}
 	</StatCard>
-	<StatCard
-		title={$_('finances.income.variable')}
-		value={`$${new Intl.NumberFormat('es-CO').format(totalVariableAmount)}`}
-	>
+	<StatCard title={$_('finances.income.variable')} value={formatCurrency(totalVariableAmount)}>
 		{#snippet icon()}
 			<Wallet class="size-4 text-gray-300" />
 		{/snippet}
 		{$_('finances.income.irregular_income')}
 	</StatCard>
-	<StatCard title={$_('finances.income.active')} value="4">
+	<StatCard title={$_('finances.income.active')} value={incomeList.length.toString()}>
 		{#snippet icon()}
 			<Tag class="size-4 text-gray-300" />
 		{/snippet}

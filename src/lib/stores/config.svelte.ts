@@ -1,13 +1,17 @@
+import type { Goal } from '$lib/types/savings';
+
 export interface Config {
 	lang: string;
 	theme: string;
 	userID: string;
+	goals: Goal[];
 }
 
 const emptyState: Config = {
 	lang: '',
 	theme: 'theme-neo-tokyo',
-	userID: ''
+	userID: '',
+	goals: []
 };
 
 function createStore() {
@@ -39,6 +43,14 @@ function createStore() {
 
 		set userID(value: string) {
 			store.userID = value;
+		},
+
+		get goals() {
+			return store.goals;
+		},
+
+		set goals(value: Goal[]) {
+			store.goals = value;
 		}
 	};
 }

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Income, Expense } from '$lib/types/finances';
+	import { formatCurrency } from '$lib/utils/format';
 	import { _ } from 'svelte-i18n';
 
 	interface Props {
@@ -62,11 +63,11 @@
 					<td class="px-6 py-4">{new Date(row.date).toLocaleDateString('es-CO')}</td>
 					{#if category}
 						<td class="text-error px-6 py-4 font-bold">
-							- ${row.amount}
+							- {formatCurrency(row.amount)}
 						</td>
 					{:else}
 						<td class="text-success px-6 py-4 font-bold">
-							+ ${row.amount}
+							+ {formatCurrency(row.amount)}
 						</td>
 					{/if}
 				</tr>

@@ -17,6 +17,16 @@ export interface Expense {
 
 export interface Budget {
 	name: string;
-	amount: number;
 	color: string;
+	limit: number;
+	expense: Expense[];
+}
+
+export interface Goal {
+	name: string;
+	color: string;
+	total: number;
+	saved: number;
+	monthly: number;
+	deadline: string;
 }

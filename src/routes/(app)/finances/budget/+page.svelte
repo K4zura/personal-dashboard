@@ -3,7 +3,8 @@
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import { modalIncomeOpen } from '$lib/stores/interactions';
-	import { AlertTriangle, DollarSign, Target } from 'lucide-svelte';
+	import { formatCurrency, formatPercent } from '$lib/utils/format.js';
+	import { AlertTriangle, DollarSign, Edit, Target, Trash } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
 	const { data } = $props();
@@ -14,13 +15,11 @@
 		categories.map((category) => {
 			let spent = 0;
 			category.expense.map((g: { amount: any }) => (spent += g.amount));
-
 			totalSpentPercentage.push((spent / category.limit) * 100);
 
 			return spent;
 		})
 	);
-	// let totalRemaining = $derived(totalBudget - totalSpent);
 </script>
 
 <svelte:head>
@@ -48,7 +47,7 @@
 <div class="grid grid-cols-1 gap-4 space-y-1 lg:grid-cols-3">
 	<StatCard
 		title={$_('finances.budget.total')}
-		value="${new Intl.NumberFormat('es-CO').format(totalBudget)}"
+		value={formatCurrency(totalBudget)}
 		percentage="+8.2%"
 	>
 		{#snippet icon()}
@@ -82,11 +81,12 @@
 							<span class="h-4 w-4 rounded-full" style="background-color: {category.color}"></span>
 							<h1 class="text-lg font-semibold sm:text-xl">{category.name}</h1>
 						</div>
+
 						<div class="ml-auto flex items-center gap-6">
 							<div class="text-success flex flex-col items-center">
 								<h2 class="text-sm font-medium">{$_('finances.budget.title')}</h2>
 								<p class="text-lg font-bold sm:text-xl">
-									${new Intl.NumberFormat('es-CO').format(category.limit)}
+									{formatCurrency(category.limit)}
 								</p>
 							</div>
 							<div
@@ -96,54 +96,27 @@
 							>
 								<h2 class="text-sm font-medium">{$_('common.used')}</h2>
 								<p class="text-lg font-bold sm:text-xl">
-									${new Intl.NumberFormat('es-CO').format(totalSpent[index])}
+									{formatCurrency(totalSpent[index])}
 								</p>
 							</div>
 							<div class="flex items-center justify-end gap-1">
 								<button
 									aria-label="edit"
-									class="text-primary hover:bg-border cursor-pointer rounded-lg p-2"
+									class="hover:bg-border cursor-pointer rounded-lg p-2 text-blue-500"
 								>
-									<svg
-										class="size-4"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path
-											d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"
-										/></svg
-									>
+									<Edit class="size-4" />
 								</button>
 								<button
 									aria-label="delete"
 									class="text-error hover:bg-border cursor-pointer rounded-lg p-2"
 								>
-									<svg
-										class="size-4"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path
-											d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"
-										/><line x1="10" x2="10" y1="11" y2="17" /><line
-											x1="14"
-											x2="14"
-											y1="11"
-											y2="17"
-										/></svg
-									>
+									<Trash class="size-4" />
 								</button>
 							</div>
 						</div>
 					</div>
 					<div class="flex w-full items-center gap-2">
-						<p class="w-10 text-xs">{totalSpentPercentage[index].toFixed(0)} %</p>
+						<p class="w-11 text-xs">{formatPercent(totalSpentPercentage[index])}</p>
 						<div
 							class="bg-border relative mb-1 h-3 w-full overflow-hidden rounded-full"
 							role="progressbar"

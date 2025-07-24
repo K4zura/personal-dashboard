@@ -4,48 +4,29 @@
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
+	import { store } from '$lib/stores/config.svelte.js';
 	import { modalIncomeOpen } from '$lib/stores/interactions';
+	import { formatCurrency } from '$lib/utils/format.js';
 	import { CalendarIcon, PiggyBank, Target, TrendingUp } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
 	const t = _;
 	const { data } = $props();
 	const { goals } = $derived(data);
+	$effect(() => {
+		store.goals = goals;
+	});
+	const totalBudget = $derived(() => {
+		return store.goals.reduce((acc, goal) => acc + goal.saved, 0);
+	});
 
-	let totalBudget = $derived(goals.reduce((acc, goal) => acc + goal.saved, 0));
+	const totalSaving = $derived(() => {
+		return store.goals.reduce((acc, goal) => acc + goal.total, 0);
+	});
 
-	// const goals = [
-	// 	{
-	// 		title: 'House',
-	// 		color: 'red',
-	// 		category: 'Housing',
-	// 		priority: 'High',
-	// 		total: 25000,
-	// 		saved: 8500,
-	// 		monthly: 800,
-	// 		deadline: '2025-11-30'
-	// 	},
-	// 	{
-	// 		title: 'New Motorcycle',
-	// 		color: 'purple',
-	// 		category: 'Transport',
-	// 		priority: 'Low',
-	// 		total: 40000000,
-	// 		saved: 6000000,
-	// 		monthly: 1200000,
-	// 		deadline: '2024-12-31'
-	// 	},
-	// 	{
-	// 		title: 'PC Build',
-	// 		color: 'blue',
-	// 		category: 'Technology',
-	// 		priority: 'Medium',
-	// 		total: 1900000,
-	// 		saved: 1250000,
-	// 		monthly: 50000,
-	// 		deadline: '2025-12-31'
-	// 	}
-	// ];
+	const monthlySaving = $derived(() => {
+		return store.goals.reduce((acc, goal) => acc + goal.monthly, 0);
+	});
 </script>
 
 <svelte:head>
@@ -73,39 +54,46 @@
 	</button>
 </div>
 
-<!-- <p>{$t('greeting', { values: { name: 'Carlos' } })}</p> -->
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
-	<StatCard title={$t('finances.savings.total_saved')} value={totalBudget} percentage="+8.2%">
+	<StatCard
+		title={$t('finances.savings.total_saved')}
+		value={formatCurrency(totalBudget())}
+		percentage="+8.2%"
+	>
 		{#snippet icon()}
 			<PiggyBank class="size-4 text-gray-300" />
 		{/snippet}
 		{$t('common.vs_last_month')}
 	</StatCard>
-	<StatCard title={$t('finances.savings.total_goal')} value="$45000">
+
+	<StatCard title={$t('finances.savings.total_goal')} value={formatCurrency(totalSaving())}>
 		{#snippet icon()}
 			<Target class="size-4 text-gray-300" />
 		{/snippet}
-		<ProgressBar />
+		<ProgressBar totalBudget={totalSaving()} totalSpent={totalBudget()} />
 	</StatCard>
-	<StatCard title={$t('finances.savings.monthly_savings')} value="$2200">
+
+	<StatCard title={$t('finances.savings.monthly_savings')} value={formatCurrency(monthlySaving())}>
 		{#snippet icon()}
 			<TrendingUp class="size-4 text-gray-300" />
 		{/snippet}
 		{$t('finances.savings.sum_all_goals')}
 	</StatCard>
-	<StatCard title={$t('finances.savings.active')} value="5">
+
+	<StatCard title={$t('finances.savings.active')} value={store.goals.length.toString()}>
 		{#snippet icon()}
 			<CalendarIcon class="size-4 text-gray-300" />
 		{/snippet}
 		0 {$t('common.completed').toLowerCase()}
 	</StatCard>
+
 	<SectionCard
 		title="Ahorros Agregados"
 		subtitle="Seccion de ahorros en proceso"
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
 		<div class="grid grid-cols-2 gap-4">
-			{#each goals as goal}
+			{#each store.goals as goal}
 				<GoalCard {goal} />
 			{/each}
 		</div>

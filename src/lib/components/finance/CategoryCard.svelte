@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
+	import { formatCurrency, formatPercent } from '$lib/utils/format';
+	import { Edit, Trash } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
+	import { slide } from 'svelte/transition';
 
 	const { categories } = $props();
 
@@ -26,7 +28,9 @@
 						<span class="h-4 w-4 rounded-full" style="background-color: {color}"></span>
 						<span class="font-medium">{category}</span>
 					</div>
-					<span class="text-sm font-semibold">${spent} / ${limit}</span>
+					<span class="text-sm font-semibold"
+						>{formatCurrency(spent)} / {formatCurrency(limit)}</span
+					>
 				</div>
 				<div
 					class="bg-border mb-1 h-3 overflow-hidden rounded-full"
@@ -36,14 +40,18 @@
 					aria-valuemax="100"
 				>
 					<div
-						class="bg-accent h-full transition-all duration-300"
-						style={`width: ${percentage}%`}
+						class="h-full transition-all duration-300"
+						style={`width: ${percentage}%; background-color: ${color}`}
 					></div>
 				</div>
-				<footer class="text-xs text-gray-500">
-					{percentage.toFixed(1)}% {$_('common.used').toLowerCase()} · {$_(
-						'common.remaining'
-					).toLowerCase()}: ${remaining}
+				<footer class="flex items-center justify-between text-xs text-gray-500">
+					<p>
+						{formatPercent(percentage)}
+						{$_('common.used').toLowerCase()}
+					</p>
+					<p>
+						{$_('common.remaining').toLowerCase()}: {formatCurrency(remaining)}
+					</p>
 				</footer>
 			</header>
 			{#if expandedIndex === index}
@@ -51,7 +59,7 @@
 					<h2 class="text-lg font-bold">{$_('finances.expenses.expense_details')}</h2>
 					<ul class="mt-1 grid grid-cols-2 gap-3">
 						{#each expenseList as { name, date, amount, type }}
-							{@const usedPercent = ((amount / spent) * 100).toFixed(1)}
+							{@const usedPercent = (amount / spent) * 100}
 							<li
 								class="bg-surface shadow-accent group flex flex-col gap-1 rounded p-4 shadow not-md:col-span-2"
 							>
@@ -75,49 +83,20 @@
 									<div class="touch-or-hover items-center justify-end gap-1">
 										<button
 											aria-label="edit"
-											class="text-primary hover:bg-border cursor-pointer rounded-lg p-2"
+											class="hover:bg-border cursor-pointer rounded-lg p-2 text-blue-500"
 										>
-											<svg
-												class="size-4"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												><path
-													d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-												/><path
-													d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"
-												/></svg
-											>
+											<Edit class="size-4" />
 										</button>
 										<button
 											aria-label="delete"
 											class="text-error hover:bg-border cursor-pointer rounded-lg p-2"
 										>
-											<svg
-												class="size-4"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path
-													d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"
-												/><line x1="10" x2="10" y1="11" y2="17" /><line
-													x1="14"
-													x2="14"
-													y1="11"
-													y2="17"
-												/></svg
-											>
+											<Trash class="size-4" />
 										</button>
 									</div>
 								</div>
 								<div class="flex w-full items-center justify-between gap-2">
-									<p class="text-xl font-semibold">${amount}</p>
+									<p class="text-xl font-semibold">{formatCurrency(amount)}</p>
 									<p>
 										{new Date(date).toLocaleDateString('en-US', {
 											day: 'numeric',
@@ -135,11 +114,12 @@
 								>
 									<div
 										class="h-full rounded-full"
-										style="width:{usedPercent}%; background-color: {color};"
+										style="width:{usedPercent.toFixed(1)}%; background-color: {color};"
 									></div>
 								</div>
 								<span class="text-muted flex flex-col items-start text-xs">
-									{usedPercent} % {$_('common.oftotal')}
+									{formatPercent(usedPercent)}
+									{$_('common.oftotal')}
 								</span>
 							</li>
 						{/each}

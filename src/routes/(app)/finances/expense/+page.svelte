@@ -6,6 +6,7 @@
 	import Table from '$lib/components/shared/Table.svelte';
 	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
 	import { modalIncomeOpen } from '$lib/stores/interactions';
+	import { formatCurrency, formatPercent } from '$lib/utils/format.js';
 	import { AlertTriangle, CreditCard, ShoppingCart, TrendingDown } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -64,24 +65,21 @@
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
 	<StatCard
 		title={$_('common.total')}
-		value="${new Intl.NumberFormat('es-CO').format(totalSpent)}"
-		percentage="+{totalSpentPercentage.toFixed(1)}%"
+		value={formatCurrency(totalSpent)}
+		percentage={`+${formatPercent(totalSpentPercentage)}`}
 	>
 		{#snippet icon()}
 			<TrendingDown class="size-4 text-gray-300" />
 		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
-	<StatCard
-		title={$_('finances.budget.title')}
-		value="${new Intl.NumberFormat('es-CO').format(totalLimit)}"
-	>
+	<StatCard title={$_('finances.budget.title')} value={formatCurrency(totalLimit)}>
 		{#snippet icon()}
 			<CreditCard class="size-4 text-gray-300" />
 		{/snippet}
 		<ProgressBar totalBudget={totalLimit} {totalSpent} />
 	</StatCard>
-	<StatCard title={$_('common.average')} value="${new Intl.NumberFormat('es-CO').format(16)}">
+	<StatCard title={$_('common.average')} value={formatCurrency(16)}>
 		{#snippet icon()}
 			<ShoppingCart class="size-4 text-gray-300" />
 		{/snippet}
