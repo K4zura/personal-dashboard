@@ -47,7 +47,7 @@
 					</label>
 				{:else if field[1] === 'color'}
 					<div class="col-span-2 flex items-end gap-2">
-						<label for={field[0]} class="flex flex-col gap-2 {field[2]}">
+						<label for={field[0]} class="relative flex w-full flex-col gap-2 {field[2]}">
 							<p class="border-secondary border-l-2 px-1 text-xs font-semibold">{field[0]}</p>
 
 							<input
@@ -55,15 +55,15 @@
 								type="text"
 								name={field[0]}
 								id={field[0]}
-								class="bg-border shadow-hover border-none shadow ring-0"
+								class="bg-border shadow-hover w-full border-none shadow ring-0"
 								placeholder={field[0].toLowerCase()}
 							/>
+							<input
+								type={field[1]}
+								bind:value={color}
+								class="absolute right-2 bottom-2 cursor-pointer border-none shadow ring-0"
+							/>
 						</label>
-						<input
-							type={field[1]}
-							bind:value={color}
-							class="bg-border shadow-hover border-none shadow ring-0"
-						/>
 					</div>
 				{:else}
 					<Field id={field[0]} type={field[1]} span={field[2]} />

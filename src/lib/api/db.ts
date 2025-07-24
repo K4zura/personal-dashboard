@@ -60,3 +60,26 @@ export const expense = {
 		return expense;
 	}
 };
+
+export const saving = {
+	async all(locals: App.Locals) {
+		const { data: saving } = await locals.supabase
+			.from('saving')
+			.select()
+			.eq('user_id', locals.user?.id);
+
+		return saving;
+	},
+	async addSaved(newSaved: string) {
+		const { error } = await supabase
+			.from('saving')
+			.update({
+				saved: newSaved
+			})
+			.eq('user_id', store.userID);
+
+		if (error) {
+			console.log(error);
+		}
+	}
+};

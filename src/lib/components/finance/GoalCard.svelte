@@ -1,20 +1,17 @@
 <script lang="ts">
 	import { format } from 'date-fns';
 	import { onMount } from 'svelte';
-	import type { SavingGoal } from '$lib/types/savings';
 	import { _ } from 'svelte-i18n';
-	export let goal: SavingGoal;
+	import * as db from '$lib/api/db';
 
-	let editing = false;
-	let editedGoal = { ...goal };
+	const { goal } = $props();
 
-	let percent = 0;
-	let remaining = 0;
-	let monthsLeft = 0;
-	let daysLeft = 0;
-	let deadlinePassed = false;
-	let newAmount = '';
-	let isCompleted = false;
+	let percent = $state(0);
+	let remaining = $state(0);
+	let monthsLeft = $state(0);
+	let daysLeft = $state(0);
+	let deadlinePassed = $state(false);
+	let isCompleted = $state(false);
 
 	const updateStats = () => {
 		percent = (goal.saved / goal.total) * 100;
@@ -29,7 +26,7 @@
 		deadlinePassed = msLeft < 0;
 	};
 
-	const addSavings = () => {
+	const addSavings = async () => {
 		if (goal.saved + goal.monthly > goal.total) {
 			goal.monthly = goal.total - goal.saved;
 		}
@@ -37,17 +34,19 @@
 			goal.saved += goal.monthly;
 			updateStats();
 		}
+		await db.saving.addSaved(goal.saved);
 	};
 
 	onMount(updateStats);
 </script>
 
-<article class="flex flex-col gap-0.5 px-2">
+<article class="shadow-muted flex flex-col gap-0.5 rounded px-4 py-3 shadow-[0_1px_8px_1px]">
+	<h1 class="text-xl font-semibold">{goal.name}</h1>
 	{#if isCompleted}
 		<div class="absolute inset-0 z-20 flex items-center justify-center rounded backdrop-blur">
 			<div class="relative animate-bounce px-6 py-4 text-center">
 				<h3 class="text-success text-3xl font-extrabold drop-shadow-md">
-					¡{$_('finances.savings.goal')} ({goal.title}) {$_('common.completed')}! 🎉
+					¡{$_('finances.savings.goal')} ({goal.name}) {$_('common.completed')}! 🎉
 				</h3>
 				<p class="mt-2 text-base text-white/90">{$_('finances.savings.goal_completed')}</p>
 			</div>
@@ -59,8 +58,8 @@
 	</div>
 	<div class="bg-border h-3 w-full overflow-x-hidden rounded">
 		<div
-			class="h-full transition-all duration-500 bg-{goal.color}-500 rounded"
-			style="width: {percent}%;"
+			class="h-full rounded transition-all duration-500"
+			style="width: {percent}%; background-color: {goal.color};"
 		></div>
 	</div>
 	<div class="mt-1 flex justify-between text-xs text-gray-300">
@@ -95,7 +94,7 @@
 	</div>
 	<div class="flex gap-2">
 		<button
-			on:click={addSavings}
+			onclick={addSavings}
 			class="bg-accent hover:bg-accent/80 text-surface flex-1 cursor-pointer rounded p-2 font-bold"
 		>
 			{$_('finances.savings.add_goal')}
