@@ -447,3 +447,18 @@ html {
 	background-color: var(--color-dark);
 	color: var(--color-light);
 }
+
+@media (hover: hover) {
+	.touch-or-hover {
+		display: none;
+	}
+	.group:hover .touch-or-hover {
+		display: flex;
+	}
+}
+
+@media (hover: none) {
+	.touch-or-hover {
+		display: flex;
+	}
+}

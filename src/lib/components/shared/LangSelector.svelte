@@ -2,7 +2,7 @@
 	import { changeLocale } from '$lib/i18n';
 	import { store } from '$lib/stores/config.svelte';
 	import { onMount } from 'svelte';
-	import * as db from '$lib/db';
+	import * as db from '$lib/api/db';
 
 	let lang: string = $state(store.lang || 'jp');
 
@@ -15,7 +15,7 @@
 	async function onChangeLang(event: Event) {
 		const select = event.target as HTMLSelectElement;
 		applyLang(select.value);
-		await db.income.changeLang(select.value);
+		await db.config.changeLang(select.value);
 	}
 
 	onMount(async () => {

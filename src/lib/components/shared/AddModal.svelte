@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Field from '$lib/components/ui/Field.svelte';
+	import Select from '$lib/components/ui/Select.svelte';
 	import { modalIncomeOpen } from '$lib/stores/interactions';
 	import { X } from 'lucide-svelte';
 
 	interface Props {
 		title: string;
 		action: string;
-		fields: [title: string, type: string, span: string][];
+		fields: [title: string, type: string, span: string, forType?: string][];
 	}
 	let { title, action, fields }: Props = $props();
 	let color = $state('');
@@ -41,15 +42,7 @@
 					<label for={field[0]} class="flex flex-col gap-2 {field[2]}">
 						<p class="border-secondary border-l-2 px-1 text-xs font-semibold">{field[0]}</p>
 
-						<select
-							id={field[0]}
-							name={field[0]}
-							value="fixed"
-							class="col-span-{field[2]} bg-border shadow-hover border-none shadow ring-0"
-						>
-							<option value="fixed">Fixed</option>
-							<option value="variable">Variable</option>
-						</select>
+						<Select id={field[0]} span={field[2]} forType={field[3]} />
 					</label>
 				{:else if field[1] === 'color'}
 					<div class="col-span-2 flex items-end gap-2">

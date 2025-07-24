@@ -1,43 +1,16 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
-	import type { Expense } from '$lib/utils/data';
 	import { _ } from 'svelte-i18n';
 
-	interface Props {
-		expenses: Expenses[];
-	}
-
-	const { expenses }: Props = $props();
-
-	type Expenses = {
-		category: string;
-		spent: number;
-		budget: number;
-		color: string;
-		expenseList: Expense[];
-	};
-
-	// Mapeo de nombre → clase Tailwind
-	const colorClasses: Record<string, string> = {
-		red: 'bg-red-500',
-		blue: 'bg-blue-500',
-		green: 'bg-green-500',
-		yellow: 'bg-yellow-500',
-		purple: 'bg-purple-500',
-		indigo: 'bg-indigo-500'
-	};
-
-	function getColor(color: string) {
-		return colorClasses[color] ?? 'bg-gray-400';
-	}
+	const { categories } = $props();
 
 	let expandedIndex: number | null = $state(null);
 </script>
 
 <div class="flex w-full flex-col gap-4">
-	{#each expenses as { category, spent, budget, color, expenseList }, index}
-		{@const percentage = (spent / budget) * 100}
-		{@const remaining = budget - spent}
+	{#each categories as { category, spent, limit, color, expenseList }, index}
+		{@const percentage = (spent / limit) * 100}
+		{@const remaining = limit - spent}
 		<article class=" bg-dark rounded-xl shadow-sm select-none">
 			<header
 				role="button"
@@ -50,10 +23,10 @@
 			>
 				<div class="mb-1 flex items-center justify-between">
 					<div class="flex items-center gap-2">
-						<span class={`h-4 w-4 rounded-full ${getColor(color)}`}></span>
+						<span class="h-4 w-4 rounded-full" style="background-color: {color}"></span>
 						<span class="font-medium">{category}</span>
 					</div>
-					<span class="text-sm font-semibold">${spent} / ${budget}</span>
+					<span class="text-sm font-semibold">${spent} / ${limit}</span>
 				</div>
 				<div
 					class="bg-border mb-1 h-3 overflow-hidden rounded-full"
@@ -77,19 +50,21 @@
 				<section class="text-light px-8 pb-6 text-sm transition-all" transition:slide>
 					<h2 class="text-lg font-bold">{$_('finances.expenses.expense_details')}</h2>
 					<ul class="mt-1 grid grid-cols-2 gap-3">
-						{#each expenseList as { title, date, mount, frequency }}
-							{@const usedPercent = ((mount / spent) * 100).toFixed(1)}
-							<li class="bg-surface shadow-accent group flex flex-col gap-1 rounded p-4 shadow">
+						{#each expenseList as { name, date, amount, type }}
+							{@const usedPercent = ((amount / spent) * 100).toFixed(1)}
+							<li
+								class="bg-surface shadow-accent group flex flex-col gap-1 rounded p-4 shadow not-md:col-span-2"
+							>
 								<div role="group" class="flex items-center justify-between">
 									<div class="flex items-center gap-3">
-										<span class={`h-3 w-3 rounded-full ${colorClasses[color]}`}></span>
+										<span class="h-3 w-3 rounded-full" style="background-color: {color}"></span>
 										<div class="flex flex-col items-start">
-											<h3 class="text-base font-semibold">{title}</h3>
+											<h3 class="text-base font-semibold">{name}</h3>
 											<span class="bg-accent text-surface rounded-full px-3 py-1 font-semibold">
-												{frequency.slice(0, 3)}
-												{#if frequency.endsWith('Ocasional')}
+												<!-- {type.slice(0, 3)} -->
+												{#if type.endsWith('ocasional')}
 													{$_('types.occasional')}
-												{:else if frequency.endsWith('Diario')}
+												{:else if type.endsWith('daily')}
 													{$_('types.daily')}
 												{:else}
 													{$_('types.monthly')}
@@ -97,7 +72,7 @@
 											</span>
 										</div>
 									</div>
-									<div class="hidden items-center justify-end gap-1 group-hover:flex">
+									<div class="touch-or-hover items-center justify-end gap-1">
 										<button
 											aria-label="edit"
 											class="text-primary hover:bg-border cursor-pointer rounded-lg p-2"
@@ -142,9 +117,9 @@
 									</div>
 								</div>
 								<div class="flex w-full items-center justify-between gap-2">
-									<p class="text-xl font-semibold">${mount}</p>
+									<p class="text-xl font-semibold">${amount}</p>
 									<p>
-										{date.toLocaleDateString('en-US', {
+										{new Date(date).toLocaleDateString('en-US', {
 											day: 'numeric',
 											month: 'long',
 											year: 'numeric'
@@ -159,8 +134,8 @@
 									aria-valuemax="100"
 								>
 									<div
-										class={`h-full rounded-full ${getColor(color)}`}
-										style="width:{usedPercent}%;"
+										class="h-full rounded-full"
+										style="width:{usedPercent}%; background-color: {color};"
 									></div>
 								</div>
 								<span class="text-muted flex flex-col items-start text-xs">

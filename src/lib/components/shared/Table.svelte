@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type Income from '$lib/types/income';
-	import type { Expense } from '$lib/utils/data';
+	import type { Income, Expense } from '$lib/types/finances';
 	import { _ } from 'svelte-i18n';
 
 	interface Props {
@@ -32,17 +31,16 @@
 					</th>
 					{#if category && 'category' in row}
 						<td class="flex items-center gap-2 px-6 py-4 whitespace-nowrap">
-							<span class={`h-4 w-4 rounded-full bg-${row.category.color}-500`}></span>
-							{row.category.icon}
-							{row.category.name}
+							<span class="h-4 w-4 rounded-full" style="background-color: {row.color}"></span>
+							<!-- {row.category.icon} -->
+							{row.category}
 						</td>
 						<td class="px-6 py-4">
 							<span class="bg-disabled rounded-full px-2 py-1.5 whitespace-nowrap">
-								{row.frequency.slice(0, 3)}
-
-								{#if row.frequency.endsWith('Ocasional')}
+								<!-- {row.type.slice(0, 3)} -->
+								{#if row.type.endsWith('ocasional')}
 									{$_('types.occasional')}
-								{:else if row.frequency.endsWith('Diario')}
+								{:else if row.type.endsWith('daily')}
 									{$_('types.daily')}
 								{:else}
 									{$_('types.monthly')}
@@ -57,14 +55,14 @@
 							>
 						</td>
 					{/if}
-					<td class="px-6 py-4">{row.date}</td>
+					<td class="px-6 py-4">{new Date(row.date).toLocaleDateString('es-CO')}</td>
 					{#if category}
 						<td class="text-error px-6 py-4 font-bold">
-							- ${row.amount.toLocaleString()}
+							- ${row.amount}
 						</td>
 					{:else}
 						<td class="text-success px-6 py-4 font-bold">
-							+ ${row.amount.toLocaleString()}
+							+ ${row.amount}
 						</td>
 					{/if}
 				</tr>

@@ -1,5 +1,5 @@
-import { createSupabase } from './services/supabaseClient';
-import { store } from './stores/config.svelte';
+import { createSupabase } from '../services/supabaseClient';
+import { store } from '../stores/config.svelte';
 
 const supabase = createSupabase(fetch);
 
@@ -11,7 +11,10 @@ export const income = {
 			.eq('user_id', locals.user?.id);
 
 		return income;
-	},
+	}
+};
+
+export const config = {
 	async changeLang(newLang: string) {
 		const { error } = await supabase
 			.from('users')
@@ -35,5 +38,25 @@ export const income = {
 		if (error) {
 			console.log(error);
 		}
+	}
+};
+
+export const expense = {
+	async all(locals: App.Locals) {
+		const { data: expense } = await locals.supabase
+			.from('expense')
+			.select()
+			.eq('user_id', locals.user?.id);
+
+		return expense;
+	},
+
+	async inCategory(locals: App.Locals) {
+		const { data: expense } = await locals.supabase
+			.from('budget')
+			.select(`*, expense(*)`)
+			.eq('user_id', locals.user?.id);
+
+		return expense;
 	}
 };

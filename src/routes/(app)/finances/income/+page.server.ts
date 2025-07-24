@@ -1,4 +1,4 @@
-import * as db from '$lib/db';
+import * as db from '$lib/api/db';
 // import type { PageServerLoad } from './$types';
 
 export const load = async ({ locals }) => {

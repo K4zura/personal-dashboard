@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { Chart, registerables } from 'chart.js';
 	import { _ } from 'svelte-i18n';
-	import type Income from '$lib/types/income';
+	import type { Income } from '$lib/types/finances';
 
 	// Datos y estado
 	interface DataItem {

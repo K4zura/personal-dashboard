@@ -2,13 +2,12 @@
 	import Chart from '$lib/components/widgets/Chart.svelte';
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import type Income from '$lib/types/income.js';
+	import type { Income } from '$lib/types/finances.js';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _, json } from 'svelte-i18n';
 	import AddModal from '$lib/components/shared/AddModal.svelte';
 	import Table from '$lib/components/shared/Table.svelte';
 	import { modalIncomeOpen } from '$lib/stores/interactions.js';
-	import { store } from '$lib/stores/config.svelte.js';
 
 	let totalAmount = $state(0);
 	let totalFixedAmount = $state(0);
@@ -32,7 +31,6 @@
 			const category = item.name;
 			const amount = item.amount;
 
-			// Calcular los totales directamente
 			totalAmount += amount;
 			if (item.type === 'Fixed') totalFixedAmount += amount;
 			if (item.type === 'Variable') totalVariableAmount += amount;
@@ -43,7 +41,6 @@
 				grouped[key] = { year, month };
 			}
 
-			// Acumulamos los montos por categoría
 			grouped[key][category] = (Number(grouped[key][category]) || 0) + amount;
 		}
 
