@@ -1,4 +1,5 @@
 export interface Income {
+	id: string;
 	name: string;
 	type: string;
 	date: Date;
@@ -7,6 +8,7 @@ export interface Income {
 }
 
 export interface Expense {
+	id: string;
 	name: string;
 	type: string;
 	date: Date;
@@ -24,6 +26,7 @@ export interface Budget {
 }
 
 export interface Goal {
+	id: string;
 	name: string;
 	color: string;
 	total: number;

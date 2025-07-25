@@ -17,7 +17,7 @@
 			];
 		} else if (id === 'type') {
 			return [
-				{ value: 'ocasional', label: $_('types.occasional') },
+				{ value: 'occasional', label: $_('types.occasional') },
 				{ value: 'daily', label: $_('types.daily') },
 				{ value: 'monthly', label: $_('types.monthly') }
 			];

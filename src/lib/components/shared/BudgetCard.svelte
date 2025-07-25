@@ -4,7 +4,7 @@
 	import { Edit, Trash } from 'lucide-svelte';
 	import type { Budget } from '$lib/types/finances';
 	import * as db from '$lib/api/db';
-	import { store } from '$lib/stores/config.svelte';
+	import { store } from '$lib/stores/store.svelte';
 
 	interface Props {
 		category: Budget;
@@ -12,14 +12,21 @@
 
 	const { category }: Props = $props();
 	let localCategory: Budget = $state({ ...category });
-	const id_category = category.id;
+	const id_category = localCategory.id;
 
 	const totalSpent = $derived(localCategory.expense.reduce((acc, g) => acc + g.amount, 0));
-	const totalSpentPercentage = $derived((totalSpent / localCategory.limit) * 100);
+	const totalSpentPercentage = $derived(() =>
+		localCategory.limit > 0 ? (totalSpent / localCategory.limit) * 100 : 0
+	);
 
 	const deleteCategory = async () => {
-		await db.budget.deleteCategory(id_category);
-		store.budgets = await db.budget.refresh();
+		try {
+			await db.budget.deleteCategory(id_category);
+			store.budgets = store.budgets.filter((b) => b.id !== id_category);
+		} catch (err) {
+			console.error('Error al eliminar:', err);
+			alert('Hubo un error al eliminar la categoría');
+		}
 	};
 </script>
 
@@ -67,17 +74,17 @@
 		</div>
 	</div>
 	<div class="flex w-full items-center gap-2">
-		<p class="w-11 text-xs">{formatPercent(totalSpentPercentage)}</p>
+		<p class="w-11 text-xs">{formatPercent(totalSpentPercentage())}</p>
 		<div
 			class="bg-border relative mb-1 h-3 w-full overflow-hidden rounded-full"
 			role="progressbar"
-			aria-valuenow={Number(totalSpentPercentage)}
+			aria-valuenow={Number(totalSpentPercentage())}
 			aria-valuemin="0"
 			aria-valuemax="100"
 		>
 			<div
 				class="h-full transition-all duration-300"
-				style={`width: ${totalSpentPercentage}%; background-color: ${localCategory.color}`}
+				style={`width: ${totalSpentPercentage()}%; background-color: ${localCategory.color}`}
 			></div>
 		</div>
 	</div>

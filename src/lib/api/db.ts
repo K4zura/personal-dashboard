@@ -1,6 +1,6 @@
 import type { Budget, Expense, Goal, Income } from '$lib/types/finances';
 import { createSupabase } from '../services/supabaseClient';
-import { store } from '../stores/config.svelte';
+import { storeConfig } from '../stores/config.svelte';
 
 const supabase = createSupabase(fetch);
 
@@ -22,7 +22,7 @@ export const config = {
 			.update({
 				lang: newLang
 			})
-			.eq('id', store.userID);
+			.eq('id', storeConfig.userID);
 
 		if (error) throw new Error(`Error al guardar ahorro: ${error.message}`);
 	},
@@ -33,7 +33,7 @@ export const config = {
 			.update({
 				theme: newTheme
 			})
-			.eq('id', store.userID);
+			.eq('id', storeConfig.userID);
 
 		if (error) throw new Error(`Error al guardar ahorro: ${error.message}`);
 	}
@@ -56,6 +56,16 @@ export const expense = {
 			.eq('user_id', locals.user?.id);
 
 		return expense as Budget[];
+	},
+
+	async delete(id_expense: string) {
+		const { error } = await supabase
+			.from('expense')
+			.delete()
+			.eq('id', id_expense)
+			.eq('user_id', storeConfig.userID);
+
+		if (error) throw new Error(`Error al eliminar gasto: ${error.message}`);
 	}
 };
 
@@ -65,7 +75,7 @@ export const budget = {
 			.from('budget')
 			.delete()
 			.eq('id', id_category)
-			.eq('user_id', store.userID);
+			.eq('user_id', storeConfig.userID);
 
 		if (error) throw new Error(`Error al eliminar categoria: ${error.message}`);
 	},
@@ -73,7 +83,7 @@ export const budget = {
 		const { data: budget } = await supabase
 			.from('budget')
 			.select()
-			.eq('user_id', store.userID)
+			.eq('user_id', storeConfig.userID)
 			.order('id', { ascending: true });
 
 		return budget as Budget[];
@@ -98,7 +108,7 @@ export const saving = {
 				saved: newSaved
 			})
 			.eq('id', id_goal)
-			.eq('user_id', store.userID);
+			.eq('user_id', storeConfig.userID);
 
 		if (error) throw new Error(`Error al guardar ahorro: ${error.message}`);
 	},
@@ -108,7 +118,7 @@ export const saving = {
 			.from('saving')
 			.delete()
 			.eq('id', id_goal)
-			.eq('user_id', store.userID);
+			.eq('user_id', storeConfig.userID);
 
 		if (error) throw new Error(`Error al guardar ahorro: ${error.message}`);
 	},
@@ -117,7 +127,7 @@ export const saving = {
 		const { data: saving } = await supabase
 			.from('saving')
 			.select()
-			.eq('user_id', store.userID)
+			.eq('user_id', storeConfig.userID)
 			.order('id', { ascending: true });
 
 		return saving as Goal[];

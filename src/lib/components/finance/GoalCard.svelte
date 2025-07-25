@@ -1,35 +1,38 @@
 <script lang="ts">
 	import * as db from '$lib/api/db';
-	import { store } from '$lib/stores/config.svelte';
+	import { store } from '$lib/stores/store.svelte';
 	import type { Goal } from '$lib/types/finances';
 	import { formatCurrency, formatPercent } from '$lib/utils/format';
 	import { format } from 'date-fns';
 	import { Edit, Trash } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
-	const { goal } = $props();
-	let localGoal: Goal = $state({ ...goal });
+	interface Props {
+		goal: Goal;
+	}
 
-	let percent = $state(0);
-	let remaining = $state(0);
-	let monthsLeft = $state(0);
+	const { goal }: Props = $props();
+	let localGoal: Goal = $state({ ...goal });
 	let daysLeft = $state(0);
 	let deadlinePassed = $state(false);
-	let isCompleted = $state(false);
-	const id_goal = goal.id;
+	const id_goal = localGoal.id;
 
-	const updateStats = () => {
-		percent = (localGoal.saved / localGoal.total) * 100;
-		remaining = localGoal.total - localGoal.saved;
-		monthsLeft = Math.ceil(remaining / localGoal.monthly);
-		isCompleted = localGoal.saved >= localGoal.total;
+	let percent = $derived((localGoal.saved / localGoal.total) * 100);
+	let remaining = $derived(localGoal.total - localGoal.saved);
+	let monthsLeft = $derived(Math.ceil(remaining / localGoal.monthly));
+	let isCompleted = $derived(localGoal.saved >= localGoal.total);
 
-		const today = new Date();
-		const deadline = new Date(localGoal.deadline);
-		const msLeft = deadline.getTime() - today.getTime();
+	const today = new Date();
+	const deadline = new Date(localGoal.deadline);
+	const msLeft = deadline.getTime() - today.getTime();
+	daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
+	deadlinePassed = msLeft < 0;
+
+	$effect(() => {
+		const msLeft = new Date(localGoal.deadline).getTime() - Date.now();
 		daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
 		deadlinePassed = msLeft < 0;
-	};
+	});
 
 	const addSavings = async () => {
 		const monthlyToAdd = Math.min(localGoal.monthly, localGoal.total - localGoal.saved);
@@ -42,17 +45,13 @@
 			console.error(e);
 		}
 
-		store.goals = await db.saving.refresh();
+		store.goals = store.goals.map((b) => (b.id === id_goal ? localGoal : b));
 	};
 
 	const deleteGoal = async () => {
 		await db.saving.deleteGoal(id_goal);
-		store.goals = await db.saving.refresh();
+		store.goals = store.goals.filter((b) => b.id !== id_goal);
 	};
-
-	$effect(() => {
-		updateStats();
-	});
 </script>
 
 <article
@@ -78,7 +77,7 @@
 	<div class="bg-border h-3 w-full overflow-x-hidden rounded">
 		<div
 			class="h-full rounded transition-all duration-500"
-			style="width: {percent}%; background-color: {localGoal.color};"
+			style={`width: ${percent}%; background-color: ${localGoal.color}`}
 		></div>
 	</div>
 

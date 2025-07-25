@@ -43,7 +43,7 @@
 						<td class="px-6 py-4">
 							<span class="bg-disabled rounded-full px-2 py-1.5 whitespace-nowrap">
 								<!-- {row.type.slice(0, 3)} -->
-								{#if row.type.endsWith('ocasional')}
+								{#if row.type.endsWith('occasional')}
 									{$_('types.occasional')}
 								{:else if row.type.endsWith('daily')}
 									{$_('types.daily')}

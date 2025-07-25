@@ -4,8 +4,8 @@
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
-	import { store } from '$lib/stores/config.svelte.js';
 	import { modalIncomeOpen } from '$lib/stores/interactions';
+	import { store } from '$lib/stores/store.svelte.js';
 	import { formatCurrency } from '$lib/utils/format.js';
 	import { CalendarIcon, PiggyBank, Target, TrendingUp } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
@@ -13,6 +13,7 @@
 	const t = _;
 	const { data } = $props();
 	const { goals } = $derived(data);
+
 	$effect(() => {
 		store.goals = goals;
 	});
@@ -93,7 +94,7 @@
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
 		<div class="grid grid-cols-2 gap-4">
-			{#each store.goals as goal}
+			{#each store.goals as goal (goal.id)}
 				<GoalCard {goal} />
 			{/each}
 		</div>

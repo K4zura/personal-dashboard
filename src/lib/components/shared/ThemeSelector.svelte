@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { store } from '$lib/stores/config.svelte';
+	import { storeConfig } from '$lib/stores/config.svelte';
 	import { onMount } from 'svelte';
 	import * as db from '$lib/api/db';
 
-	let theme: string = $state(store.theme);
+	let theme: string = $state(storeConfig.theme);
 
 	function applyTheme(t: string) {
 		theme = t;

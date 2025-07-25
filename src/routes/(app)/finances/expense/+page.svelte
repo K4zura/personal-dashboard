@@ -6,6 +6,7 @@
 	import Table from '$lib/components/shared/Table.svelte';
 	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
 	import { modalIncomeOpen } from '$lib/stores/interactions';
+	import { store } from '$lib/stores/store.svelte.js';
 	import { formatCurrency, formatPercent } from '$lib/utils/format.js';
 	import { AlertTriangle, CreditCard, ShoppingCart, TrendingDown } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
@@ -15,25 +16,14 @@
 
 	let colors: Record<string, string> = {};
 
-	const categories = $derived(
-		categoryList.map((category) => {
-			let spent = 0;
-			category.expense.map((g: { amount: any }) => (spent += g.amount));
-
-			colors[category.name] = category.color;
-
-			return {
-				category: category.name,
-				spent,
-				limit: category.limit ?? 0,
-				color: category.color,
-				expenseList: category.expense
-			};
-		})
-	);
-
-	const totalSpent = $derived(categories.reduce((acc, e) => acc + e.spent, 0));
-	const totalLimit = $derived(categories.reduce((acc, e) => acc + e.limit, 0));
+	let totalSpent = $state(0);
+	$effect(() => {
+		totalSpent = store.budgets.reduce(
+			(sum, category) => sum + category.expense.reduce((s, e) => s + e.amount, 0),
+			0
+		);
+	});
+	const totalLimit = $derived(store.budgets.reduce((acc, e) => acc + e.limit, 0));
 	const totalSpentPercentage = $derived((totalSpent / totalLimit) * 100);
 </script>
 
@@ -85,7 +75,7 @@
 		{/snippet}
 		{$_('common.based_on_30')}
 	</StatCard>
-	<StatCard title={$_('finances.expenses.categories')} value={categories.length.toString()}>
+	<StatCard title={$_('finances.expenses.categories')} value={store.budgets.length.toString()}>
 		{#snippet icon()}
 			<AlertTriangle class="size-4 text-gray-300" />
 		{/snippet}
@@ -96,7 +86,7 @@
 		subtitle={$_('finances.expenses.category_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		<CategoryCard {categories} />
+		<CategoryCard {categoryList} />
 	</SectionCard>
 	<SectionCard
 		title={$_('finances.expenses.expenses_history')}

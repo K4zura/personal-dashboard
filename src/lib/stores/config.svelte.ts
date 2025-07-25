@@ -1,68 +1,46 @@
-import type { Budget, Goal } from '$lib/types/finances';
-
 export interface Config {
 	lang: string;
 	theme: string;
 	userID: string;
-	goals: Goal[];
-	budgets: Budget[];
 }
 
 const emptyState: Config = {
 	lang: '',
 	theme: 'theme-neo-tokyo',
-	userID: '',
-	goals: [],
-	budgets: []
+	userID: ''
 };
 
 function createStore() {
-	const store = $state<Config>(emptyState);
+	const storeConfig = $state<Config>(emptyState);
 	return {
 		get state() {
-			return store;
+			return storeConfig;
 		},
 
 		get lang() {
-			return store.lang;
+			return storeConfig.lang;
 		},
 
 		set lang(value: string) {
-			store.lang = value;
+			storeConfig.lang = value;
 		},
 
 		get theme() {
-			return store.theme;
+			return storeConfig.theme;
 		},
 
 		set theme(value: string) {
-			store.theme = value;
+			storeConfig.theme = value;
 		},
 
 		get userID() {
-			return store.userID;
+			return storeConfig.userID;
 		},
 
 		set userID(value: string) {
-			store.userID = value;
-		},
-
-		get goals() {
-			return store.goals;
-		},
-
-		set goals(value: Goal[]) {
-			store.goals = value;
-		},
-
-		get budgets() {
-			return store.budgets;
-		},
-
-		set budgets(value: Budget[]) {
-			store.budgets = value;
+			storeConfig.userID = value;
 		}
 	};
 }
 
-export const store = createStore();
+export const storeConfig = createStore();

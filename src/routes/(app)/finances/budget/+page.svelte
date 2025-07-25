@@ -4,10 +4,10 @@
 	import SectionCard from '$lib/components/shared/SectionCard.svelte';
 	import StatCard from '$lib/components/shared/StatCard.svelte';
 	import { modalIncomeOpen } from '$lib/stores/interactions';
-	import { formatCurrency, formatPercent } from '$lib/utils/format.js';
-	import { AlertTriangle, DollarSign, Edit, Target, Trash } from 'lucide-svelte';
+	import { store } from '$lib/stores/store.svelte';
+	import { formatCurrency } from '$lib/utils/format.js';
+	import { AlertTriangle, DollarSign, Target } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
-	import { store } from '$lib/stores/config.svelte';
 
 	const { data } = $props();
 	const { categories } = $derived(data);
@@ -67,7 +67,7 @@
 		colSpan="lg:col-span-3"
 	>
 		<div class="flex flex-col gap-4">
-			{#each store.budgets as category}
+			{#each store.budgets as category (category.id)}
 				<BudgetCard {category} />
 			{/each}
 		</div>
