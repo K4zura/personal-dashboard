@@ -4,7 +4,7 @@ import { register, init, getLocaleFromNavigator, locale, waitLocale } from 'svel
 register('en', () => import('./en.json'));
 register('es', () => import('./es.json'));
 register('fr', () => import('./fr.json'));
-register('jp', () => import('./jp.json'));
+register('ja', () => import('./ja.json'));
 
 init({
 	fallbackLocale: 'es',

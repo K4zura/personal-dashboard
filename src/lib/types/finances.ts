@@ -16,6 +16,7 @@ export interface Expense {
 }
 
 export interface Budget {
+	id: string;
 	name: string;
 	color: string;
 	limit: number;

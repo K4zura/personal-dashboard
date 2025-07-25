@@ -1,17 +1,19 @@
-import type { Goal } from '$lib/types/savings';
+import type { Budget, Goal } from '$lib/types/finances';
 
 export interface Config {
 	lang: string;
 	theme: string;
 	userID: string;
 	goals: Goal[];
+	budgets: Budget[];
 }
 
 const emptyState: Config = {
 	lang: '',
 	theme: 'theme-neo-tokyo',
 	userID: '',
-	goals: []
+	goals: [],
+	budgets: []
 };
 
 function createStore() {
@@ -51,6 +53,14 @@ function createStore() {
 
 		set goals(value: Goal[]) {
 			store.goals = value;
+		},
+
+		get budgets() {
+			return store.budgets;
+		},
+
+		set budgets(value: Budget[]) {
+			store.budgets = value;
 		}
 	};
 }

@@ -59,6 +59,27 @@ export const expense = {
 	}
 };
 
+export const budget = {
+	async deleteCategory(id_category: string) {
+		const { error } = await supabase
+			.from('budget')
+			.delete()
+			.eq('id', id_category)
+			.eq('user_id', store.userID);
+
+		if (error) throw new Error(`Error al eliminar categoria: ${error.message}`);
+	},
+	async refresh() {
+		const { data: budget } = await supabase
+			.from('budget')
+			.select()
+			.eq('user_id', store.userID)
+			.order('id', { ascending: true });
+
+		return budget as Budget[];
+	}
+};
+
 export const saving = {
 	async all(locals: App.Locals) {
 		const { data: saving } = await locals.supabase

@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 	import * as db from '$lib/api/db';
 
-	let lang: string = $state(store.lang || 'jp');
+	let lang: string = $state(store.lang || 'ja');
 
 	function applyLang(l: string) {
 		lang = l;
@@ -28,8 +28,8 @@
 	onchange={onChangeLang}
 	class="bg-surface text-light rounded border-0 py-1 pr-7 text-sm ring-0"
 >
-	<option value="en">🇺🇸</option>
-	<option value="es">🇪🇸</option>
-	<option value="fr">🇫🇷</option>
-	<option value="jp">🇯🇵</option>
+	<option value="en">🇺🇸 en</option>
+	<option value="es">🇪🇸 es</option>
+	<option value="fr">🇫🇷 fr</option>
+	<option value="ja">🇯🇵 ja</option>
 </select>
