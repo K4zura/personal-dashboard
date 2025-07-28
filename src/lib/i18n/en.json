@@ -51,7 +51,8 @@
 			"alternative": "ALTERNATIVE_ACCESS_METHODS",
 			"existing_user": "EXISTING USER?",
 			"login_now": "LOGIN_NOW"
-		}
+		},
+		"logout": "Logout"
 	},
 	"dashboard": {
 		"title": "Dashboard",

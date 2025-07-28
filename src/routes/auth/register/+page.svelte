@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Field from '$lib/components/auth/Field.svelte';
-	import Header from '$lib/components/auth/Header.svelte';
-	import SocialLinks from '$lib/components/auth/SocialLinks.svelte';
+	import Field from '$lib/features/auth/components/Field.svelte';
+	import Header from '$lib/features/auth/components/Header.svelte';
+	import SocialLinks from '$lib/features/auth/components/SocialLinks.svelte';
 	import { _ } from 'svelte-i18n';
 </script>
 

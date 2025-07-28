@@ -1,8 +1,7 @@
 <script lang="ts">
-	import ProjectCard from '$lib/components/shared/ProjectCard.svelte';
-	import SectionCard from '$lib/components/shared/SectionCard.svelte';
-	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import { AlertCircle, CalendarIcon, CheckCircle, Clock, FolderOpen } from 'lucide-svelte';
+	import { ProjectCard } from '$lib/features/productivity';
+	import { SectionCard, StatCard } from '$lib/ui';
+	import { AlertCircle, CheckCircle, Clock, FolderOpen } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
 	type Project = {
@@ -49,9 +48,16 @@
 	</StatCard>
 	<!--  -->
 	<!-- CARD SECTIONS -->
-	<ProjectCard {project}></ProjectCard>
-	<ProjectCard {project}></ProjectCard>
-	<ProjectCard {project}></ProjectCard>
-	<ProjectCard {project}></ProjectCard>
-	<!-- <SectionCard title="Creation of Dashboard" subtitle="mini project" colSpan="">a</SectionCard> -->
+	<SectionCard
+		title="Creation of Dashboard"
+		subtitle="mini project"
+		colSpan="sm:col-span-2 xl:col-span-4"
+	>
+		<div class="grid w-full grid-cols-4 gap-4">
+			<ProjectCard {project}></ProjectCard>
+			<ProjectCard {project}></ProjectCard>
+			<ProjectCard {project}></ProjectCard>
+			<ProjectCard {project}></ProjectCard>
+		</div>
+	</SectionCard>
 </div>

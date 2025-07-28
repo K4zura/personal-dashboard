@@ -1,11 +1,9 @@
 <script lang="ts">
-	import '../../app.css';
 	import '$lib/i18n';
+	import { LangSelect, Loader, ThemeSelect } from '$lib/ui';
+	import '$styles/app.css';
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
-	import ThemeSelector from '$lib/components/shared/ThemeSelector.svelte';
-	import LangSelector from '$lib/components/shared/LangSelector.svelte';
-	import Loader from '$lib/components/layout/Loader.svelte';
 
 	let { children } = $props();
 	let loading = $state(true);
@@ -27,8 +25,8 @@
 {:else}
 	<main class="bg-dark relative flex min-h-dvh flex-col items-center justify-center gap-3 px-7">
 		<div class="flex gap-2 self-center">
-			<ThemeSelector />
-			<LangSelector />
+			<ThemeSelect />
+			<LangSelect />
 		</div>
 		<div
 			class="bg-surface border-primary relative flex h-min w-full max-w-[450px] min-w-80 flex-col items-center overflow-hidden border-4 px-8 py-6"

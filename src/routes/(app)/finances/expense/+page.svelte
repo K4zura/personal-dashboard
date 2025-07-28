@@ -1,13 +1,8 @@
 <script lang="ts">
-	import CategoryCard from '$lib/components/finance/CategoryCard.svelte';
-	import AddModal from '$lib/components/shared/AddModal.svelte';
-	import SectionCard from '$lib/components/shared/SectionCard.svelte';
-	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import Table from '$lib/components/shared/Table.svelte';
-	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
-	import { modalIncomeOpen } from '$lib/stores/interactions';
-	import { store } from '$lib/stores/store.svelte.js';
-	import { formatCurrency, formatPercent } from '$lib/utils/format.js';
+	import { ExpenseCategory, store, Table } from '$lib/features/finance';
+	import { modalIncomeOpen } from '$lib/shared/stores/interactions.js';
+	import { formatCurrency, formatPercent } from '$lib/shared/utils/format.js';
+	import { AddModal, ProgressBar, SectionCard, StatCard } from '$lib/ui';
 	import { AlertTriangle, CreditCard, ShoppingCart, TrendingDown } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -86,7 +81,7 @@
 		subtitle={$_('finances.expenses.category_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		<CategoryCard {categoryList} />
+		<ExpenseCategory {categoryList} />
 	</SectionCard>
 	<SectionCard
 		title={$_('finances.expenses.expenses_history')}

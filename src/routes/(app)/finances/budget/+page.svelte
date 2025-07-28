@@ -1,11 +1,8 @@
 <script lang="ts">
-	import AddModal from '$lib/components/shared/AddModal.svelte';
-	import BudgetCard from '$lib/components/shared/BudgetCard.svelte';
-	import SectionCard from '$lib/components/shared/SectionCard.svelte';
-	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import { modalIncomeOpen } from '$lib/stores/interactions';
-	import { store } from '$lib/stores/store.svelte';
-	import { formatCurrency } from '$lib/utils/format.js';
+	import { BudgetCard, store } from '$lib/features/finance';
+	import { modalIncomeOpen } from '$lib/shared/stores/interactions.js';
+	import { formatCurrency } from '$lib/shared/utils/format.js';
+	import { AddModal, SectionCard, StatCard } from '$lib/ui';
 	import { AlertTriangle, DollarSign, Target } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 

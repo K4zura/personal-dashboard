@@ -1,18 +1,15 @@
 <script lang="ts">
 	import { afterNavigate, beforeNavigate, invalidate } from '$app/navigation';
-	import Loader from '$lib/components/layout/Loader.svelte';
-	import SideBar from '$lib/components/layout/SideBar.svelte';
-	import PageTransition from '$lib/components/transitions/PageTransition.svelte';
+	import { Header, PageTransition, SideBar, storeConfig } from '$lib/features/layout';
 	import '$lib/i18n';
 	import { createSupabase } from '$lib/services/supabaseClient';
-	import { sideBarOpen } from '$lib/stores/interactions';
-	import { setSession } from '$lib/stores/session';
+	import { sideBarOpen } from '$lib/shared/stores/interactions.js';
+	import { setSession } from '$lib/shared/stores/session.js';
+	import { Loader } from '$lib/ui';
+	import '$styles/app.css';
 	import { Menu } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import { waitLocale } from 'svelte-i18n';
-	import '../../app.css';
-	import Header from '$lib/components/layout/Header.svelte';
-	import { storeConfig } from '$lib/stores/config.svelte';
 
 	const supabase = createSupabase(fetch);
 

@@ -51,7 +51,8 @@
 			"alternative": "MÉTHODES_D'ACCÈS_ALTERNATIVES",
 			"existing_user": "UTILISATEUR EXISTANT ?",
 			"login_now": "SE_CONNECTER_MAINTENANT"
-		}
+		},
+		"logout": "Déconnexion"
 	},
 	"dashboard": {
 		"title": "Tableau de bord",

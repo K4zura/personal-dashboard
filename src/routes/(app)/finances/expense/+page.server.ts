@@ -1,6 +1,5 @@
-import * as db from '$lib/api/db';
-import type { Budget, Expense } from '$lib/types/finances.js';
-// import type { PageServerLoad } from './$types';
+import type { Budget, Expense } from '$lib/features/finance';
+import { db } from '$lib/features/finance';
 
 export const load = async ({ locals }) => {
 	const expense: Expense[] = await db.expense.all(locals);

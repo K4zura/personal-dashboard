@@ -51,7 +51,8 @@
 			"alternative": "MÉTODOS_DE_ACCESO_ALTERNATIVOS",
 			"existing_user": "¿USUARIO EXISTENTE?",
 			"login_now": "INICIA_SESIÓN_AHORA"
-		}
+		},
+		"logout": "Cerrar sesión"
 	},
 	"dashboard": {
 		"title": "Panel",

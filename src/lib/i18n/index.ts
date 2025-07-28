@@ -1,5 +1,4 @@
-import { storeConfig } from '$lib/stores/config.svelte';
-import { register, init, getLocaleFromNavigator, locale, waitLocale } from 'svelte-i18n';
+import { getLocaleFromNavigator, init, locale, register, waitLocale } from 'svelte-i18n';
 
 register('en', () => import('./en.json'));
 register('es', () => import('./es.json'));
@@ -8,7 +7,7 @@ register('ja', () => import('./ja.json'));
 
 init({
 	fallbackLocale: 'es',
-	initialLocale: storeConfig.lang || getLocaleFromNavigator()
+	initialLocale: getLocaleFromNavigator()
 });
 
 export const changeLocale = async (lang: string) => {

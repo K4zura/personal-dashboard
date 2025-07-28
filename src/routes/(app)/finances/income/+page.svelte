@@ -1,12 +1,9 @@
 <script lang="ts">
-	import AddModal from '$lib/components/shared/AddModal.svelte';
-	import SectionCard from '$lib/components/shared/SectionCard.svelte';
-	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import Table from '$lib/components/shared/Table.svelte';
-	import Chart from '$lib/components/widgets/Chart.svelte';
-	import { modalIncomeOpen } from '$lib/stores/interactions.js';
-	import type { Income } from '$lib/types/finances.js';
-	import { formatCurrency } from '$lib/utils/format.js';
+	import type { Income } from '$lib/features/finance';
+	import { IncomeChart, Table } from '$lib/features/finance';
+	import { modalIncomeOpen } from '$lib/shared/stores/interactions.js';
+	import { formatCurrency } from '$lib/shared/utils/format.js';
+	import { AddModal, SectionCard, StatCard } from '$lib/ui';
 	import { DollarSign, Tag, TrendingUp, Wallet } from 'lucide-svelte';
 	import { _, json } from 'svelte-i18n';
 
@@ -105,7 +102,7 @@
 		subtitle={$_('finances.income.chart_desc')}
 		colSpan="sm:col-span-2 xl:col-span-4"
 	>
-		<Chart data={chartData} incomeData={incomeList} />
+		<IncomeChart data={chartData} incomeData={incomeList} />
 	</SectionCard>
 	<SectionCard
 		title={$_('finances.income.income_history')}

@@ -1,12 +1,8 @@
 <script lang="ts">
-	import GoalCard from '$lib/components/finance/GoalCard.svelte';
-	import AddModal from '$lib/components/shared/AddModal.svelte';
-	import SectionCard from '$lib/components/shared/SectionCard.svelte';
-	import StatCard from '$lib/components/shared/StatCard.svelte';
-	import ProgressBar from '$lib/components/ui/ProgressBar.svelte';
-	import { modalIncomeOpen } from '$lib/stores/interactions';
-	import { store } from '$lib/stores/store.svelte.js';
-	import { formatCurrency } from '$lib/utils/format.js';
+	import { SavingCard, store } from '$lib/features/finance';
+	import { modalIncomeOpen } from '$lib/shared/stores/interactions.js';
+	import { formatCurrency } from '$lib/shared/utils/format.js';
+	import { AddModal, ProgressBar, SectionCard, StatCard } from '$lib/ui';
 	import { CalendarIcon, PiggyBank, Target, TrendingUp } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -95,7 +91,7 @@
 	>
 		<div class="grid grid-cols-2 gap-4">
 			{#each store.goals as goal (goal.id)}
-				<GoalCard {goal} />
+				<SavingCard {goal} />
 			{/each}
 		</div>
 	</SectionCard>

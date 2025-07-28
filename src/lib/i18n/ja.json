@@ -51,7 +51,8 @@
 			"alternative": "代替アクセス方法",
 			"existing_user": "既存のユーザーですか？",
 			"login_now": "今すぐログイン"
-		}
+		},
+		"logout": "ログアウト"
 	},
 	"dashboard": {
 		"title": "ダッシュボード",
