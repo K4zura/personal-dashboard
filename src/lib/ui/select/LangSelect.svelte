@@ -26,7 +26,7 @@
 <select
 	bind:value={lang}
 	onchange={onChangeLang}
-	class="bg-surface text-light rounded border-0 py-1 pr-7 text-sm ring-0"
+	class="bg-bg-secondary text-text rounded border-0 py-1 pr-7 text-sm ring-0"
 >
 	<option value="en">🇺🇸 en</option>
 	<option value="es">🇪🇸 es</option>

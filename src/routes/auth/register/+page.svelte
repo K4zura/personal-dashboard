@@ -19,18 +19,18 @@
 	<button
 		class="bg-primary group relative my-3 w-full cursor-pointer overflow-hidden rounded py-2 font-bold"
 	>
-		<p class="text-light relative z-10">{$_('auth.register.start')}</p>
+		<p class="text-text relative z-10">{$_('auth.register.start')}</p>
 		<div
-			class="bg-accent absolute inset-0 h-full w-0 transition-all duration-300 group-hover:w-full"
+			class="bg-primary-hover absolute inset-0 h-full w-0 transition-all duration-300 group-hover:w-full"
 		></div>
 	</button>
 </form>
 
 <SocialLinks />
 
-<p class="text-xs sm:text-sm">{$_('auth.register.existing_user')}</p>
+<p class="text-text text-xs sm:text-sm">{$_('auth.register.existing_user')}</p>
 <a
 	href="/auth/login"
-	class="text-primary hover:drop-shadow-secondary text-xs font-semibold drop-shadow-sm drop-shadow-transparent sm:text-sm"
+	class="text-primary hover:drop-shadow-primary-hover text-xs font-semibold drop-shadow-sm drop-shadow-transparent sm:text-sm"
 	>{$_('auth.register.login_now')}</a
 >

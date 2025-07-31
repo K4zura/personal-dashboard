@@ -16,25 +16,25 @@
 	<Field type="password" id="password">{$_('auth.login.field_2')}</Field>
 	<a
 		href="/"
-		class="text-light hover:drop-shadow-primary -translate-y-1 self-end px-2 text-xs font-semibold drop-shadow-md drop-shadow-transparent sm:text-sm lg:-translate-y-1"
+		class="text-text-secondary hover:drop-shadow-primary -translate-y-1 self-end px-2 text-xs font-semibold drop-shadow-md drop-shadow-transparent sm:text-sm lg:-translate-y-1"
 		>{$_('auth.login.forgot_password')}</a
 	>
 
 	<button
 		class="bg-primary group relative my-3 w-full cursor-pointer overflow-hidden rounded py-1 font-bold not-sm:text-sm sm:py-2"
 	>
-		<p class="text-light relative z-10">{$_('auth.login.start')}</p>
+		<p class="text-text relative z-10">{$_('auth.login.start')}</p>
 		<div
-			class="bg-accent absolute inset-0 h-full w-0 transition-all duration-300 group-hover:w-full"
+			class="bg-primary-hover absolute inset-0 h-full w-0 transition-all duration-300 group-hover:w-full"
 		></div>
 	</button>
 </form>
 
 <SocialLinks />
 
-<p class="text-xs sm:text-sm">{$_('auth.login.new_user')}</p>
+<p class="text-text text-xs sm:text-sm">{$_('auth.login.new_user')}</p>
 <a
 	href="/auth/register"
-	class="text-primary hover:drop-shadow-secondary text-xs font-semibold drop-shadow-sm drop-shadow-transparent sm:text-sm"
+	class="text-primary hover:drop-shadow-primary-hover text-xs font-semibold drop-shadow-sm drop-shadow-transparent sm:text-sm"
 	>{$_('auth.login.register_now')}</a
 >
