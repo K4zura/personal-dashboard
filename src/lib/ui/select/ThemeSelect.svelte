@@ -14,7 +14,10 @@
 	async function onChange(event: Event) {
 		const select = event.target as HTMLSelectElement;
 		applyTheme(select.value);
-		await db.config.changeTheme(select.value);
+		storeConfig.theme = select.value;
+		if (storeConfig.userID !== '') {
+			await db.config.changeTheme(select.value);
+		}
 	}
 
 	onMount(async () => {
