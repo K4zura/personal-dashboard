@@ -6,7 +6,7 @@ export interface Config {
 
 const emptyState: Config = {
 	lang: '',
-	theme: 'theme-sakura',
+	theme: 'theme-carbon',
 	userID: ''
 };
 

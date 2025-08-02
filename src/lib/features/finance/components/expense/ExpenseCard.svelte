@@ -2,20 +2,20 @@
 	import type { Expense } from '$lib/features/finance';
 	import { db, store } from '$lib/features/finance';
 	import { formatCurrency, formatPercent } from '$lib/shared/utils/format';
+	import { Badge } from '$lib/ui';
+	import ProgressBar from '$lib/ui/ProgressBar.svelte';
 	import { Edit, Trash } from 'lucide-svelte';
 	import { _ } from 'svelte-i18n';
 
 	interface Props {
 		expense: Expense;
-		percentage: number;
 		spent: number;
 		color: string;
 		id_category: string;
 	}
 
-	const { expense, percentage, spent, color, id_category }: Props = $props();
+	const { expense, spent, color, id_category }: Props = $props();
 	let localExpense = $state({ ...expense });
-	const usedPercent = (localExpense.amount / spent) * 100;
 	const id_expense = localExpense.id;
 
 	const deleteExpense = async () => {
@@ -37,16 +37,17 @@
 	};
 </script>
 
-<li class="bg-surface shadow-accent group flex flex-col gap-1 rounded p-4 shadow not-md:col-span-2">
-	<div role="group" class="flex items-center justify-between">
+<li class="bg-card-bg shadow-accent group flex flex-col gap-1 rounded p-4 shadow not-md:col-span-2">
+	<div role="group" class="mb-1 flex items-center justify-between">
 		<div class="flex items-center gap-3">
 			<span class="h-3 w-3 rounded-full" style="background-color: {color}"></span>
 			<div class="flex flex-col items-start">
 				<h3 class="text-base font-semibold">{localExpense.name}</h3>
-				<span class="bg-accent text-surface rounded-full px-3 py-1 font-semibold">
-					<!-- {type.slice(0, 3)} -->
-					{$_('types.' + localExpense.type)}
-				</span>
+				<Badge
+					text={$_('types.' + localExpense.type)}
+					color="bg-accent text-card-bg"
+					rounded="-lg font-semibold"
+				/>
 			</div>
 		</div>
 		<div class="touch-or-hover items-center justify-end gap-1">
@@ -72,20 +73,6 @@
 			})}
 		</p>
 	</div>
-	<div
-		class="bg-border h-2 w-full rounded-full"
-		role="progressbar"
-		aria-valuenow={Number(percentage)}
-		aria-valuemin="0"
-		aria-valuemax="100"
-	>
-		<div
-			class="h-full rounded-full"
-			style="width:{usedPercent.toFixed(1)}%; background-color: {color};"
-		></div>
-	</div>
-	<span class="text-muted flex flex-col items-start text-xs">
-		{formatPercent(usedPercent)}
-		{$_('common.oftotal')}
-	</span>
+
+	<ProgressBar totalSpent={spent} totalBudget={localExpense.amount} {color} />
 </li>

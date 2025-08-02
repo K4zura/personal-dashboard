@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SavingCard, store } from '$lib/features/finance';
+	import { SavingCard, store, type Goal } from '$lib/features/finance';
 	import { modalIncomeOpen } from '$lib/shared/stores/interactions.js';
 	import { formatCurrency } from '$lib/shared/utils/format.js';
 	import { AddModal, ProgressBar, SectionCard, StatCard } from '$lib/ui';
@@ -43,9 +43,9 @@
 />
 
 <div class="flex items-center justify-between">
-	<h1 class="text-primary text-xl font-bold">{$_('finances.savings.title')}</h1>
+	<h1 class="text-secondary text-xl font-bold">{$_('finances.savings.title')}</h1>
 	<button
-		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
+		class="bg-primary text-button-text hover:bg-primary-hover cursor-pointer rounded px-3 py-1.5 text-sm"
 		onclick={() => ($modalIncomeOpen = true)}
 		>{$_('finances.savings.add')}
 	</button>
@@ -58,28 +58,28 @@
 		percentage="+8.2%"
 	>
 		{#snippet icon()}
-			<PiggyBank class="size-4 text-gray-300" />
+			<PiggyBank class="text-text-secondary size-4" />
 		{/snippet}
 		{$t('common.vs_last_month')}
 	</StatCard>
 
 	<StatCard title={$t('finances.savings.total_goal')} value={formatCurrency(totalSaving())}>
 		{#snippet icon()}
-			<Target class="size-4 text-gray-300" />
+			<Target class="text-text-secondary size-4" />
 		{/snippet}
 		<ProgressBar totalBudget={totalSaving()} totalSpent={totalBudget()} />
 	</StatCard>
 
 	<StatCard title={$t('finances.savings.monthly_savings')} value={formatCurrency(monthlySaving())}>
 		{#snippet icon()}
-			<TrendingUp class="size-4 text-gray-300" />
+			<TrendingUp class="text-text-secondary size-4" />
 		{/snippet}
 		{$t('finances.savings.sum_all_goals')}
 	</StatCard>
 
 	<StatCard title={$t('finances.savings.active')} value={store.goals.length.toString()}>
 		{#snippet icon()}
-			<CalendarIcon class="size-4 text-gray-300" />
+			<CalendarIcon class="text-text-secondary size-4" />
 		{/snippet}
 		0 {$t('common.completed').toLowerCase()}
 	</StatCard>

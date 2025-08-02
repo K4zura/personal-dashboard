@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Field from '$lib/features/auth/components/Field.svelte';
-	import Header from '$lib/features/auth/components/Header.svelte';
-	import SocialLinks from '$lib/features/auth/components/SocialLinks.svelte';
+	import { StartButton, Field, Header, SocialLinks } from '$lib/features/auth';
 	import { _ } from 'svelte-i18n';
 </script>
 
@@ -11,23 +9,18 @@
 
 <Header title={$_('auth.login.title')} subtitle={$_('auth.login.subtitle')} />
 
-<form method="POST" action="/auth/login/email" class="flex w-full flex-col">
+<form method="POST" action="/auth/login/email" class="flex w-full flex-col gap-2">
 	<Field type="email" id="email">{$_('auth.login.field_1')}</Field>
 	<Field type="password" id="password">{$_('auth.login.field_2')}</Field>
 	<a
 		href="/"
-		class="text-text-secondary hover:drop-shadow-primary -translate-y-1 self-end px-2 text-xs font-semibold drop-shadow-md drop-shadow-transparent sm:text-sm lg:-translate-y-1"
+		class="text-text-secondary hover:drop-shadow-primary self-end text-xs font-semibold drop-shadow-md drop-shadow-transparent sm:text-sm"
 		>{$_('auth.login.forgot_password')}</a
 	>
 
-	<button
-		class="bg-primary group relative my-3 w-full cursor-pointer overflow-hidden rounded py-1 font-bold not-sm:text-sm sm:py-2"
-	>
-		<p class="text-text relative z-10">{$_('auth.login.start')}</p>
-		<div
-			class="bg-primary-hover absolute inset-0 h-full w-0 transition-all duration-300 group-hover:w-full"
-		></div>
-	</button>
+	<StartButton>
+		{$_('auth.login.start')}
+	</StartButton>
 </form>
 
 <SocialLinks />

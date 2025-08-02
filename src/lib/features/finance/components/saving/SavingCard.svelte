@@ -53,9 +53,7 @@
 	};
 </script>
 
-<article
-	class="shadow-muted relative flex flex-col gap-0.5 rounded px-4 py-3 shadow-[0_1px_8px_1px]"
->
+<article class="bg-card-bg relative flex flex-col gap-0.5 rounded px-4 py-3">
 	<h1 class="text-xl font-semibold">{localGoal.name}</h1>
 	{#if isCompleted}
 		<div class="absolute inset-0 z-20 flex items-center justify-center rounded backdrop-blur">
@@ -63,7 +61,7 @@
 				<h3 class="text-success text-3xl font-extrabold drop-shadow-md">
 					¡{$_('finances.savings.goal')} ({localGoal.name}) {$_('common.completed')}! 🎉
 				</h3>
-				<p class="mt-2 text-base text-white/90">{$_('finances.savings.goal_completed')}</p>
+				<p class="text-text-secondary mt-2 text-base">{$_('finances.savings.goal_completed')}</p>
 			</div>
 		</div>
 	{/if}
@@ -80,7 +78,7 @@
 		></div>
 	</div>
 
-	<div class="mt-1 flex justify-between text-xs text-gray-300">
+	<div class="text-text-secondary mt-1 flex justify-between text-xs">
 		<p>{formatCurrency(localGoal.saved)}</p>
 		<p>{formatCurrency(localGoal.total)}</p>
 	</div>
@@ -96,7 +94,10 @@
 		</div>
 		<div>
 			<p class="text-accent text-sm font-semibold">{$_('finances.savings.remaining_months')}</p>
-			<p class="text-light font-bold">{monthsLeft} {$_('calendar.month2').toLowerCase()}</p>
+			<p class="text-text-secondary font-bold">
+				{monthsLeft}
+				{$_('calendar.month2').toLowerCase()}
+			</p>
 		</div>
 		<div>
 			<p class="text-accent text-sm font-semibold">{$_('finances.savings.days_until_deadline')}</p>
@@ -110,13 +111,15 @@
 
 	<div class="border-border mt-2 flex justify-between border-t py-1.5 text-sm">
 		<p class="text-accent font-bold">{$_('common.deadline')}:</p>
-		<p class=" text-light font-semibold">{format(new Date(localGoal.deadline), 'MM/dd/yyyy')}</p>
+		<p class=" text-text-secondary font-semibold">
+			{format(new Date(localGoal.deadline), 'MM/dd/yyyy')}
+		</p>
 	</div>
 
 	<div class="flex gap-2">
 		<button
 			onclick={addSavings}
-			class="bg-accent hover:bg-accent/80 text-surface flex-1 cursor-pointer rounded p-2 font-bold"
+			class="bg-secondary hover:bg-primary-hover text-button-text flex-1 cursor-pointer rounded p-2 font-bold"
 		>
 			{$_('finances.savings.add_goal')}
 		</button>

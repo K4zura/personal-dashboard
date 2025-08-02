@@ -7,12 +7,13 @@
 		Cross,
 		Flame,
 		Flower,
+		Goal,
 		Lightbulb,
 		Popsicle,
 		Radical,
 		ReceiptJapaneseYen,
+		Satellite,
 		Skull,
-		Sparkle,
 		Square,
 		Swords
 	} from 'lucide-svelte';
@@ -26,12 +27,12 @@
 		{
 			title: 'theme-dark',
 			icon: Skull,
-			rotate: 45
+			rotate: 315
 		},
 		{
 			title: 'theme-jinwoo',
 			icon: Swords,
-			rotate: 225
+			rotate: 135
 		},
 		{
 			title: 'theme-dracula',
@@ -56,7 +57,7 @@
 		{
 			title: 'theme-ice-blue',
 			icon: Popsicle,
-			rotate: 45
+			rotate: 50
 		},
 		{
 			title: 'theme-neo-tokyo',
@@ -71,12 +72,12 @@
 		{
 			title: 'theme-carbon',
 			icon: Flame,
-			rotate: 0
+			rotate: 335
 		},
 		{
 			title: 'theme-galaxy',
-			icon: Sparkle, // or Satellite
-			rotate: 25
+			icon: Satellite, // or Satellite
+			rotate: -90
 		},
 		{
 			title: 'theme-void-glow',
@@ -85,7 +86,7 @@
 		},
 		{
 			title: 'theme-inkwell',
-			icon: Radical,
+			icon: Goal,
 			rotate: 45
 		}
 	];
@@ -108,22 +109,22 @@
 </svelte:head>
 
 {#if loading}
-	<div class="flex h-screen items-center justify-center">
+	<div class="bg-bg flex h-screen items-center justify-center">
 		<Loader />
 	</div>
 {:else}
 	<main class="bg-bg relative flex min-h-dvh flex-col items-center justify-center gap-3 px-7">
 		<div class="absolute inset-0 grid h-full w-full grid-cols-2 items-center">
 			{#if Figure}
-				<Figure class="text-info mx-auto size-24" style={`rotate: -${figureInfo?.rotate}deg`} />
-				<Figure class="text-accent mx-auto size-24" style={`rotate: ${figureInfo?.rotate}deg`} />
+				<Figure class="text-info mx-auto size-24" style={`rotate: ${figureInfo?.rotate}deg`} />
+				<Figure class="text-accent mx-auto size-24" style={`rotate: -${figureInfo?.rotate}deg`} />
 				<Figure
-					class="text-error mx-auto size-24"
-					style={`rotate: -${figureInfo?.rotate !== 0 ? (figureInfo?.rotate as number) + 90 : 0}deg`}
+					class="text-error mx-auto size-24 -scale-y-100"
+					style={`transform: scaleX(-1); rotate: -${figureInfo?.rotate}deg`}
 				/>
 				<Figure
-					class="text-success mx-auto size-24"
-					style={`rotate: ${figureInfo?.rotate !== 0 ? (figureInfo?.rotate as number) + 90 : 0}deg`}
+					class="text-success mx-auto size-24 -scale-y-100"
+					style={`transform: scaleX(-1);rotate: ${figureInfo?.rotate}deg`}
 				/>
 			{/if}
 		</div>

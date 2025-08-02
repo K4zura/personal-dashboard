@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Expense, Income } from '$lib/features/finance';
 	import { formatCurrency } from '$lib/shared/utils/format';
+	import { Badge } from '$lib/ui';
 	import { _ } from 'svelte-i18n';
 
 	interface Props {
@@ -13,8 +14,8 @@
 </script>
 
 <div class="relative overflow-x-auto">
-	<table class="text-light w-full text-left text-sm rtl:text-right">
-		<thead class="bg-border text-tertiary uppercase">
+	<table class="text-text-secondary w-full text-left text-sm rtl:text-right">
+		<thead class="bg-card-bg text-accent uppercase">
 			<tr>
 				<th scope="col" class="px-6 py-3">{$_('common.concept')}</th>
 				{#if category}
@@ -37,25 +38,19 @@
 								class="h-4 w-4 rounded-full"
 								style="background-color: {colors?.[row.category as string]}"
 							></span>
-							<!-- {row.category.icon} -->
 							{row.category}
 						</td>
 						<td class="px-6 py-4">
-							<span class="bg-disabled rounded-full px-2 py-1.5 whitespace-nowrap">
-								<!-- {row.type.slice(0, 3)} -->
-								{#if row.type.endsWith('occasional')}
-									{$_('types.occasional')}
-								{:else if row.type.endsWith('daily')}
-									{$_('types.daily')}
-								{:else}
-									{$_('types.monthly')}
-								{/if}
-							</span>
+							<Badge
+								text={$_('types.' + row.type)}
+								color="bg-accent text-bg-secondary font-medium"
+								size="sm"
+							/>
 						</td>
 					{:else}
 						<td class="px-6 py-4">
 							<span
-								class="bg-tertiary text-surface rounded-full px-3 py-1.5 font-medium whitespace-nowrap"
+								class="bg-secondary text-text rounded-full px-3 py-1.5 font-medium whitespace-nowrap"
 								>{row.type === 'fixed' ? $_('types.fixed') : $_('types.variable')}</span
 							>
 						</td>

@@ -161,7 +161,7 @@
 		<select
 			bind:value={selectedYear}
 			id="year"
-			class="bg-dark border-border rounded border px-3 py-1 pr-8"
+			class="bg-card-bg border-border rounded border px-3 py-1 pr-8"
 		>
 			{#each availableYears as year}
 				<option value={year}>{year}</option>
@@ -174,7 +174,7 @@
 		<select
 			bind:value={selectedMonth}
 			id="month"
-			class="bg-dark border-border rounded border px-3 py-1 pr-8"
+			class="bg-card-bg border-border rounded border px-3 py-1 pr-8"
 		>
 			{#each availableMonths as month}
 				<option value={month}>{month}</option>
@@ -184,8 +184,6 @@
 </div>
 
 <div class="chart-card full-width">
-	<canvas
-		class="bg-surface shadow-dark min-h-[350px] rounded-xl p-4 shadow-lg"
-		bind:this={barCanvas}
+	<canvas class="bg-card-bg shadow-bg min-h-[350px] rounded-xl p-4 shadow-lg" bind:this={barCanvas}
 	></canvas>
 </div>

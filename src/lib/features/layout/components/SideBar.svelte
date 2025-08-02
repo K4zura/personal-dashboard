@@ -142,7 +142,7 @@
 </script>
 
 <aside
-	class="bg-surface shadow-dark relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto p-2 transition-transform ease-linear [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:w-[240px] not-md:rounded-none not-md:shadow-[2px_0_4px_0] {$sideBarOpen
+	class="bg-bg-secondary shadow-bg relative flex h-full flex-col justify-between overflow-x-hidden overflow-y-auto p-2 transition-transform ease-linear [grid-area:aside] not-md:absolute not-md:inset-0 not-md:z-30 not-md:w-[240px] not-md:rounded-none not-md:shadow-[2px_0_4px_0] {$sideBarOpen
 		? 'not-md:translate-x-0'
 		: 'not-md:-translate-x-[256px]'}"
 >
@@ -150,13 +150,13 @@
 		onclick={() => {
 			$sideBarOpen = false;
 		}}
-		class="peer hover:bg-hover text-primary shadow-dark absolute top-1 right-1 hidden cursor-pointer rounded shadow not-md:block"
+		class="peer hover:bg-primary-hover hover:text-text text-primary shadow-bg absolute top-1 right-1 hidden cursor-pointer rounded shadow transition-colors not-md:block"
 	>
 		<X class="m-1 size-4" />
 	</button>
 	<section class="mx-2 mt-2 flex grow basis-0 flex-col items-center gap-1">
 		<picture
-			class="border-dark shadow-primary mx-1 size-28 overflow-hidden rounded-full border-4 shadow-[0_0_5px_2px]"
+			class="border-bg-secondary shadow-primary mx-1 size-28 overflow-hidden rounded-full border-4 shadow-[0_0_5px_2px]"
 		>
 			<img
 				src={userImg ?? imgProfile}
@@ -164,7 +164,7 @@
 				class="aspect-square size-full object-cover object-center"
 			/>
 		</picture>
-		<h2 class="text-light text-center text-xl font-extrabold uppercase">{userName}</h2>
+		<h2 class="text-text text-center text-xl font-extrabold uppercase">{userName}</h2>
 	</section>
 	<nav
 		class="relative flex flex-col justify-center gap-1"
@@ -179,7 +179,7 @@
 					href={section.url}
 					use:positionMotion
 					class:active={routeId === section.url}
-					class="text-light hover:text-dark z-10 flex cursor-pointer items-center gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold transition-colors duration-300 select-none"
+					class="text-text hover:text-bg z-10 flex cursor-pointer items-center gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold transition-colors duration-300 select-none"
 				>
 					<IconItem class="size-4" />
 					{$_(section.title)}
@@ -190,7 +190,7 @@
 					aria-expanded={activeSection === section}
 					aria-controls="id-seccion"
 					use:positionMotion
-					class="text-light hover:text-dark z-10 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold transition-colors duration-300 select-none"
+					class="text-text hover:text-bg z-10 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-1.5 py-2 text-[14px] font-extrabold transition-colors duration-300 select-none"
 					onclick={() => toggleSection(section)}
 				>
 					<span class="flex items-center gap-2">
@@ -205,7 +205,7 @@
 				</button>
 			{/if}
 			{#if activeSection === section && section.items}
-				<ul class="border-disabled mb-2 ml-4 flex flex-col gap-0.5 border-l pl-3" transition:slide>
+				<ul class="border-divider mb-2 ml-4 flex flex-col gap-0.5 border-l pl-3" transition:slide>
 					{#each section.items as item}
 						{@const IconSubItem = section.items ? item.icon : item.icon}
 						<li class="z-10">
@@ -213,7 +213,7 @@
 								href={item.url}
 								use:positionMotion
 								class:active={routeId === item.url}
-								class="hover:text-dark flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-sm transition-colors duration-300"
+								class="hover:text-bg text-text flex items-center gap-2 rounded-lg px-1.5 py-1.5 text-sm transition-colors duration-300"
 							>
 								<IconSubItem class="size-4" />
 								{$_(item.title)}
@@ -238,11 +238,14 @@
 			}}
 			let:motion
 		>
-			<li use:motion class="bg-hover absolute z-0 list-none rounded-lg"></li>
+			<li use:motion class="bg-primary-hover absolute z-0 list-none rounded-lg"></li>
 		</Motion>
 	</nav>
 	<div class="flex grow basis-0 flex-col justify-end gap-2">
-		<button class="bg-primary cursor-pointer rounded px-3 py-2" onclick={logout}>
+		<button
+			class="bg-primary text-button-text hover:bg-primary-hover cursor-pointer rounded px-3 py-2"
+			onclick={logout}
+		>
 			{$_('auth.logout')}
 		</button>
 	</div>
@@ -250,8 +253,8 @@
 
 <style>
 	.active {
-		background-color: var(--color-hover);
-		color: var(--color-dark);
+		background-color: var(--color-primary-hover);
+		color: var(--color-bg);
 	}
 
 	aside {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BudgetCard, store } from '$lib/features/finance';
+	import { BudgetCard, store, type Budget } from '$lib/features/finance';
 	import { modalIncomeOpen } from '$lib/shared/stores/interactions.js';
 	import { formatCurrency } from '$lib/shared/utils/format.js';
 	import { AddModal, SectionCard, StatCard } from '$lib/ui';
@@ -8,6 +8,7 @@
 
 	const { data } = $props();
 	const { categories } = $derived(data);
+
 	$effect(() => {
 		store.budgets = categories;
 	});
@@ -29,9 +30,9 @@
 />
 
 <div class="flex items-center justify-between">
-	<h1 class="text-primary text-xl font-bold">{$_('finances.budget.title')}</h1>
+	<h1 class="text-secondary text-xl font-bold">{$_('finances.budget.title')}</h1>
 	<button
-		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
+		class="bg-primary text-button-text hover:bg-primary-hover cursor-pointer rounded px-3 py-1.5 text-sm"
 		onclick={() => ($modalIncomeOpen = true)}>{$_('finances.budget.add')}</button
 	>
 </div>
@@ -43,19 +44,19 @@
 		percentage="+8.2%"
 	>
 		{#snippet icon()}
-			<DollarSign class="size-4 text-gray-300" />
+			<DollarSign class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
 	<StatCard title={$_('finances.expenses.categories')} value={store.budgets.length.toString()}>
 		{#snippet icon()}
-			<Target class="size-4 text-gray-300" />
+			<Target class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('finances.budget.total_categories')}
 	</StatCard>
 	<StatCard title={$_('finances.budget.over_budget')} value={store.budgets.length.toString()}>
 		{#snippet icon()}
-			<AlertTriangle class="size-4 text-gray-300" />
+			<AlertTriangle class="text-text-secondary size-4" />
 		{/snippet}{$_('finances.budget.need_adjustment')}
 	</StatCard>
 	<SectionCard

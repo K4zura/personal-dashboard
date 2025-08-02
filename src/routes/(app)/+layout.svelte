@@ -56,11 +56,11 @@
 </svelte:head>
 
 {#if isLoading}
-	<div class="flex h-screen items-center justify-center">
+	<div class="bg-bg flex h-screen items-center justify-center">
 		<Loader />
 	</div>
 {:else}
-	<div id="app" class="relative overflow-y-hidden">
+	<div id="app" class="bg-bg relative overflow-y-hidden">
 		<Header />
 		<button
 			onclick={() => {
@@ -72,7 +72,7 @@
 		</button>
 		<SideBar {data} />
 		{#if pageLoading}
-			<div class="bg-dark z-50 flex h-full items-center justify-center [grid-area:main]">
+			<div class="bg-bg z-50 flex h-full items-center justify-center [grid-area:main]">
 				<Loader />
 			</div>
 		{/if}

@@ -1,13 +1,23 @@
 <script lang="ts">
-	import { formatPercent } from '$lib/shared/utils/format';
+	import { formatCurrency, formatPercent } from '$lib/shared/utils/format';
 	import { _ } from 'svelte-i18n';
 
 	interface Props {
 		totalBudget?: number;
 		totalSpent?: number;
-		type?: string;
+		type?: string | null;
+		size?: number;
+		color?: string;
+		remaining?: number;
 	}
-	let { totalBudget = 0, totalSpent = 0, type }: Props = $props();
+	let {
+		totalBudget = 0,
+		totalSpent = 0,
+		type = null,
+		size = 4,
+		color = 'var(--color-accent)',
+		remaining = -1
+	}: Props = $props();
 
 	const percentage = $derived(() => {
 		if (!totalBudget || totalBudget === 0) return 0;
@@ -18,21 +28,28 @@
 
 <div class="space-y-2">
 	<div
-		class="bg-border h-4 overflow-hidden rounded-full"
+		class={`bg-border h-${size} overflow-hidden rounded-full`}
 		role="progressbar"
 		aria-valuenow={percentage()}
 		aria-valuemin="0"
 		aria-valuemax="100"
 	>
 		<div
-			class="bg-accent h-full transition-all duration-300"
-			style={`width: ${percentage()}%`}
+			class="h-full transition-all duration-300"
+			style={`width: ${percentage()}%; background-color: ${color}`}
 		></div>
 	</div>
-	{#if type === null}
-		<p class="text-xs text-gray-300">
-			{formatPercent(percentage())}
-			{$_('common.used').toLowerCase()}
-		</p>
-	{/if}
+	<div class="text-text-secondary flex items-center justify-between text-xs">
+		{#if type === null}
+			<p>
+				{formatPercent(percentage())}
+				{$_('common.used').toLowerCase()}
+			</p>
+		{/if}
+		{#if remaining !== -1}
+			<p>
+				{$_('common.remaining').toLowerCase()}: {formatCurrency(remaining)}
+			</p>
+		{/if}
+	</div>
 </div>

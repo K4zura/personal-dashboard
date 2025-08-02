@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ExpenseCategory, store, Table } from '$lib/features/finance';
+	import { ExpenseCategory, store, Table, type Budget, type Expense } from '$lib/features/finance';
 	import { modalIncomeOpen } from '$lib/shared/stores/interactions.js';
 	import { formatCurrency, formatPercent } from '$lib/shared/utils/format.js';
 	import { AddModal, ProgressBar, SectionCard, StatCard } from '$lib/ui';
@@ -40,9 +40,9 @@
 />
 
 <div class="flex items-center justify-between">
-	<h1 class="text-primary text-xl font-bold">{$_('finances.expenses.title')}</h1>
+	<h1 class="text-secondary text-xl font-bold">{$_('finances.expenses.title')}</h1>
 	<button
-		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
+		class="bg-primary text-button-text hover:bg-primary-hover cursor-pointer rounded px-3 py-1.5 text-sm"
 		onclick={() => ($modalIncomeOpen = true)}>{$_('finances.expenses.add')}</button
 	>
 </div>
@@ -54,25 +54,25 @@
 		percentage={`+${formatPercent(totalSpentPercentage)}`}
 	>
 		{#snippet icon()}
-			<TrendingDown class="size-4 text-gray-300" />
+			<TrendingDown class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
 	<StatCard title={$_('finances.budget.title')} value={formatCurrency(totalLimit)}>
 		{#snippet icon()}
-			<CreditCard class="size-4 text-gray-300" />
+			<CreditCard class="text-text-secondary size-4" />
 		{/snippet}
 		<ProgressBar totalBudget={totalLimit} {totalSpent} />
 	</StatCard>
 	<StatCard title={$_('common.average')} value={formatCurrency(16)}>
 		{#snippet icon()}
-			<ShoppingCart class="size-4 text-gray-300" />
+			<ShoppingCart class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('common.based_on_30')}
 	</StatCard>
 	<StatCard title={$_('finances.expenses.categories')} value={store.budgets.length.toString()}>
 		{#snippet icon()}
-			<AlertTriangle class="size-4 text-gray-300" />
+			<AlertTriangle class="text-text-secondary size-4" />
 		{/snippet}
 		2 {$_('finances.expenses.over_budget')}
 	</StatCard>
@@ -90,7 +90,7 @@
 	>
 		{#snippet filter()}
 			<button
-				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+				class="bg-secondary hover:bg-primary-hover text-button-text flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
 			>
 				{$_('common.filter')}
 			</button>

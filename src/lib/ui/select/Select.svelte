@@ -30,7 +30,7 @@
 	{id}
 	name={id}
 	value={options().length > 0 ? options()[0].value : ''}
-	class="{span} bg-border shadow-hover border-none shadow ring-0"
+	class="{span} bg-input-bg shadow-accent border-none shadow ring-0"
 >
 	{#each options() as option}
 		<option value={option.value}>{option.label}</option>

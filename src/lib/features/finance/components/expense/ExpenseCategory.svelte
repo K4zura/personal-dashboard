@@ -2,6 +2,7 @@
 	import type { Budget } from '$lib/features/finance';
 	import { ExpenseCard, store } from '$lib/features/finance';
 	import { formatCurrency, formatPercent } from '$lib/shared/utils/format';
+	import ProgressBar from '$lib/ui/ProgressBar.svelte';
 	import { _ } from 'svelte-i18n';
 	import { slide } from 'svelte/transition';
 
@@ -21,9 +22,8 @@
 <div class="flex w-full flex-col gap-4">
 	{#each store.budgets as category, index (category.id)}
 		{@const spent = category.expense.reduce((acc, g) => acc + g.amount, 0)}
-		{@const percentage = (spent / category.limit) * 100}
 		{@const remaining = category.limit - spent}
-		<article class=" bg-dark rounded-xl shadow-sm select-none">
+		<article class=" bg-card-bg rounded-xl shadow-sm select-none">
 			<header
 				role="button"
 				tabindex="0"
@@ -42,40 +42,20 @@
 						>{formatCurrency(spent)} / {formatCurrency(category.limit)}</span
 					>
 				</div>
-				<div
-					class="bg-border mb-1 h-3 overflow-hidden rounded-full"
-					role="progressbar"
-					aria-valuenow={Number(percentage)}
-					aria-valuemin="0"
-					aria-valuemax="100"
-				>
-					<div
-						class="h-full transition-all duration-300"
-						style={`width: ${percentage}%; background-color: ${category.color}`}
-					></div>
-				</div>
-				<footer class="flex items-center justify-between text-xs text-gray-500">
-					<p>
-						{formatPercent(percentage)}
-						{$_('common.used').toLowerCase()}
-					</p>
-					<p>
-						{$_('common.remaining').toLowerCase()}: {formatCurrency(remaining)}
-					</p>
-				</footer>
+				<ProgressBar
+					totalSpent={spent}
+					totalBudget={category.limit}
+					size={3}
+					color={category.color}
+					{remaining}
+				/>
 			</header>
 			{#if expandedIndex === index}
-				<section class="text-light px-8 pb-6 text-sm transition-all" transition:slide>
+				<section class="text-text-secondary px-8 pb-6 text-sm transition-all" transition:slide>
 					<h2 class="text-lg font-bold">{$_('finances.expenses.expense_details')}</h2>
-					<ul class="mt-1 grid grid-cols-2 gap-3">
+					<ul class="text-text mt-1 grid grid-cols-2 gap-3">
 						{#each category.expense as expense (expense.id)}
-							<ExpenseCard
-								{expense}
-								{percentage}
-								{spent}
-								color={category.color}
-								id_category={category.id}
-							/>
+							<ExpenseCard {expense} {spent} color={category.color} id_category={category.id} />
 						{/each}
 					</ul>
 				</section>

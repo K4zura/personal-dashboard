@@ -66,34 +66,34 @@
 	]}
 />
 <div class="flex items-center justify-between">
-	<h1 class="text-primary text-xl font-bold">{$_('finances.income.title')}</h1>
+	<h1 class="text-secondary text-xl font-bold">{$_('finances.income.title')}</h1>
 	<button
-		class="bg-primary cursor-pointer rounded px-3 py-1.5 text-sm"
+		class="bg-primary hover:bg-primary-hover text-button-text cursor-pointer rounded px-3 py-1.5 text-sm"
 		onclick={() => ($modalIncomeOpen = true)}>{$_('finances.income.add')}</button
 	>
 </div>
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
 	<StatCard title={$_('common.total')} value={formatCurrency(totalAmount)} percentage="+8.2%">
 		{#snippet icon()}
-			<TrendingUp class="size-4 text-gray-300" />
+			<TrendingUp class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('common.vs_last_month')}
 	</StatCard>
 	<StatCard title={$_('finances.income.fixed')} value={formatCurrency(totalFixedAmount)}>
 		{#snippet icon()}
-			<DollarSign class="size-4 text-gray-300" />
+			<DollarSign class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('finances.income.regular_income')}
 	</StatCard>
 	<StatCard title={$_('finances.income.variable')} value={formatCurrency(totalVariableAmount)}>
 		{#snippet icon()}
-			<Wallet class="size-4 text-gray-300" />
+			<Wallet class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('finances.income.irregular_income')}
 	</StatCard>
 	<StatCard title={$_('finances.income.active')} value={incomeList.length.toString()}>
 		{#snippet icon()}
-			<Tag class="size-4 text-gray-300" />
+			<Tag class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('finances.income.different_categories')}
 	</StatCard>
@@ -111,7 +111,7 @@
 	>
 		{#snippet filter()}
 			<button
-				class="bg-secondary hover:bg-tertiary text-light flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+				class="bg-secondary hover:bg-primary-hover text-button-text flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
 			>
 				<!-- <FilterIcon class="size-4" /> -->
 				{$_('common.filter')}

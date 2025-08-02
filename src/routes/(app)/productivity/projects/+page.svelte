@@ -16,33 +16,31 @@
 	};
 </script>
 
-<h1>{$_('title')}</h1>
-
-<h1 class="text-primary text-xl font-bold">{$_('productivity.projects.title')}</h1>
+<h1 class="text-secondary text-xl font-bold">{$_('productivity.projects.title')}</h1>
 
 <!-- <p>{$t('greeting', { values: { name: 'Carlos' } })}</p> -->
 <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
 	<StatCard title={$_('productivity.projects.total_projects')} value="4">
 		{#snippet icon()}
-			<FolderOpen class="size-4 text-gray-300" />
+			<FolderOpen class="text-text-secondary size-4" />
 		{/snippet}
 		3 {$_('productivity.projects.active_projects').toLowerCase()}
 	</StatCard>
 	<StatCard title={$_('common.completed')} value="4">
 		{#snippet icon()}
-			<CheckCircle class="size-4 text-gray-300" />
+			<CheckCircle class="text-text-secondary size-4" />
 		{/snippet}
 		25% {$_('productivity.projects.completed_percent').toLowerCase()}
 	</StatCard>
 	<StatCard title={$_('productivity.projects.inprogress')} value="4">
 		{#snippet icon()}
-			<Clock class="size-4 text-gray-300" />
+			<Clock class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('productivity.projects.attention_required')}
 	</StatCard>
 	<StatCard title={$_('productivity.projects.delayed')} value="4">
 		{#snippet icon()}
-			<AlertCircle class="size-4 text-gray-300" />
+			<AlertCircle class="text-text-secondary size-4" />
 		{/snippet}
 		{$_('productivity.projects.need_action_urgent')}
 	</StatCard>

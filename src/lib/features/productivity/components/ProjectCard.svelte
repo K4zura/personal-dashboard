@@ -12,7 +12,7 @@
 	const { project }: Props = $props();
 </script>
 
-<article class={`bg-dark relative flex flex-col justify-center gap-4 rounded p-4 lg:col-span-2`}>
+<article class={`bg-card-bg relative flex flex-col justify-center gap-4 rounded p-4 lg:col-span-2`}>
 	<div class="flex justify-between">
 		<h1>{project.title}</h1>
 		<Badge text="Completado" color="bg-success text-surface" rounded="-full" />

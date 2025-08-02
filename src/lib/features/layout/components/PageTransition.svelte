@@ -50,7 +50,7 @@
 <style>
 	main {
 		--sb-track-color: #0000;
-		--sb-thumb-color: var(--color-primary);
+		--sb-thumb-color: var(--color-scrollbar);
 		--sb-size: 6px;
 	}
 

@@ -15,7 +15,9 @@
 	async function onChangeLang(event: Event) {
 		const select = event.target as HTMLSelectElement;
 		applyLang(select.value);
-		await db.config.changeLang(select.value);
+		if (storeConfig.userID !== '') {
+			await db.config.changeLang(select.value);
+		}
 	}
 
 	onMount(async () => {

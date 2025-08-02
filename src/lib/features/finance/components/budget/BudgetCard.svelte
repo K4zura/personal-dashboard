@@ -30,7 +30,7 @@
 </script>
 
 <article
-	class="shadow-tertiary flex flex-col items-center gap-2 rounded px-4 py-3 shadow-[-1px_1px_1px_1px]"
+	class="shadow-accent bg-card-bg flex flex-col items-center gap-2 rounded px-4 py-3 shadow-[-1px_1px_1px_1px]"
 >
 	<div class="flex w-full flex-wrap items-center justify-between gap-2">
 		<div class="flex items-center gap-2 self-start">
