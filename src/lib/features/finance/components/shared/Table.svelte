@@ -44,7 +44,7 @@
 							<Badge
 								text={$_('types.' + row.type)}
 								color="bg-accent text-bg-secondary font-medium"
-								size="sm"
+								size="text-sm"
 							/>
 						</td>
 					{:else}

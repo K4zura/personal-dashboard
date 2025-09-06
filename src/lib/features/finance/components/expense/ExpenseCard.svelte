@@ -46,7 +46,7 @@
 				<Badge
 					text={$_('types.' + localExpense.type)}
 					color="bg-accent text-card-bg"
-					rounded="-lg font-semibold"
+					rounded="rounded-lg font-semibold"
 				/>
 			</div>
 		</div>

@@ -14,14 +14,14 @@
 
 <article class={`bg-card-bg relative flex flex-col justify-center gap-4 rounded p-4 lg:col-span-2`}>
 	<div class="flex justify-between">
-		<h1>{project.title}</h1>
-		<Badge text="Completado" color="bg-success text-surface" rounded="-full" />
+		<h1 class="text-lg font-semibold">{project.title}</h1>
+		<Badge text="Completado" color="bg-success text-card-bg font-semibold" rounded="rounded-full" />
 	</div>
-	<p>
+	<p class="text-sm max-w-xl text-text-secondary">
 		{project.description}
 	</p>
 	<div class="flex flex-col">
-		<div class="flex justify-between">
+		<div class="flex justify-between text-sm font-medium">
 			<span>Tareas</span>
 			<span>8/16</span>
 		</div>
@@ -33,8 +33,8 @@
 			<span class="text-xs whitespace-nowrap">16 de Julio</span>
 		</p>
 		<div class="flex items-center gap-2">
-			<Badge text="Desarrollo" />
-			<Badge text="Infraestructura" />
+			<Badge color="bg-secondary text-card-bg font-medium" rounded="rounded" text="Desarrollo" />
+			<Badge color="bg-secondary text-card-bg font-medium" rounded="rounded" text="Infraestructura" />
 		</div>
 	</div>
 	<!-- {@render children()} -->

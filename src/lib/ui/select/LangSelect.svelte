@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 	import { db } from '$lib/features/finance';
 
-	let lang: string = $state(storeConfig.lang || 'ja');
+	let lang: string = $state(storeConfig.lang || 'en');
 
 	function applyLang(l: string) {
 		lang = l;
